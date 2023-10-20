@@ -40,6 +40,9 @@ const GlobalStyle = createGlobalStyle`
         margin: -1px;
         border: 0;
         padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     
     *, :after, :before {
@@ -76,6 +79,8 @@ const GlobalStyle = createGlobalStyle`
         width: 390px;
         height: 100vh;
         margin: 0 auto;
+        background-color: var(--white);
+        position: relative;
     }
 `;
 
