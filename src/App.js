@@ -1,13 +1,18 @@
-import HomePage from 'pages/HomePage/HomePage';
+import NotFoundPage from 'pages/404/NotFoundPage';
+import MainLoginPage from 'pages/LoginPage/MainLoginPage';
+import SplashPage  from 'pages/SplashPage/SplashPage';
 import React from 'react';
 import AppRouter from 'router/AppRouter';
-import GlobalStyle from 'style/Global.style';
+import GlobalStyle from 'style/GlobalStyle';
 
 export default function App() {
   return (
     <>
       <GlobalStyle />
-      <AppRouter />
+      {/* <AppRouter /> */}
+      {/* <MainLoginPage></MainLoginPage> */}
+      {/* <SplashPage></SplashPage> */}
+      <NotFoundPage></NotFoundPage>
     </>
   );
 }
