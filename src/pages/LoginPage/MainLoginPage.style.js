@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import KakaoLogo from 'assets/images/logo_Kakao.png';
-import GoogleLogo from 'assets/images/logo_Google.png';
-import FacebookLogo from 'assets/images/logo_facebook.png';
-import OguoguLogo from 'assets/images/icon_ogudog_pink.png';
-import KakaoLogoActive from 'assets/images/logo_Kakao_white.png'
-import GoogleLogoActive from 'assets/images/logo_Google_white.png'
-import FacebookLogoActive from 'assets/images/logo_facebook_white.png';
-import OguoguLogoActive from 'assets/images/icon_ogudog_white.png';
+import kakaoLogo from 'assets/images/logo_Kakao.png';
+import googleLogo from 'assets/images/logo_Google.png';
+import facebookLogo from 'assets/images/logo_facebook.png';
+import oguoguLogo from 'assets/images/icon_ogudog_pink.png';
+import kakaoLogoActive from 'assets/images/logo_Kakao_white.png'
+import googleLogoActive from 'assets/images/logo_Google_white.png'
+import facebookLogoActive from 'assets/images/logo_facebook_white.png';
+import oguoguLogoActive from 'assets/images/icon_ogudog_white.png';
 
 
 export const LoginPage = styled.div`
@@ -21,17 +21,21 @@ export const OguoguSlogan = styled.div`
 font-size : 14px;
 color : white;
 padding-top: 213px;
-
   img{
     width: 212px;
   }
+  p{
+    padding-top : 10px;
+  }
 `
-export const LoginContainer = styled.form`
+export const LoginContainer = styled.section`
   background-color: white;
   color: var(--gray-01);
   height: 336px;
   margin-top: 189px;
   border-radius: 20px 20px 0 0;
+  position : fixed;
+  bottom : 0px;
 `
 export const SnsLoginBox = styled.ul`
   padding: 50px 34px 0px 34px;
@@ -60,59 +64,63 @@ export const SnsLoginBox = styled.ul`
 `
 export const KakaoLogin = styled.li`
   border-color: #F2C94C;
-  background-image: url(${KakaoLogo});
+  background-image: url(${kakaoLogo});
   background-size: 24px;
 
   &:active {
     background-color : #F2C94C ; 
-    background-image : url(${KakaoLogoActive});
+    background-image : url(${kakaoLogoActive});
   }
 `
 
 export const GoogleLogin = styled.li`
   border-color: var(--gray-01);
-  background-image: url(${GoogleLogo});
+  background-image: url(${googleLogo});
   background-size: 24px;
 
   &:active {
     background-color : var(--gray-01) ; 
-    background-image : url(${GoogleLogoActive});
+    background-image : url(${googleLogoActive});
   }
 `
 
 export const FacebookLogin = styled.li`
   border-color: #2D9CDB;
-  background-image: url(${FacebookLogo});
+  background-image: url(${facebookLogo});
   background-size: 24px;
 
   &:active {
     background-color : #2D9CDB ; 
-    background-image : url(${FacebookLogoActive});
+    background-image : url(${facebookLogoActive});
   }
 `
 
 export const EmailLogin = styled.li`
   border-color: var(--main-color-01);
-  background-image: url(${OguoguLogo});
+  background-image: url(${oguoguLogo});
   background-size: 30px;
 
   &:active {
     background-color : var(--main-color-01) ; 
-    background-image : url(${OguoguLogoActive});
+    background-image : url(${oguoguLogoActive});
   }
 `
 
 export const LoginFooter = styled.footer`
   padding-top: 10px;
   font-size: 12px;
+
+  button {
+    font-size : inherit;
+    color: var(--gray-01);
+  }
+  
 `
 
-export const FindPassword = styled.a`
+export const FindPassword = styled.button`
   padding-right : 12px;
 `
 
 export const Join = styled.button`
-  font-family: inherit;
-  color: inherit;
   padding-left : 12px;
 `

@@ -10,9 +10,9 @@ export default function App() {
     <>
       <GlobalStyle />
       {/* <AppRouter /> */}
-      {/* <MainLoginPage></MainLoginPage> */}
+      <MainLoginPage></MainLoginPage>
       {/* <SplashPage></SplashPage> */}
-      <NotFoundPage></NotFoundPage>
+      {/* <NotFoundPage></NotFoundPage> */}
     </>
   );
 }
