@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from 'assets/images/logo_oguogu_white.png'
-import { EmailLogin, FacebookLogin, FindPassword, GoogleLogin, Join, KakaoLogin, LoginFooter, LoginContainer, LoginPage, OguoguSlogan, SnsLoginBox } from 'pages/LoginPage/MainLoginPage.style'
+import { EmailLogin, FacebookLogin, FindPassword, GoogleLogin, Join, KakaoLogin, LoginFooter, LoginContainer, OguoguSlogan2, SnsLoginBox } from 'pages/LoginPage/MainLoginPage.style'
+import { SplashPageBg } from 'pages/SplashPage/SplashPage.style'
 
 export default function MainLoginPage() {
 
@@ -10,11 +11,11 @@ export default function MainLoginPage() {
 
 
   return (
-    <LoginPage>
-      <OguoguSlogan>
+    <SplashPageBg>
+      <OguoguSlogan2>
         <img src={Logo} alt="오구오구 로고" />
         <p>내 새꾸 자랑, 네 새꾸 자랑</p>
-      </OguoguSlogan>
+      </OguoguSlogan2>
       <LoginContainer>
         <SnsLoginBox>
           <KakaoLogin onClick={()=>{window.open(kakaoUrl)}}>카카오 계정으로 로그인</KakaoLogin>
@@ -27,6 +28,6 @@ export default function MainLoginPage() {
           <Join>회원가입</Join>
         </LoginFooter>
       </LoginContainer>
-    </LoginPage>
+    </SplashPageBg>
   )
 }

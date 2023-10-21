@@ -7,27 +7,25 @@ import kakaoLogoActive from 'assets/images/logo_Kakao_white.png'
 import googleLogoActive from 'assets/images/logo_Google_white.png'
 import facebookLogoActive from 'assets/images/logo_facebook_white.png';
 import oguoguLogoActive from 'assets/images/icon_ogudog_white.png';
+import { OguoguSlogan, SplashPageBg } from "pages/SplashPage/SplashPage.style";
 
+export const OguoguSlogan2 = styled(OguoguSlogan)`
+& {
+    position: relative;
+    animation: slide 1s ease-in-out ;
+    animation-fill-mode : forwards;
+}
 
-export const LoginPage = styled.div`
-font-weight : 400;
-height : 844px;
-align-items : center ;
-text-align: center;
-background-color : var(--main-color-01);
+@keyframes slide {
+    from {
+        top : 0px;
+    }
+    to {
+        top: -150px;
+    }
+}
 `
 
-export const OguoguSlogan = styled.div`
-font-size : 14px;
-color : white;
-padding-top: 213px;
-  img{
-    width: 212px;
-  }
-  p{
-    padding-top : 10px;
-  }
-`
 export const LoginContainer = styled.section`
   background-color: white;
   color: var(--gray-01);
@@ -36,7 +34,22 @@ export const LoginContainer = styled.section`
   border-radius: 20px 20px 0 0;
   position : fixed;
   bottom : 0px;
+
+  & {
+    animation: slide2 1s ease-in-out ;
+    animation-fill-mode : forwards;
+}
+
+@keyframes slide2 {
+    from {
+        bottom : -336px;
+    }
+    to {
+        bottom : 0px;
+    }
+}
 `
+
 export const SnsLoginBox = styled.ul`
   padding: 50px 34px 0px 34px;
 
@@ -62,6 +75,7 @@ export const SnsLoginBox = styled.ul`
   }
   }
 `
+
 export const KakaoLogin = styled.li`
   border-color: #F2C94C;
   background-image: url(${kakaoLogo});

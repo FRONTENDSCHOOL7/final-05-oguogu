@@ -1,36 +1,15 @@
-import React, { useEffect } from 'react'
-import { SplashContainer } from './SplashPage.style'
+import React from 'react'
+import { OguoguSlogan, SplashPageBg } from './SplashPage.style'
+
+import Logo from 'assets/images/logo_oguogu_white.png'
 
 export default function SplashPage() {
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     history.push('/Login');
-  //   }, 2500);
-
-  //   return () => clearTimeout(timer);
-  // },[history]);
-  
-//   return (
-//     <SplashContainer>
-      
-//     </SplashContainer>
-//   )
-// }
-
-const [loading,setLoading] = useState(true);
-
-useEffect(()=>{
-  const timer = setTimeout(()=>{
-    setLoading(false);
-  },2500)
-
-  return () => clearTimeout(timer);
-},loading)
-
-return (
-  <>
-  <GlobalStyle />
-  {loading ? <Splash /> : <AppRouter />}
-  </>
-)
+  return (
+    <SplashPageBg>
+      <OguoguSlogan>
+      <img src={Logo} alt="오구오구 로고" />
+      <p>내 새꾸 자랑, 네 새꾸 자랑</p>
+      </OguoguSlogan>
+    </SplashPageBg>
+  )
 }
