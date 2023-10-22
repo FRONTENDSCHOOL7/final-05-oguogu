@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    /*======== Import Fonts ========*/
-    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
-    
-    
     /*======== Variable CSS ========*/
     :root {
         /*---------- Color ----------*/
