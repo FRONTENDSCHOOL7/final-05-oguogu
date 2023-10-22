@@ -6,24 +6,16 @@ import AppRouter from 'router/AppRouter';
 import GlobalStyle from 'style/GlobalStyle';
 
 export default function App() {
-  const [loading,setLoading] = useState(true);
 
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      setLoading(false);
-    },2500);
-  
-    return () => clearTimeout(timer);
-  },loading)
 
   return (
     <>
       <GlobalStyle />
-      {/* <AppRouter /> */}
+      <AppRouter />
       {/* <MainLoginPage></MainLoginPage> */}
       {/* <SplashPage></SplashPage> */}
       {/* <NotFoundPage></NotFoundPage> */}
-      {loading ? <SplashPage /> : <AppRouter />}
+      {/* {loading ? <SplashPage /> : <AppRouter />} */}
       
     </>
   );

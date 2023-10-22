@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from 'assets/images/logo_oguogu_white.png'
 import { EmailLogin, FacebookLogin, FindPassword, GoogleLogin, Join, KakaoLogin, LoginFooter, LoginContainer, OguoguSlogan2, SnsLoginBox } from 'pages/LoginPage/MainLoginPage.style'
 import { SplashPageBg } from 'pages/SplashPage/SplashPage.style'
+import SplashPage from '../SplashPage/SplashPage'
 
 export default function MainLoginPage() {
 
@@ -9,9 +10,20 @@ export default function MainLoginPage() {
   const googleUrl = "https://www.google.co.kr/"
   const facebookUrl = "https://www.facebook.com/?locale=ko_KR"
 
+  const [loading,setLoading] = useState(true);
+
+  useEffect(()=>{
+    const timer = setTimeout(()=>{
+      setLoading(false);
+    },2500);
+  
+    return () => clearTimeout(timer);
+  },loading)
 
   return (
-    <SplashPageBg>
+    <>
+    {loading ? <SplashPage/> :
+<SplashPageBg>
       <OguoguSlogan2>
         <img src={Logo} alt="오구오구 로고" />
         <p>내 새꾸 자랑, 네 새꾸 자랑</p>
@@ -28,6 +40,7 @@ export default function MainLoginPage() {
           <Join>회원가입</Join>
         </LoginFooter>
       </LoginContainer>
-    </SplashPageBg>
+    </SplashPageBg>}
+    </>
   )
 }

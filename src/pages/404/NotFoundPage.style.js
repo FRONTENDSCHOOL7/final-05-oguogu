@@ -1,14 +1,8 @@
-import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { Container } from '../../components/home/NoneFeed.style';
 
-export const Container = styled.div`
-  width: 100%;
+export const NotFoundContainer = styled(Container)`
   height: 844px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
 `;
 
 export const Img = styled.img`
@@ -16,12 +10,7 @@ export const Img = styled.img`
   margin-bottom: 10px;
 `;
 
-export const Text = styled.span`
-  font-size: 14px;
-  color: var(--gray-01);
-`;
-
-export const SearchLink = styled.a`
+export const BackLink = styled.button`
   display: block;
   font-size: 14px;
   line-height: 17px;
@@ -30,5 +19,3 @@ export const SearchLink = styled.a`
   border-radius: 44px;
   background-color: var(--main-color-01);
 `;
-
-styled(Container)
