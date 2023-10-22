@@ -12,7 +12,7 @@ export default function Button({ size, vari, type, text, onClick, disabled }) {
       );
     case 'border':
       return (
-        <BorderButton $size={BORDER_BTN[size]} type={type} onClick={onClick} disabled={disabled}>
+        <BorderButton $size={BORDER_BTN[size]} $pink={size === 'sm' && true} type={type} onClick={onClick} disabled={disabled}>
           {text}
         </BorderButton>
       );
