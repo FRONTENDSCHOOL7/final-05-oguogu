@@ -1,19 +1,23 @@
 import { styled } from 'styled-components';
 import iconSerch from 'assets/images/icon_search.png';
 import iconBack from 'assets/images/icon_arrow_left.png';
+import iconMore from 'assets/images/icon_more_vertical_small.png';
 
 export const Container = styled.div`
   width: 100%;
   height: 48px;
   border-bottom: 1px solid var(--gray-02);
+  background-color: var(--white);
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) => props.$justify};
   align-items: center;
+  position: relative;
+  padding: 0 16px;
 `;
 
 export const Logo = styled.img`
   width: 85px;
-  margin-left: 15px;
+  margin-left: -1px;
 `;
 
 export const SearchBtn = styled.button`
@@ -21,7 +25,6 @@ export const SearchBtn = styled.button`
   height: 24px;
   background: url(${iconSerch}) no-repeat;
   background-size: cover;
-  margin-right: 16px;
 `;
 
 export const BackBtn = styled.button`
@@ -29,21 +32,45 @@ export const BackBtn = styled.button`
   height: 22px;
   background: url(${iconBack}) no-repeat;
   background-size: cover;
-  margin-left: 16px;
-  margin-right: 20px;
 `;
 
 export const SerachInput = styled.input`
-  width: 100%;
+  width: 316px;
   background-color: var(--gray-03);
   border: none;
   border-radius: 32px;
   font-size: 14px;
   color: var(--black);
   padding: 8px 16px;
-  margin-right: 16px;
 
   &::placeholder {
     color: #c4c4c4;
   }
+`;
+
+export const CenterText = styled.h1`
+  color: var(--black);
+  font-size: 14px;
+  font-weight: var(--medium);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const LeftText = styled.h1`
+  color: var(--black);
+  font-size: 14px;
+  font-weight: var(--medium);
+  position: absolute;
+  top: 50%;
+  left: 48px;
+  transform: translateY(-50%);
+`;
+
+export const EditBtn = styled.button`
+  width: 24px;
+  height: 24px;
+  background: url(${iconMore}) no-repeat;
+  background-size: cover;
 `;

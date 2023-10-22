@@ -16,19 +16,19 @@ export default function NavBar() {
     <Container>
       <NavLink to="/home">
         <NavIcon src={pathname === '/home' ? iconHomeFill : iconHome} />
-        <NavText color={pathname === '/home' ? true : false}>홈</NavText>
+        <NavText $textcolor={pathname === '/home' ? 'var(--main-color-01)' : 'var(--gray-01)'}>홈</NavText>
       </NavLink>
       <NavLink to="/chat">
         <NavIcon src={pathname === '/chat' ? iconChatFill : iconChat} />
-        <NavText color={pathname === '/chat' ? true : false}>채팅</NavText>
+        <NavText $textcolor={pathname === '/chat' ? 'var(--main-color-01)' : 'var(--gray-01)'}>채팅</NavText>
       </NavLink>
       <NavLink to="/post/upload">
         <NavIcon src={iconEdit} />
-        <NavText color={false}>게시물 작성</NavText>
+        <NavText $textcolor="var(--gray-01)">게시물 작성</NavText>
       </NavLink>
       <NavLink to="/profile">
         <NavIcon src={pathname === '/profile' ? iconOguFill : iconOgu} />
-        <NavText color={pathname === '/profile' ? true : false}>프로필</NavText>
+        <NavText $textcolor={pathname === '/profile' ? 'var(--main-color-01)' : 'var(--gray-01)'}>프로필</NavText>
       </NavLink>
     </Container>
   );

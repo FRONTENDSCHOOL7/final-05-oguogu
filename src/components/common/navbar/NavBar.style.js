@@ -31,7 +31,7 @@ export const NavIcon = styled.img`
 `;
 
 export const NavText = styled.span`
-  color: ${(props) => (props.color ? 'var(--main-color-01)' : 'var(--gray-01)')};
+  color: ${(props) => props.$textcolor};
   font-size: 10px;
   text-align: center;
 `;
