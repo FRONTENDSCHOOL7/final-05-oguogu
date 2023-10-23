@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { List, Box, Content, Bg, Header } from 'pages/ChatPage/ChatPage.style';
-import iconArrowLeft from 'assets/images/icon_arrow_left.png';
-import iconMore from 'assets/images/icon_more_vertical_small.png';
+import Header from 'components/common/header/Header';
+import { List, Box, Content, Bg } from 'pages/ChatPage/ChatPage.style';
 
 function ChatRoom() {
   return (
-    <Bg>
-      <Header>
-        <img src={iconArrowLeft} alt="되돌아가기" style={{ width: '22px' }} />
-        <img src={iconMore} alt="편집하기" style={{ width: '24px' }} />
-      </Header>
-    </Bg>
+    <>
+      <Bg>
+        <Header />
+      </Bg>
+    </>
   );
 }
 
