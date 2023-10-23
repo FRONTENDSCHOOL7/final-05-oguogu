@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
         --gray-01: #767676;
         --gray-02: #DBDBDB;
         --gray-03: #F2F2F2;
+        --gray-04: #c4c4c4;
 
         /*---------- Font ----------*/
         --main-font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
