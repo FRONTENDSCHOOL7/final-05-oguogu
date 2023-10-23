@@ -5,6 +5,7 @@ import ChatList from 'pages/ChatPage/ChatList';
 import ChatRoom from 'pages/ChatPage/ChatRoom';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UploadPage from 'pages/Upload/UploadPage';
 
 export default function AppRouter() {
   return (
@@ -15,6 +16,7 @@ export default function AppRouter() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/chatlist" element={<ChatList />} />
         <Route path="/chatroom" element={<ChatRoom />} />
+        <Route path="/upload" element={<UploadPage />} />
       </Routes>
     </BrowserRouter>
   );

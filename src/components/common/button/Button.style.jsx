@@ -73,7 +73,7 @@ export const ShadowButton = styled.button`
   border-radius: 44px;
   background-color: var(--white);
   color: var(--black);
-  font-size: 14px;
+  font-size: 12px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   ${(props) => props.$size}
 
