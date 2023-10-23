@@ -11,14 +11,6 @@ export const Bg = styled.section`
   background: var(--main-color-03);
 `;
 
-export const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  padding: 12px;
-  background-color: var(--white);
-  border-bottom: 0.5px solid var(--gray-02);
-`;
-
 export const List = styled.li`
   display: flex;
   flex-direction: row;
@@ -27,9 +19,7 @@ export const List = styled.li`
   width: 100%;
   padding: 13px 16px 13px 16px;
   border-bottom: 0.5px solid var(--gray-02);
-  &.selected {
-    background-color: var(--main-color-02);
-  }
+ background-color: ${(props) => props.selectedItem === props.id && 'var(--main-color-02)'};
 `;
 
 export const Box = styled.div`
