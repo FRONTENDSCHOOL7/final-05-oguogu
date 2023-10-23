@@ -19,7 +19,7 @@ export const List = styled.li`
   width: 100%;
   padding: 13px 16px 13px 16px;
   border-bottom: 0.5px solid var(--gray-02);
-  background-color: ${(props) => (props.selectedItem === props.id ? 'var(--main-color-02)' : '')};
+ background-color: ${(props) => props.selectedItem === props.id && 'var(--main-color-02)'};
 `;
 
 export const Box = styled.div`
