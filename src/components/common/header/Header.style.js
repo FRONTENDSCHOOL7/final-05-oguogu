@@ -44,7 +44,7 @@ export const SerachInput = styled.input`
   padding: 8px 16px;
 
   &::placeholder {
-    color: #c4c4c4;
+    color: var(--gray-04);
   }
 `;
 
