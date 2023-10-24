@@ -31,7 +31,7 @@ function ChatList() {
 
   const listItem = contents.map((item) => {
     return (
-      <List key={item.id} id={item.id} onMouseDown={handleListClick} onMouseUp={handleLink} selectedItem={selectedItem}>
+      <List key={item.id} id={item.id} onMouseDown={handleListClick} onMouseUp={handleLink} $selectedItem={selectedItem}>
         {item.img}
         <Box>
           <strong>{item.accountId}</strong>
