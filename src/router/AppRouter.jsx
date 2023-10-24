@@ -20,7 +20,7 @@ export default function AppRouter() {
         <Route path="/chatlist" element={<ChatListPage />} />
         <Route path="/chatroom" element={<ChatRoomPage />} />
         <Route path="/*" element={<NotFoundPage />} />
-        <Route path="/*" element={<UploadPage/>} /> 
+        <Route path="/upload" element={<UploadPage/>} /> 
       </Routes>
     </BrowserRouter>
   );
