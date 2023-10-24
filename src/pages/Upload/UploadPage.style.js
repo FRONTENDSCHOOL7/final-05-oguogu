@@ -10,6 +10,9 @@ export const AddPictureContainer = styled.section`
 display : flex;
 padding : 21px 0px 21px 16px;
 `
+export const FileInput = styled.input`
+display: none;
+`;
 
 export const AddPictureBtn = styled.button`
   height : 80px;
@@ -30,6 +33,7 @@ export const AddPictureList = styled.ul`
   display : flex ;
   padding-left : 13px;
   gap : 13px;
+  /* overflow: scroll;   */
 `
 
 export const AddPictureListEle = styled.li`
@@ -38,6 +42,12 @@ export const AddPictureListEle = styled.li`
   background-color : var(--gray-02);
   border-radius : 10px;
   position : relative;
+  flex-shrink : 0 ;
+  img{
+    height : 80px;
+    width : 80px;
+    object-fit : cover;
+  }
 `
 
 export const CanclePictureBtn = styled.button`
@@ -61,7 +71,12 @@ export const EnterText = styled.textarea`
   padding : 21px 16px;
   font-size : 14px;
   resize: none;
-  
+  overflow-y: scroll;
+  line-height : normal;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &::placeholder{
     color: var(--gray-04);
   }
