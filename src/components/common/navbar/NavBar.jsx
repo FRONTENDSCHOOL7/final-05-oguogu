@@ -18,11 +18,11 @@ export default function NavBar() {
         <NavIcon src={pathname === '/home' ? iconHomeFill : iconHome} />
         <NavText $textcolor={pathname === '/home' ? 'var(--main-color-01)' : 'var(--gray-01)'}>홈</NavText>
       </NavLink>
-      <NavLink to="/chat">
+      <NavLink to="/chatlist">
         <NavIcon src={pathname === '/chat' ? iconChatFill : iconChat} />
         <NavText $textcolor={pathname === '/chat' ? 'var(--main-color-01)' : 'var(--gray-01)'}>채팅</NavText>
       </NavLink>
-      <NavLink to="/post/upload">
+      <NavLink to="/upload">
         <NavIcon src={iconEdit} />
         <NavText $textcolor="var(--gray-01)">게시물 작성</NavText>
       </NavLink>
