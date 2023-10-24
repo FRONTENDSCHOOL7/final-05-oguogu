@@ -10,7 +10,7 @@ export const emailValidAPI = async (email) => {
 
   try {
     const result = await instance.post('user/emailvalid', reqData);
-    return result.data;
+    console.log(result.data);
     // 사용 가능한 이메일인 경우
     //"message": "사용 가능한 이메일 입니다."
 
@@ -31,7 +31,7 @@ export const accountValidAPI = async (accountname) => {
 
   try {
     const result = await instance.post('user/accountnamevalid', reqData);
-    return result.data;
+    console.log(result.data);
     // 사용 가능한 이메일인 경우
     //"message": "사용 가능한 계정 ID 입니다."
 
@@ -57,7 +57,7 @@ export const joinAPI = async ({ username, email, password, accountname, intro, i
 
   try {
     const result = await instance.post('user', reqData);
-    return result.data;
+    console.log(result.data);
   } catch (error) {
     throw error;
   }

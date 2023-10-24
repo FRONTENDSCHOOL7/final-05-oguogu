@@ -5,7 +5,7 @@ export const imgUploadAPI = async (file) => {
   formData.append('image', file);
   try {
     const result = await imgInstance.post('image/uploadfile', formData);
-    return result.data.filename;
+    console.log(result.data.filename);
   } catch (error) {
     throw error;
   }
