@@ -7,6 +7,7 @@ import ChatListPage from 'pages/ChatPage/ChatListPage';
 import ChatRoomPage from 'pages/ChatPage/ChatRoomPage';
 import EmailLoginPage from 'pages/LoginPage/EmailLoginPage';
 import JoinPage from 'pages/JoinPage/JoinPage';
+import UploadPage from 'pages/Upload/UploadPage';
 
 export default function AppRouter() {
   return (
@@ -22,7 +23,6 @@ export default function AppRouter() {
         <Route path="/upload" element={<UploadPage/>} /> 
         <Route path="/profile" element={<ProfileMy/>} />
         <Route path="/home/yourprofile" element={<ProfileYour/>} />
-        
       </Routes>
     </BrowserRouter>
   );
