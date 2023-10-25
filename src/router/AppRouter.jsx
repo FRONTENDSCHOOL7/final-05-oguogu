@@ -14,13 +14,15 @@ export default function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLoginPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
         <Route path="/login" element={<EmailLoginPage />} />
         <Route path="/join" element={<JoinPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/chatlist" element={<ChatListPage />} />
         <Route path="/chatroom" element={<ChatRoomPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
         <Route path="/upload" element={<UploadPage/>} /> 
+        <Route path="/profile" element={<ProfileMy/>} />
+        <Route path="/home/yourprofile" element={<ProfileYour/>} />
       </Routes>
     </BrowserRouter>
   );
