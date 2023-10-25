@@ -1,4 +1,5 @@
 import { css, styled } from 'styled-components';
+import iconBack from 'assets/images/icon_arrow_left.png';
 
 export const BASIC_BTN = {
   xs: css`
@@ -89,4 +90,11 @@ export const BorderButton = styled.button`
   color: ${(props) => (props.$pink ? 'var(--main-color-01)' : 'var(--gray-01)')};
   background-color: var(--white);
   ${(props) => props.$size}
+`;
+
+export const BackBtn = styled.button`
+  width: 22px;
+  height: 22px;
+  background: url(${iconBack}) no-repeat;
+  background-size: cover;
 `;
