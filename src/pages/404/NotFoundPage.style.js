@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { Container } from '../../components/home/NoneFeed.style';
 
 export const NotFoundContainer = styled(Container)`
-  height: 844px;
+  height: 100%;
 `;
 
 export const Img = styled.img`
