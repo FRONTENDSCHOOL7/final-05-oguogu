@@ -5,7 +5,7 @@ import Button from 'components/common/button/Button';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import PostList from 'components/post/PostList';
 
-export default function FollowingFeed() {
+export default function FollowingFeed({ posts }) {
   const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
   const kategorie = ['#전체', '#내새꾸자랑', '#고민있어요', '#질문있어요', '#내새꾸간식', '#내새꾸선물'];
@@ -23,7 +23,7 @@ export default function FollowingFeed() {
       <ButtonBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
         {buttons}
       </ButtonBox>
-      <PostList />
+      <PostList posts={posts} />
     </Container>
   );
 }
