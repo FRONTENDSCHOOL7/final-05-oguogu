@@ -1,9 +1,14 @@
 import React from 'react';
-import { BackBtn, CenterText, Container, EditBtn, LeftText, Logo, SearchBtn, SerachInput } from 'components/common/header/Header.style';
+import { CenterText, Container, EditBtn, LeftText, Logo, SearchBtn, SerachInput } from 'components/common/header/Header.style';
 import logo from 'assets/images/logo_oguogu.png';
 import Button from 'components/common/button/Button';
+import { useNavigate } from 'react-router';
 
 export default function Header({ type, text, btnText, rightOnClick, leftOnClick }) {
+  const navigate = useNavigate();
+  const toBack = () => {
+    navigate(-1);
+  };
   switch (type) {
     case 'home':
       return (
@@ -16,28 +21,28 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
     case 'search':
       return (
         <Container $justify="space-between">
-          <BackBtn type="button" onClick={leftOnClick} />
+          <Button vari="back" onClick={toBack} />
           <SerachInput placeholder="계정 검색" />
         </Container>
       );
     case 'follow':
       return (
         <Container>
-          <BackBtn type="button" onClick={leftOnClick} />
+          <Button vari="back" />
           <CenterText>{text}</CenterText>
         </Container>
       );
     case 'btn':
       return (
         <Container $justify="space-between">
-          <BackBtn type="button" onClick={leftOnClick} />
+          <Button vari="back" onClick={toBack} />
           <Button size="sm" text={btnText} onClick={rightOnClick} />
         </Container>
       );
     case 'chatroom':
       return (
         <Container $justify="space-between">
-          <BackBtn type="button" onClick={leftOnClick} />
+          <Button vari="back" onClick={toBack} />
           <LeftText>{text}</LeftText>
           <EditBtn type="button" onClick={rightOnClick} />
         </Container>
@@ -45,7 +50,7 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
     default:
       return (
         <Container $justify="space-between">
-          <BackBtn type="button" onClick={leftOnClick} />
+          <Button vari="back" onClick={toBack} />
           <EditBtn type="button" onClick={rightOnClick} />
         </Container>
       );

@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import iconSerch from 'assets/images/icon_search.png';
-import iconBack from 'assets/images/icon_arrow_left.png';
 import iconMore from 'assets/images/icon_more_vertical_small.png';
 
 export const Container = styled.div`
@@ -24,13 +23,6 @@ export const SearchBtn = styled.button`
   width: 24px;
   height: 24px;
   background: url(${iconSerch}) no-repeat;
-  background-size: cover;
-`;
-
-export const BackBtn = styled.button`
-  width: 22px;
-  height: 22px;
-  background: url(${iconBack}) no-repeat;
   background-size: cover;
 `;
 
