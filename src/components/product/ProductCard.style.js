@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.article`
   width: 140px;
   height: 132px;
   border-radius: 10px;
@@ -31,6 +31,7 @@ export const InfoBox = styled.div`
 export const ItemName = styled.span`
   font-size: 14px;
   color: var(--black);
+  cursor: pointer;
 `;
 
 export const ItemPrice = styled.span`
