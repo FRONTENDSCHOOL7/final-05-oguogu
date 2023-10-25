@@ -26,17 +26,19 @@ export const SectionTitle = styled.h2`
 
 export const ButtonBox = styled.ul`
   width: 100%;
-  padding: 16px 0;
-  position: absolute;
-  top: 51px;
-  left: 0;
-  margin-left: 16px;
+  margin: 6px 0;
+  padding: 10px 0;
   display: flex;
   gap: 15px;
   overflow-x: scroll;
+  background-color: var(--white);
   &::-webkit-scrollbar {
     display: none;
   }
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const ButtonItem = styled.li`

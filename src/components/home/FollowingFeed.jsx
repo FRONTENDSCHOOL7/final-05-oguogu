@@ -3,6 +3,7 @@ import { ButtonBox, ButtonItem, Container, SectionTitle } from './FollowingFeed.
 import PostCard from 'components/post/PostCard';
 import Button from 'components/common/button/Button';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
+import PostList from 'components/post/PostList';
 
 export default function FollowingFeed() {
   const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
@@ -22,7 +23,7 @@ export default function FollowingFeed() {
       <ButtonBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
         {buttons}
       </ButtonBox>
-      <PostCard />
+      <PostList />
     </Container>
   );
 }
