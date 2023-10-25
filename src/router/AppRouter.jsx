@@ -7,8 +7,6 @@ import ChatListPage from 'pages/ChatPage/ChatListPage';
 import ChatRoomPage from 'pages/ChatPage/ChatRoomPage';
 import EmailLoginPage from 'pages/LoginPage/EmailLoginPage';
 import JoinPage from 'pages/JoinPage/JoinPage';
-import ProfileMy from 'pages/ProfileMy/ProfileMy';
-import ProfileYour from 'pages/ProfileYour/ProfileYour';
 
 export default function AppRouter() {
   return (
@@ -21,6 +19,7 @@ export default function AppRouter() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/chatlist" element={<ChatListPage />} />
         <Route path="/chatroom" element={<ChatRoomPage />} />
+        <Route path="/upload" element={<UploadPage/>} /> 
         <Route path="/profile" element={<ProfileMy/>} />
         <Route path="/home/yourprofile" element={<ProfileYour/>} />
         

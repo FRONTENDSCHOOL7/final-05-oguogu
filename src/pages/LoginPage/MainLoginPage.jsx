@@ -14,6 +14,7 @@ import {
 } from 'pages/LoginPage/MainLoginPage.style';
 import { SplashPageBg } from 'pages/SplashPage/SplashPage.style';
 import SplashPage from '../SplashPage/SplashPage';
+import { Link } from 'react-router-dom';
 
 export default function MainLoginPage() {
   const kakaoUrl = 'https://www.kakaocorp.com/page/service/service/KakaoTalk';
@@ -63,10 +64,10 @@ export default function MainLoginPage() {
               >
                 페이스북 계정으로 로그인
               </FacebookLogin>
-              <EmailLogin>이메일로 로그인</EmailLogin>
+              <EmailLogin><Link to="/login">이메일로 로그인</Link></EmailLogin>
             </SnsLoginBox>
             <LoginFooter>
-              <FindPassword>비밀번호 찾기</FindPassword>|<Join>회원가입</Join>
+              <FindPassword>비밀번호 찾기</FindPassword>|<Join><Link to="/join">회원가입</Link></Join>
             </LoginFooter>
           </LoginContainer>
         </SplashPageBg>
