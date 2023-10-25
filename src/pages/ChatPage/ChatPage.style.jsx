@@ -64,6 +64,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow-y: scroll;
 `;
 export const Wrap = styled.div`
   display: flex;
@@ -83,6 +84,15 @@ export const ReverseWrap = styled.div`
   margin: 0 16px 9px;
   flex-direction: row-reverse;
   position: relative;
+
+  img {
+    width: 239px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+  }
 `;
 
 export const TextBox = styled.div`
@@ -109,23 +119,13 @@ export const TextBox2 = styled(TextBox)`
   }
 `;
 
-export const Date = styled.span`
+export const Time = styled.span`
   color: var(--gray-01);
   font-size: 10px;
   font-weight: var(--medium);
   display: flex;
   flex-direction: column-reverse;
   ${CommonFont};
-`;
-
-export const Rect = styled.div`
-  width: 239px;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 10px;
-  background-size: cover;
-  background-position: center;
-  background-image: url('https://i.ibb.co/QnZSSKv/4.jpg');
 `;
 
 export const labelStyle = styled.div`
@@ -168,6 +168,10 @@ export const Bottom = styled.div`
     flex-grow: 1;
     border: none;
     margin-right: 7px;
+  }
+
+  #chooseImg {
+    display: none;
   }
 
   input::placeholder {
