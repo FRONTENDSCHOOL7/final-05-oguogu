@@ -86,7 +86,7 @@ export const ShadowButton = styled.button`
 
 export const BorderButton = styled.button`
   border: 1px solid ${(props) => (props.$pink ? 'var(--main-color-01)' : 'var(--gray-02)')};
-  color: ${(props) => (props.$pink ? 'var(--main-color-01)' : 'var(--gray-02)')};
+  color: ${(props) => (props.$pink ? 'var(--main-color-01)' : 'var(--gray-01)')};
   background-color: var(--white);
   ${(props) => props.$size}
 `;
