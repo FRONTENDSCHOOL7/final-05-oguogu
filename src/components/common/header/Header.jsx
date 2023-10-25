@@ -30,7 +30,7 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
     case 'btn':
       return (
         <Container $justify="space-between">
-          <BackBtn type="button" onClick={leftOnClick}/>
+          <BackBtn type="button" onClick={leftOnClick} />
           <Button size="sm" text={btnText} onClick={rightOnClick} />
         </Container>
       );
