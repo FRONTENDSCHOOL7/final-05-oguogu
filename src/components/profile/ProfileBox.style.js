@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import profileimgtem from 'assets/images/profile_img_tem.jpg'
+import profileImg from 'assets/images/profile_img_tem.jpg'
+import chatBtnImg from 'assets/images/icon_message_small.png'
+import shareBtnImg from 'assets/images/icon_share.png'
 
 export const ProfileBoxBg = styled.div`
 background-color : white;
@@ -41,9 +43,7 @@ export const ProfileImage = styled.div`
   height : 110px;
   border : 1px solid var(--gray-02);
   border-radius : 55px;
-  /* padding : 15px; */
-  /* object-fit: contain; */
-  background-image : url(${profileimgtem});
+  background-image : url(${profileImg});
   background-repeat : no-repeat;
   background-size : cover;
   background-position : center;
@@ -73,4 +73,23 @@ export const ProfileBtns = styled.section`
   display : flex;
   justify-content : space-between;
   padding : 0px 63px;
+
+`
+export const ChatBtn = styled.button`
+  width : 34px;
+  height : 34px;
+  border : 1px solid var(--gray-02);
+  border-radius : 17px;
+  margin-left : 12px;
+  padding : 10px;
+  background-image : url(${chatBtnImg});
+  background-repeat : no-repeat;
+  background-size : 20px;
+  background-position : center;
+`
+
+export const ShareBtn = styled(ChatBtn)`
+  margin-left : 0px;
+  margin-right : 12px;
+  background-image : url(${shareBtnImg});
 `
