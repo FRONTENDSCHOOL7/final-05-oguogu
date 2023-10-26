@@ -16,22 +16,26 @@ export default function HomePage() {
     navigate('/search');
   };
 
-  useEffect(() => {
-    const promise = follwingPostAPI();
-    promise
-      .then((res) => {
-        setFeed(res.posts);
-      })
-      .catch((err) => {
-        alert('error: ' + err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   const promise = follwingPostAPI();
+  //   promise
+  //     .then((res) => {
+  //       setFeed(res.posts);
+  //     })
+  //     .catch((err) => {
+  //       alert('error: ' + err);
+  //     });
+  // }, []);
 
   //팔로잉 게시글 목록 요청 api
   return (
     <>
       <Header type="home" rightOnClick={toSearch} />
-      {feed === null ||
+      <ScrollContainer>
+        <ProductList />
+        <FollowingFeed posts={feed} />
+      </ScrollContainer>
+      {/* {feed === null ||
         (feed.length === 0 ? (
           <NoneFeed />
         ) : (
@@ -39,7 +43,7 @@ export default function HomePage() {
             <ProductList />
             <FollowingFeed posts={feed} />
           </ScrollContainer>
-        ))}
+        ))} */}
       <NavBar />
     </>
   );
