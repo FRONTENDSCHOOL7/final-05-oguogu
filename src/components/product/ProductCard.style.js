@@ -7,11 +7,6 @@ export const Container = styled.article`
   overflow: hidden;
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
-  //드래그방지
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-use-select: none;
-  user-select: none;
 `;
 
 export const Img = styled.img`
