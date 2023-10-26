@@ -10,6 +10,7 @@ import JoinPage from 'pages/JoinPage/JoinPage';
 import UploadPage from 'pages/Upload/UploadPage';
 import ProfileMy from 'pages/ProfileMy/ProfileMy';
 import ProfileYour from 'pages/ProfileYour/ProfileYour';
+import Follow from 'pages/Follow/Follow';
 
 export default function AppRouter() {
   return (
@@ -25,6 +26,7 @@ export default function AppRouter() {
         <Route path="/upload" element={<UploadPage />} />
         <Route path="/profile" element={<ProfileMy />} />
         <Route path="/home/yourprofile" element={<ProfileYour />} />
+        <Route path="/profile/follow" element={<Follow />} />
       </Routes>
     </BrowserRouter>
   );
