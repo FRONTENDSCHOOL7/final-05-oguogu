@@ -4,10 +4,11 @@ import Header from 'components/login/Header';
 import Button from 'components/common/button/Button';
 import { Container, Label, EmailInput, PwInput, Line, Join, ErrMsg } from 'pages/LoginPage/EmailLoginPage.style';
 import { useValidation } from 'hook/useValidation';
+import { loginAPI } from 'api/login.api';
 
 export default function EmailLoginPage() {
   const navigate = useNavigate();
-  const handleSignUpClick = () => {
+  const handleSignUpClick = (e) => {
     navigate('/join');
   };
 
@@ -51,8 +52,13 @@ export default function EmailLoginPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password);
     validateLogin();
+    const promise = loginAPI(email, password);
+    promise.then((res) => {
+      localStorage.setItem('oguToken', res.token);
+      alert('환영합니다!');
+      navigate('/home');
+    });
   };
 
   return (
