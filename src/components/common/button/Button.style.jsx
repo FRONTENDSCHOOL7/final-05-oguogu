@@ -77,12 +77,6 @@ export const ShadowButton = styled.button`
   font-size: 12px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   ${(props) => props.$size}
-
-  //포커대신 다른 프롭스로 대체해야할듯
-  &:focus {
-    background-color: var(--main-color-01);
-    color: var(--white);
-  }
 `;
 
 export const BorderButton = styled.button`
