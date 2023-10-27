@@ -23,3 +23,24 @@ export const SectionTitle = styled.h2`
   line-height: 19px;
   margin-bottom: 2px;
 `;
+
+export const ButtonBox = styled.ul`
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px 0;
+  display: flex;
+  gap: 15px;
+  overflow-x: scroll;
+  background-color: var(--white);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+`;
+
+export const ButtonItem = styled.li`
+  flex-shrink: 0;
+`;

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const ScrollContainer = styled.div`
+export const ScrollContainer = styled.main`
   width: 100%;
   height: calc(100% - 108px);
   display: flex;

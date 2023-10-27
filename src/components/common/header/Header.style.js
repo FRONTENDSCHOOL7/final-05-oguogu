@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import iconSerch from 'assets/images/icon_search.png';
 import iconMore from 'assets/images/icon_more_vertical_small.png';
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
   height: 48px;
   border-bottom: 1px solid var(--gray-02);
