@@ -46,8 +46,6 @@ export default function UploadPage() {
     setImages(updatedImages);
   };
 
-  imgUploadAPI(images[0]);
-
   return (
     <UploadPageBg>
       <Header type="btn" btnText="업로드" leftOnClick={back} />
