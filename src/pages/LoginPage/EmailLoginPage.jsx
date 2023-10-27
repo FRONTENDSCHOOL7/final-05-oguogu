@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from 'components/login/Header';
 import Button from 'components/common/button/Button';
 import { Container, Label, EmailInput, PwInput, Line, Join, ErrMsg } from 'pages/LoginPage/EmailLoginPage.style';
 import { useValidation } from 'hook/useValidation';
+import { loginAPI } from 'api/login.api';
 
 export default function EmailLoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.redirectedFrom?.pathname || '/home';
   const handleSignUpClick = () => {
     navigate('/join');
   };
@@ -51,8 +54,12 @@ export default function EmailLoginPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password);
     validateLogin();
+    const promise = loginAPI(email, password);
+    promise.then((res) => {
+      localStorage.setItem('oguToken', res.token);
+      navigate(from);
+    });
   };
 
   return (

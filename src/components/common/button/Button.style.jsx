@@ -72,17 +72,11 @@ export const BasicButton = styled.button`
 export const ShadowButton = styled.button`
   height: 28px;
   border-radius: 44px;
-  background-color: var(--white);
-  color: var(--black);
+  background-color: ${(props) => (props.$selected ? 'var(--main-color-01)' : 'var(--white)')};
+  color: ${(props) => (props.$selected ? 'var(--white)' : 'var(--black)')};
   font-size: 12px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   ${(props) => props.$size}
-
-  //포커대신 다른 프롭스로 대체해야할듯
-  &:focus {
-    background-color: var(--main-color-01);
-    color: var(--white);
-  }
 `;
 
 export const BorderButton = styled.button`
