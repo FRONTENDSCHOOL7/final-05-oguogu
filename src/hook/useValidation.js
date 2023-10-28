@@ -18,6 +18,15 @@ export function useValidation() {
     }
   };
 
+  const validateJoin = () => {
+    if (!username || !accountname || !intro) {
+      setLoginError('*사용자이름, 계정ID, 소개글을 모두 입력해주세요.');
+      setErrMsgVisible(true);
+    } else {
+      setErrMsgVisible(false);
+    }
+  };
+
   return {
     email,
     password,
@@ -25,6 +34,7 @@ export function useValidation() {
     setPassword,
     loginError,
     validateLogin,
+    validateJoin,
     errMsgVisible,
     setErrMsgVisible,
     username,

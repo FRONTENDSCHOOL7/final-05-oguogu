@@ -7,7 +7,7 @@ import ChatListPage from 'pages/ChatPage/ChatListPage';
 import ChatRoomPage from 'pages/ChatPage/ChatRoomPage';
 import EmailLoginPage from 'pages/LoginPage/EmailLoginPage';
 import JoinPage from 'pages/JoinPage/JoinPage';
-import ProfileSettingPage from 'pages/ProfileSettingPage/ProfileSettingPage';
+import ProfileSettingPage from 'pages/JoinPage/ProfileSettingPage';
 import UploadPage from 'pages/Upload/UploadPage';
 import ProfileMy from 'pages/ProfileMy/ProfileMy';
 import ProfileYour from 'pages/ProfileYour/ProfileYour';
