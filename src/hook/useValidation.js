@@ -5,6 +5,9 @@ export function useValidation() {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [errMsgVisible, setErrMsgVisible] = useState(false);
+  const [username, setUsername] = useState('');
+  const [accountname, setAccountname] = useState('');
+  const [intro, setIntro] = useState('');
 
   const validateLogin = () => {
     if (!email || !password) {
@@ -24,5 +27,11 @@ export function useValidation() {
     validateLogin,
     errMsgVisible,
     setErrMsgVisible,
+    username,
+    setUsername,
+    accountname,
+    setAccountname,
+    intro,
+    setIntro,
   };
 }
