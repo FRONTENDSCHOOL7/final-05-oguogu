@@ -7,7 +7,6 @@ import ChatListPage from 'pages/ChatPage/ChatListPage';
 import ChatRoomPage from 'pages/ChatPage/ChatRoomPage';
 import EmailLoginPage from 'pages/LoginPage/EmailLoginPage';
 import JoinPage from 'pages/JoinPage/JoinPage';
-import ProfileSettingPage from 'pages/JoinPage/ProfileSettingPage';
 import UploadPage from 'pages/Upload/UploadPage';
 import ProfileMy from 'pages/ProfileMy/ProfileMy';
 import ProfileYour from 'pages/ProfileYour/ProfileYour';
@@ -21,7 +20,6 @@ export default function AppRouter() {
           <Route path="/" element={<MainLoginPage />} />
           <Route path="/login" element={<EmailLoginPage />} />
           <Route path="/join" element={<JoinPage />} />
-          <Route path="/profilesetting" element={<ProfileSettingPage />} />
         </Route>
         <Route element={<ProtectedRoutePage />}>
           <Route path="/home" element={<HomePage />} />
