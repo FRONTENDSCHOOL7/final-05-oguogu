@@ -26,10 +26,20 @@ export const follwingPostAPI = async () => {
   }
 };
 
-//나의 게시글 목록
+//유저 게시글 목록
 export const postListAPI = async (accountname) => {
   try {
     const result = await tokenInstance.get(`post/${accountname}/userpost`);
+    return result.data.post;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//게시글 상세
+export const postDetailAPI = async (postid) => {
+  try {
+    const result = await tokenInstance.get(`post/${postid}`);
     return result.data.post;
   } catch (error) {
     throw error;
