@@ -11,6 +11,7 @@ import PostUploadPage from 'pages/PostUpload/PostUploadPage';
 import ProfilePage from 'pages/ProfilePage/ProfilePage';
 import { ProtectedRoutePage, PublicRoutePage } from 'router/AccessRouter';
 import Follow from 'pages/Follow/Follow';
+import PostDetailPage from 'pages/PostDetailPage/PostDetailPage';
 
 export default function AppRouter() {
   return (
