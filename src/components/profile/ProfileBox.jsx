@@ -38,7 +38,7 @@ export default function ProfileBox({ accountname, isMyProfile }) {
 
       <ProfileMain>
         <li>{profileInfo.username}</li>
-        <li>@ {profileInfo.accountname}</li>
+        <li>@{profileInfo.accountname}</li>
         <li>{profileInfo.intro}</li>
       </ProfileMain>
       {isMyProfile ? (

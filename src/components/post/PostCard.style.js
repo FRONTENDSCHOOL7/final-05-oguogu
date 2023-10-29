@@ -9,6 +9,7 @@ export const PostReact = css`
   color: var(--gray-01);
   position: relative;
   margin-right: 16px;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -40,6 +41,7 @@ export const ProfileImg = styled.div`
   background-size: cover;
   background-position: center;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 export const PostBox = styled.div`
@@ -67,18 +69,21 @@ export const UserName = styled.p`
   font-weight: var(--medium);
   color: var(--black);
   margin-bottom: 2px;
+  cursor: pointer;
 `;
 
 export const UserId = styled.p`
   font-size: 12px;
   line-height: 14px;
   color: var(--gray-01);
+  cursor: pointer;
 `;
 
 export const PostText = styled.p`
   color: var(--black);
   font-size: 14px;
   line-height: 17px;
+  cursor: pointer;
 `;
 
 export const PostImg = styled.img`
@@ -86,6 +91,7 @@ export const PostImg = styled.img`
   height: 228px;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const PostComment = styled.span`
@@ -98,7 +104,7 @@ export const PostComment = styled.span`
 export const PostHeart = styled.span`
   ${PostReact}
   &::before {
-    background-image: url(${(props) => (props.hearted ? iconHeartFill : iconHeart)});
+    background-image: url(${(props) => (props.$hearted ? iconHeartFill : iconHeart)});
   }
 `;
 

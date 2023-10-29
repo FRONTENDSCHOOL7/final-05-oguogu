@@ -9,9 +9,13 @@ export default function Feed({ accountname }) {
 
   useEffect(() => {
     const promise = postListAPI(accountname);
-    promise.then((res) => {
-      setPosts(res);
-    });
+    promise
+      .then((res) => {
+        setPosts(res);
+      })
+      .catch((err) => {
+        alert('게시글 로딩 실패');
+      });
   }, []);
 
   return (
