@@ -28,7 +28,7 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
     case 'follow':
       return (
         <Container>
-          <Button vari="back" />
+          <Button vari="back" onClick={toBack}/>
           <CenterText>{text}</CenterText>
         </Container>
       );

@@ -10,7 +10,7 @@ import JoinPage from 'pages/JoinPage/JoinPage';
 import PostUploadPage from 'pages/PostUpload/PostUploadPage';
 import ProfilePage from 'pages/ProfilePage/ProfilePage';
 import { ProtectedRoutePage, PublicRoutePage } from 'router/AccessRouter';
-import PostDetailPage from 'pages/PostDetailPage/PostDetailPage';
+import Follow from 'pages/Follow/Follow';
 
 export default function AppRouter() {
   return (
@@ -28,6 +28,7 @@ export default function AppRouter() {
           <Route path="/upload" element={<PostUploadPage />} />
           <Route path="/profile/:accountname" element={<ProfilePage />} />
           <Route path="/post/:postid" element={<PostDetailPage />} />
+          <Route path="/profile/follow" element={<Follow />} />
         </Route>
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
