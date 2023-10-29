@@ -3,6 +3,7 @@ import Button from 'components/common/button/Button';
 import { useNavigate } from 'react-router';
 import { Container, CenterText, ProfileSettingCenterText, CenterSubText, Wrap, ImageWrap, ChangeImg } from 'components/publicRoute/Header.style';
 import iconPicture from 'assets/images/icon_picture.png';
+import { imgUploadAPI } from 'api/image.api';
 
 export default function Header({ isProfileSetting, text, subText, isRender }) {
   const navigate = useNavigate();
@@ -11,15 +12,28 @@ export default function Header({ isProfileSetting, text, subText, isRender }) {
   };
   const [imageSrc, setImageSrc] = useState(null);
 
-  const handleImgUpload = (event) => {
+  const handleImgUpload = async (event) => {
     const file = event.target.files[0];
 
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const newImage = e.target.result;
+
+      reader.onload = async (event) => {
+        const newImage = event.target.result;
         setImageSrc(newImage);
+
+        // 이미지를 로컬 스토리지에 저장 (Base64로 인코딩)
+        localStorage.setItem('userImage', newImage);
+
+        // 이미지 업로드 API 호출 (Header에서 직접 호출)
+        try {
+          const imgUploadResult = await imgUploadAPI(file);
+          localStorage.setItem('uploadedImage', imgUploadResult.filename);
+        } catch (error) {
+          console.error('이미지 업로드 실패:', error);
+        }
       };
+
       reader.readAsDataURL(file);
     }
   };

@@ -48,6 +48,8 @@ export default function JoinPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     validateLogin();
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
     navigate('/profilesetting');
   };
 

@@ -4,6 +4,7 @@ import Header from 'components/publicRoute/Header';
 import Button from 'components/common/button/Button';
 import { Container, Label, Input, Line, ErrMsg } from 'components/publicRoute/PublicRoutePage.style';
 import { useValidation } from 'hook/useValidation';
+import { joinAPI } from 'api/join.api';
 
 export default function ProfileSettingPage() {
   const isProfileSetting = true;
@@ -17,6 +18,11 @@ export default function ProfileSettingPage() {
   const [usernameFocus, setUsernameFocus] = useState(false);
   const [accountnameFocus, setAccountnameFocus] = useState(false);
   const [introFocus, setIntroFocus] = useState(false);
+
+  // 로컬 스토리지에서 email과 password 가져오기
+  const email = localStorage.getItem('email');
+  const password = localStorage.getItem('password');
+  const image = localStorage.getItem('uploadedImage');
 
   const handleData = (event) => {
     switch (event.target.id) {
@@ -79,7 +85,12 @@ export default function ProfileSettingPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     validateJoin();
-    navigate(from);
+
+    const promise = joinAPI({ username, email, password, accountname, intro, image });
+    promise.then((res) => {
+      localStorage.setItem('oguToken', res.token);
+      navigate(from);
+    });
   };
 
   return (
