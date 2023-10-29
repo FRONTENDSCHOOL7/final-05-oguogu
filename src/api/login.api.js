@@ -10,7 +10,7 @@ export const loginAPI = async (email, pw) => {
 
   try {
     const result = await instance.post('user/login', reqData);
-    return result.data.user;
+    return result.data;
   } catch (error) {
     throw error;
   }

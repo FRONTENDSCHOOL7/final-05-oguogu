@@ -28,6 +28,7 @@ export const Container = styled.article`
   margin-bottom: 10px;
   display: flex;
   gap: 12px;
+  background-color: var(--white);
 `;
 
 export const ProfileImg = styled.div`

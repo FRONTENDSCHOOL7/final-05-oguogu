@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart } from './PostCard.style';
 
-export default function PostCard() {
+export default function PostCard({ id, content, kate, postImg, authname, authaccount, commentCoutn, heartCoutn, createdDate, updateDate, hearted }) {
   return (
     <Container>
       <ProfileImg $img="https://pbs.twimg.com/profile_images/1450121710674407426/SwOINBDw_400x400.jpg" />

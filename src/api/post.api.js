@@ -1,6 +1,20 @@
 import { tokenInstance } from 'api/axiosInstance';
 
 //게시글 등록
+export const postUploadAPI = async (content, img) => {
+  const reqData = {
+    post: {
+      content: content,
+      image: img, //"imageurl1, imageurl2" 형식으로
+    },
+  };
+  try {
+    const result = await tokenInstance.post(`post`, reqData);
+    return result.data.post;
+  } catch (error) {
+    throw error;
+  }
+};
 
 //팔로잉 게시글 목록(피드)
 export const follwingPostAPI = async () => {
@@ -13,3 +27,11 @@ export const follwingPostAPI = async () => {
 };
 
 //나의 게시글 목록
+export const postListAPI = async (accountname) => {
+  try {
+    const result = await tokenInstance.get(`post/${accountname}/userpost`);
+    return result.data.post;
+  } catch (error) {
+    throw error;
+  }
+};

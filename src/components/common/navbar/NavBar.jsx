@@ -11,6 +11,8 @@ import iconOguFill from 'assets/images/icon_ogudog_pink.png';
 
 export default function NavBar() {
   const { pathname } = useLocation();
+  const userInfo = JSON.parse(localStorage.getItem('oguUserInfo'));
+  const myProfile = `/profile/${userInfo.accountname}`;
 
   return (
     <Container>
@@ -26,9 +28,9 @@ export default function NavBar() {
         <NavIcon src={iconEdit} />
         <NavText $textcolor="var(--gray-01)">게시물 작성</NavText>
       </NavLink>
-      <NavLink to="/profile">
-        <NavIcon src={pathname === '/profile' ? iconOguFill : iconOgu} />
-        <NavText $textcolor={pathname === '/profile' ? 'var(--main-color-01)' : 'var(--gray-01)'}>프로필</NavText>
+      <NavLink to={myProfile}>
+        <NavIcon src={pathname === myProfile ? iconOguFill : iconOgu} />
+        <NavText $textcolor={pathname === myProfile ? 'var(--main-color-01)' : 'var(--gray-01)'}>프로필</NavText>
       </NavLink>
     </Container>
   );
