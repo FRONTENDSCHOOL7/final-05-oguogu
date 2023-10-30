@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ImageWrap, ChangeImg } from 'pages/JoinPage/ProfileForm.style';
 import { Container, Label, Input, Line, ErrMsg } from 'pages/JoinPage/EmailPwPage.style';
 import Button from 'components/common/button/Button';
 import iconPicture from 'assets/images/icon_picture.png';
 import { useValidation } from 'hook/useValidation';
+import { useRecoilValue } from 'recoil';
+import { emailState, passwordState } from 'atoms/userInfo';
 import { joinAPI } from 'api/join.api';
 import { imgUploadAPI } from 'api/image.api';
 
-export default function ProfileForm({ text, subText }) {
-  const [imageSrc, setImageSrc] = useState(null);
+export default function ProfileForm() {
+  const navigate = useNavigate();
+
+  const { loginError, validateJoin, errMsgVisible, setErrMsgVisible, username, setUsername, accountname, setAccountname, intro, setIntro } = useValidation();
+  const email = useRecoilValue(emailState);
+  const password = useRecoilValue(passwordState);
+
+  const [disabled, setDisabled] = useState(false);
+  const [usernameFocus, setUsernameFocus] = useState(false);
+  const [accountnameFocus, setAccountnameFocus] = useState(false);
+  const [introFocus, setIntroFocus] = useState(false);
+  const [image, setImage] = useState('https://api.mandarin.weniv.co.kr/1698652522939.png');
 
   const handleImgUpload = async (event) => {
     const file = event.target.files[0];
@@ -19,7 +31,7 @@ export default function ProfileForm({ text, subText }) {
 
       reader.onload = async (event) => {
         const newImage = event.target.result;
-        setImageSrc(newImage);
+        setImage(newImage);
 
         // 이미지를 로컬 스토리지에 저장 (Base64로 인코딩)
         localStorage.setItem('userImage', newImage);
@@ -27,7 +39,7 @@ export default function ProfileForm({ text, subText }) {
         // 이미지 업로드 API 호출 (Header에서 직접 호출)
         try {
           const imgUploadResult = await imgUploadAPI(file);
-          localStorage.setItem('uploadedImage', imgUploadResult.filename);
+          localStorage.setItem('uploadedImage', imgUploadResult);
         } catch (error) {
           console.error('이미지 업로드 실패:', error);
         }
@@ -36,22 +48,6 @@ export default function ProfileForm({ text, subText }) {
       reader.readAsDataURL(file);
     }
   };
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location?.state?.redirectedFrom?.pathname || '/home';
-
-  const { loginError, validateJoin, errMsgVisible, setErrMsgVisible, username, setUsername, accountname, setAccountname, intro, setIntro } = useValidation();
-
-  const [disabled, setDisabled] = useState(false);
-  const [usernameFocus, setUsernameFocus] = useState(false);
-  const [accountnameFocus, setAccountnameFocus] = useState(false);
-  const [introFocus, setIntroFocus] = useState(false);
-
-  // 로컬 스토리지에서 email과 password 가져오기
-  const email = localStorage.getItem('email');
-  const password = localStorage.getItem('password');
-  const image = localStorage.getItem('uploadedImage');
 
   const handleData = (event) => {
     switch (event.target.id) {
@@ -117,17 +113,20 @@ export default function ProfileForm({ text, subText }) {
 
     const promise = joinAPI({ username, email, password, accountname, intro, image });
     promise.then((res) => {
-      localStorage.setItem('oguToken', res.token);
-      navigate(from);
+      const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username, userimg: res.user.image };
+      localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));
+      localStorage.setItem('oguToken', res.user.token);
+      navigate('from');
+      console.log(res);
     });
   };
 
   return (
     <>
       <ImageWrap>
-        <img src={imageSrc} />
+        <img src={image} />
       </ImageWrap>
-      {!imageSrc && (
+      {!image && (
         <ChangeImg htmlFor="chooseImg">
           <img src={iconPicture} alt="이미지업로드" />
         </ChangeImg>
