@@ -1,12 +1,23 @@
-import React from 'react'
-import { ModalBottomBg, ModalBottomEle } from './Modalbottom.style'
+import React, { useState } from 'react';
+import { ModalBottomBg, ModalBottomEle } from './ModalBottom.style';
+import ModalAlert from './ModalAlert';
 
-export default function Modalbottom() {
+export default function ModalBottom() {
+  const [isAlertOpen, setAlertOpen] = useState(false);
+
+  const openModalAlert = () => {
+    setAlertOpen(true);
+  };
+
   return (
     <ModalBottomBg>
-      <ModalBottomEle>삭제</ModalBottomEle>
-      <ModalBottomEle>수정</ModalBottomEle>
+      <ModalBottomEle>설정 및 개인정보</ModalBottomEle>
+      <ModalBottomEle onClick={openModalAlert}>로그아웃</ModalBottomEle>
+      {isAlertOpen && (
+        <ModalAlert
+          onClose={() => setAlertOpen(false)} 
+        />
+      )}
     </ModalBottomBg>
-
-  )
+  );
 }

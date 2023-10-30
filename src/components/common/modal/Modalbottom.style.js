@@ -23,11 +23,11 @@ export const ModalBottomBg = styled.section`
   }
 `
 
-export const ModalBottomEle = styled.p`
+export const ModalBottomEle = styled.button`
   width : 100%;
   height : 46px;
   display : flex;
   align-items : center;
-  padding-left : 26px;
+  padding : 0 26px;
   font-size : 14px;
 `
