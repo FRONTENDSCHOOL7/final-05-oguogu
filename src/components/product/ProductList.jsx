@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
+import ProductCard from 'components/product/ProductCard';
 import { CardBox, Container, EmptyBox, EmptyImg, EmptyText, MoreLink, SectionTitle } from 'components/product/ProductList.style';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import { productListAPI } from 'api/product.api';
@@ -17,7 +17,17 @@ export default function ProductList({ type, accountname }) {
     } else if (type === 'home') {
       //팔로잉 유저들의 판매상품
     }
-  }, []);
+  }, [accountname, type]);
+
+  const productlist = () => {
+    return products.map((product) => {
+      return (
+        <li key={product.id}>
+          <ProductCard id={product.id} price={product.price} name={product.itemName} link={product.link} img={product.itemImage} />
+        </li>
+      );
+    });
+  };
 
   return (
     products !== null && (
@@ -27,11 +37,7 @@ export default function ProductList({ type, accountname }) {
           <>
             <MoreLink to="/product">더보기</MoreLink>
             <CardBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+              {productlist()}
             </CardBox>
           </>
         ) : (

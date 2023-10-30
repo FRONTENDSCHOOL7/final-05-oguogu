@@ -18,7 +18,7 @@ export default function ProfileBox({ accountname, isMyProfile }) {
       .catch((err) => {
         alert(err);
       });
-  }, []);
+  }, [accountname]);
 
   return profileInfo !== null ? (
     <ProfileBoxBg>

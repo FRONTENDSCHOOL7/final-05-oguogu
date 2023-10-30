@@ -16,7 +16,7 @@ export default function Feed({ accountname }) {
       .catch((err) => {
         alert('게시글 로딩 실패');
       });
-  }, []);
+  }, [accountname]);
 
   return (
     posts !== null && (

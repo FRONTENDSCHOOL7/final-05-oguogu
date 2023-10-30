@@ -1,14 +1,15 @@
 import React from 'react';
-import { Container, InfoBox, Img, ItemName, ItemPrice } from './ProductCard.style';
-import sample from 'assets/images/product_sample.jpeg';
+import { Container, InfoBox, Img, ItemName, ItemPrice } from 'components/product/ProductCard.style';
 
-export default function ProductCard({ img, name, price }) {
+export default function ProductCard({ id, img, name, price }) {
+  const formattedPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(price).replace('₩', '');
+
   return (
     <Container>
-      <Img src={sample} alt="상품 미리보기 이미지" />
+      <Img src={img} alt="상품 미리보기 이미지" />
       <InfoBox>
-        <ItemName>오곡이 그립톡</ItemName>
-        <ItemPrice>15,000원</ItemPrice>
+        <ItemName>{name}</ItemName>
+        <ItemPrice>{formattedPrice}원</ItemPrice>
       </InfoBox>
     </Container>
   );
