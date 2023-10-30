@@ -33,6 +33,7 @@ export function useValidation() {
     setEmail,
     setPassword,
     loginError,
+    setLoginError,
     validateLogin,
     validateJoin,
     errMsgVisible,

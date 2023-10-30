@@ -61,11 +61,16 @@ export const Content = styled.div`
 // ChatRoom 말풍선 대화
 export const Container = styled.section`
   height: calc(100% - 128px);
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
+
 export const Wrap = styled.div`
   display: flex;
   gap: 6px;

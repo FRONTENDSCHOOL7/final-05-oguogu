@@ -24,7 +24,7 @@ export const productListAPI = async (accountname) => {
   console.log(accountname);
   try {
     const result = await tokenInstance.get(`product/${accountname}`);
-    console.log(result.data);
+    return result.data.product;
   } catch (error) {
     throw error;
   }
