@@ -93,7 +93,7 @@ export const PostText = styled.p`
   color: var(--black);
   font-size: 14px;
   line-height: 17px;
-  ${(props) => props.$ell || textEllipsis}
+  ${(props) => props.$ell && textEllipsis}
   cursor: pointer;
 `;
 

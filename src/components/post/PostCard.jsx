@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart } from './PostCard.style';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted }) {
   const navigate = useNavigate();
+  const location = useLocation().pathname;
+  const ellipsis = location !== `/post/${id}`;
 
   //게시글 상세페이지로 이동
   const handletoPost = () => {
@@ -28,7 +30,9 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
           <UserName>{authname}</UserName>
           <UserId>@{authaccount}</UserId>
         </div>
-        <PostText onClick={handletoPost}>{text}</PostText>
+        <PostText $ell={ellipsis} onClick={handletoPost}>
+          {text}
+        </PostText>
         {postImg !== '' && <PostImg src={postImg} onClick={handleClickImg} />}
         <div style={{ marginTop: '-7px' }}>
           <PostHeart $hearted={hearted} onClick={handleToggleHeart}>
