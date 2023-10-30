@@ -19,7 +19,7 @@ export const commentWriteAPI = async (postid, content) => {
 export const commentListAPI = async (postid) => {
   try {
     const result = await tokenInstance.get(`post/${postid}/comments`);
-    return result.data.comment;
+    return result.data.comments;
   } catch (error) {
     throw error;
   }
