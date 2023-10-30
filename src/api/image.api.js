@@ -5,7 +5,8 @@ export const imgUploadAPI = async (file) => {
   formData.append('image', file);
   try {
     const result = await imgInstance.post('image/uploadfile', formData);
-    console.log(result.data.filename);
+    const imgpath = 'https://api.mandarin.weniv.co.kr/' + result.data.filename;
+    return imgpath;
   } catch (error) {
     throw error;
   }

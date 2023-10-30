@@ -4,6 +4,7 @@ import { List, Box, Content, Bg } from 'pages/ChatPage/ChatPage.style';
 import iconChatEllipse from 'assets/images/icon_chat_ellipse.png';
 import iconChatPink from 'assets/images/icon_chat_pink.png';
 import { useNavigate } from 'react-router-dom';
+import NavBar from 'components/common/navbar/NavBar';
 
 function ChatListPage() {
   const date = '2020.10.25';
@@ -59,6 +60,7 @@ function ChatListPage() {
     <Bg>
       <Header />
       <ul>{listItem}</ul>
+      <NavBar />
     </Bg>
   );
 }
