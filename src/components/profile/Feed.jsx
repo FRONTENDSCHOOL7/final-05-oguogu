@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Container, FeedHeader, SectionTitle, EmptyBox } from 'components/profile/Feed.style';
+import { Container, FeedHeader, SectionTitle, EmptyBox, PostNormalBtn, PostGalleryBtn } from 'components/profile/Feed.style';
 import PostList from 'components/post/PostList';
 import { postListAPI } from 'api/post.api';
 import { EmptyImg, EmptyText } from 'components/product/ProductList.style';
 
 export default function Feed({ accountname }) {
   const [posts, setPosts] = useState(null);
+  const [postType, setPostType] = useState('normal');
 
   useEffect(() => {
     const promise = postListAPI(accountname);
@@ -23,9 +24,13 @@ export default function Feed({ accountname }) {
       <Container>
         <FeedHeader>
           <SectionTitle>게시물</SectionTitle>
+          <div>
+            <PostNormalBtn $clicked={postType === 'normal'} onClick={() => setPostType('normal')} />
+            <PostGalleryBtn $clicked={postType === 'gallery'} onClick={() => setPostType('gallery')} />
+          </div>
         </FeedHeader>
         {posts.length ? (
-          <PostList posts={posts} />
+          <PostList type={postType} posts={posts} />
         ) : (
           <EmptyBox>
             <EmptyImg />

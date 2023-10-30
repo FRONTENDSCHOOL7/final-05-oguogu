@@ -29,7 +29,7 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
           <UserId>@{authaccount}</UserId>
         </div>
         <PostText onClick={handletoPost}>{text}</PostText>
-        <PostImg src={postImg} onClick={handleClickImg} />
+        {postImg !== '' && <PostImg src={postImg} onClick={handleClickImg} />}
         <div style={{ marginTop: '-7px' }}>
           <PostHeart $hearted={hearted} onClick={handleToggleHeart}>
             {heartCount}

@@ -54,23 +54,26 @@ export default function PostUploadPage() {
   //게시글 업로드
   const handleSubmit = () => {
     //이미지업로드 api
-    const uploadImg = imgUploadAPI(images.current[0]);
-    uploadImg
-      .then((res) => {
-        const imgPath = res;
-        const content = { text: text, kate: curKategorie };
-        //게시글작성 api
-        const promise = postUploadAPI(JSON.stringify(content), imgPath);
-        promise
-          .then((data) => {
-            navigate(`/post/${data.id}`);
-          })
-          .catch((err) => {
-            alert('게시글 업로드 실패');
-          });
+    let imgPath = '';
+    if (images.current[0]) {
+      const uploadImg = imgUploadAPI(images.current[0]);
+      uploadImg
+        .then((res) => {
+          imgPath = res;
+        })
+        .catch((err) => {
+          alert('이미지업로드 실패');
+        });
+    }
+    //게시글작성 api
+    const content = { text: text, kate: curKategorie };
+    const promise = postUploadAPI(JSON.stringify(content), imgPath);
+    promise
+      .then((data) => {
+        navigate(`/post/${data.id}`);
       })
       .catch((err) => {
-        alert('이미지업로드 실패');
+        alert('게시글 업로드 실패');
       });
   };
 

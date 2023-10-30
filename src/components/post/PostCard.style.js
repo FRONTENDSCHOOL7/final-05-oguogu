@@ -4,7 +4,7 @@ import iconHeart from 'assets/images/icon_heart.png';
 import iconHeartFill from 'assets/images/icon_heart_fill.png';
 import iconComment from 'assets/images/icon_message_small.png';
 
-export const PostReact = css`
+const PostReact = css`
   font-size: 12px;
   color: var(--gray-01);
   position: relative;
@@ -22,6 +22,16 @@ export const PostReact = css`
     position: relative;
     bottom: -6px;
   }
+`;
+
+const textEllipsis = css`
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
 `;
 
 export const Container = styled.article`
@@ -83,6 +93,7 @@ export const PostText = styled.p`
   color: var(--black);
   font-size: 14px;
   line-height: 17px;
+  ${(props) => props.$ell || textEllipsis}
   cursor: pointer;
 `;
 
