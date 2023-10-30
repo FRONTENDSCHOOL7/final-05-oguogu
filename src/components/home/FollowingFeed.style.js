@@ -9,12 +9,6 @@ export const Container = styled.section`
   position: relative;
 
   padding: 30px 16px;
-  &::before {
-    content: '';
-    width: 100%;
-    height: 5px;
-    background-color: var(--gray-03);
-  }
 `;
 
 export const SectionTitle = styled.h2`

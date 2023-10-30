@@ -14,7 +14,7 @@ export default function EmailLoginPage() {
     navigate('/join');
   };
 
-  const { email, password, setEmail, setPassword, loginError, validateLogin, errMsgVisible, setErrMsgVisible } = useValidation();
+  const { email, password, setEmail, setPassword, loginError, setLoginError, validateLogin, errMsgVisible, setErrMsgVisible } = useValidation();
   const [disabled, setDisabled] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
   const [pwFocus, setPwFocus] = useState(false);
@@ -57,8 +57,15 @@ export default function EmailLoginPage() {
     validateLogin();
     const promise = loginAPI(email, password);
     promise.then((res) => {
-      localStorage.setItem('oguToken', res.token);
-      navigate(from);
+      if (res.user) {
+        const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username };
+        localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));
+        localStorage.setItem('oguToken', res.user.token);
+        navigate(from);
+      } else {
+        setErrMsgVisible(true);
+        setLoginError('이메일 또는 비밀번호가 일치하지 않습니다.');
+      }
     });
   };
 
@@ -94,8 +101,8 @@ export default function EmailLoginPage() {
           ></PwInput>
           <Line $pwFocus={pwFocus}></Line>
         </form>
-        <Button size="lg" vari="basic" text="로그인" type="submit" onClick={handleSubmit} disabled={disabled} />
         {errMsgVisible && loginError && <ErrMsg>{loginError}</ErrMsg>}
+        <Button size="lg" vari="basic" text="로그인" type="submit" onClick={handleSubmit} disabled={disabled} />
         <Join onClick={handleSignUpClick}>이메일로 회원가입</Join>
       </Container>
     </>

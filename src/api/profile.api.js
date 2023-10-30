@@ -4,7 +4,7 @@ import { tokenInstance } from 'api/axiosInstance';
 export const myInfoAPI = async () => {
   try {
     const result = await tokenInstance.get('user/myinfo');
-    return result.data;
+    return result.data.user;
   } catch (error) {
     throw error;
   }
@@ -31,8 +31,8 @@ export const EditMyInfoAPI = async ({ username, accountname, intro, image }) => 
 // (타인)개인 프로필
 export const profileAPI = async (accountname) => {
   try {
-    const result = await tokenInstance.get(`profile/:${accountname}`);
-    return result.data;
+    const result = await tokenInstance.get(`profile/${accountname}`);
+    return result.data.profile;
   } catch (error) {
     throw error;
   }
