@@ -115,8 +115,7 @@ export default function ProfileForm() {
     promise.then((res) => {
       const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username, userimg: res.user.image };
       localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));
-      localStorage.setItem('oguToken', res.user.token);
-      navigate('from');
+      navigate('/login');
       console.log(res);
     });
   };
