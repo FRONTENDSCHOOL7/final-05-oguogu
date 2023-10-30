@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalBottomBg, ModalBottomEle } from './ModalBottom.style';
+import { ModalBottomBg, ModalBottomEle } from './Modalbottom.style';
 import ModalAlert from './ModalAlert';
 
 export default function ModalBottom() {
