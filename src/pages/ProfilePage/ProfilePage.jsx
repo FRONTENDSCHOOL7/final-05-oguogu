@@ -27,8 +27,9 @@ export default function ProfilePage() {
         <Feed accountname={accountname} />
       </ScrollContainer>
       <NavBar></NavBar>
+
       {ModalBottomOpen && 
-      <ModalBottom/>}
+      <ModalBottom type='profileMore'/>}
     </>
   );
 }

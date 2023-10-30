@@ -5,10 +5,9 @@ import styled from "styled-components";
   width : 100%;
   height : 100%;
   background-color : rgba(0, 0, 0, 0.3);
-  z-index : 250;
+  z-index : 100;
   position : fixed;
   top : 0;
-
   `
 
 export const ModalAlertBg = styled.section`
