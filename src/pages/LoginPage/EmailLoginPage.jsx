@@ -58,7 +58,7 @@ export default function EmailLoginPage() {
     const promise = loginAPI(email, password);
     promise.then((res) => {
       if (res.user) {
-        const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username };
+        const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username, userimg: res.user.image };
         localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));
         localStorage.setItem('oguToken', res.user.token);
         navigate(from);
