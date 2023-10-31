@@ -45,3 +45,4 @@ export const postDetailAPI = async (postid) => {
     throw error;
   }
 };
+

@@ -7,7 +7,9 @@ export const ModalBottomContainer = styled.section`
   border-radius : 10px 10px 0 0 ;
   position : fixed;
   bottom : 0;
+  left : 50% ;
   z-index : 200;
+  transform : translateX(-50%);
   
   &::before{
   content: "";

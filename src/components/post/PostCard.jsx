@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart } from './PostCard.style';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
+import { postDeleteAPI } from 'api/post.api';
+import ModalBottom from 'components/common/modal/Modalbottom';
 
 export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted }) {
   const navigate = useNavigate();
@@ -21,6 +23,14 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   };
   //heart토글
   const handleToggleHeart = () => {};
+
+
+
+    //게시글 더보기 모달
+    const [ModalBottomOpen, setModalBottomOpen] = useState(false);
+    const toggleModalBottom = () => {
+      setModalBottomOpen(!ModalBottomOpen);
+    };
 
   return (
     <Container>
@@ -43,8 +53,10 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
         <PostDate>
           {createdDate[0]}년 {createdDate[1]}월 {createdDate[2]}일
         </PostDate>
-        <MoreBtn />
+        <MoreBtn onClick={toggleModalBottom}/>
       </PostBox>
+      {ModalBottomOpen && 
+      <ModalBottom type='profilePost' post_id={id}/>}
     </Container>
   );
 }

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { ModalBottomContainer, ModalBottomEle } from './Modalbottom.style';
 import ModalAlert from './ModalAlert';
 
-export default function ModalBottom({ type }) {
-  const [isAlertOpen, setAlertOpen] = useState(false);
+export default function ModalBottom({ type, post_id }) {
 
+  const [isAlertOpen, setAlertOpen] = useState(false);
+  
   const openModalAlert = () => {
     setAlertOpen(true);
   };
@@ -41,7 +42,7 @@ export default function ModalBottom({ type }) {
           <ModalBottomEle onClick={openModalAlert}>삭제</ModalBottomEle>
           <ModalBottomEle>수정</ModalBottomEle>
           {isAlertOpen && (
-            <ModalAlert kind='deletePost'
+            <ModalAlert kind='deletePost' post_id={post_id}
               onClose={() => setAlertOpen(false)} />
           )}
         </ModalBottomContainer>

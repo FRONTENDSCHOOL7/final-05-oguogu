@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 
-  export const BlackContainer = styled.div`
-  width : 100%;
-  height : 100%;
+  export const BlackBg = styled.div`
+  width : 100vh;
+  height : 100vh;
   background-color : rgba(0, 0, 0, 0.3);
   z-index : 100;
   position : fixed;
