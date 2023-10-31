@@ -4,6 +4,7 @@ import { Bg, Wrap, TextBox, Time, ReverseWrap, TextBox2, Container, Bottom, Butt
 import iconChatCircle from 'assets/images/icon_chat_circle.svg';
 import iconPicture from 'assets/images/icon_picture.png';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ModalBottom from 'components/common/modal/Modalbottom';
 
 function ChatRoomPage() {
   // 뒤로가기
@@ -122,10 +123,16 @@ function ChatRoomPage() {
     );
   });
 
+  //더보기 버튼 제어
+  const [ModalBottomOpen, setModalBottomOpen] = useState(false);
+  const toggleModalBottom = () => {
+    setModalBottomOpen(!ModalBottomOpen);
+  };
+
   return (
     <>
       <Bg>
-        <Header type="chatroom" text={location.state?.accountId} leftOnClick={goBack} />
+        <Header type="chatroom" text={location.state?.accountId} leftOnClick={goBack} rightOnClick={toggleModalBottom}/>
 
         <Container ref={containerRef}>
           {listItem}
@@ -158,6 +165,8 @@ function ChatRoomPage() {
           </Bottom>
         </Container>
       </Bg>
+      {ModalBottomOpen && 
+      <ModalBottom type='chatRoom'/>}
     </>
   );
 }
