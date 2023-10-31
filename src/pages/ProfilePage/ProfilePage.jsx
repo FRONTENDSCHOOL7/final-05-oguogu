@@ -20,7 +20,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <Header rightOnClick={toggleModalBottom}/>
+      <Header type="edit" rightOnClick={toggleModalBottom} />
       <ScrollContainer>
         <ProfileBox accountname={accountname} isMyProfile={isMyProfile} />
         <ProductList type="profile" accountname={accountname} />
@@ -28,8 +28,7 @@ export default function ProfilePage() {
       </ScrollContainer>
       <NavBar></NavBar>
 
-      {ModalBottomOpen && 
-      <ModalBottom type='profileMore'/>}
+      {ModalBottomOpen && <ModalBottom type="profileMore" />}
     </>
   );
 }

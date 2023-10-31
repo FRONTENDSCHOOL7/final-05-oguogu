@@ -4,21 +4,31 @@ import { ScrollContainer } from 'components/common/container/Container.style';
 import Header from 'components/common/header/Header';
 import NavBar from 'components/common/navbar/NavBar';
 import FollowList from 'components/follow/FollowList';
-import { follwingListAPI } from 'api/follow.api';
+import { follwingListAPI, unfollowAPI } from 'api/follow.api';
+import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function FollowingsPage() {
   const { accountname } = useParams();
   const [followings, setFollowings] = useState(null);
+  const [unfollowUser, setUnfollowUser] = useState(null);
 
   const followinglist = () => {
     follwingListAPI(accountname)
       .then((res) => {
-        console.log(res);
         setFollowings(res);
       })
       .catch((err) => {
         alert('팔로워 목록 불러오기에 실패했습니다');
       });
+  };
+
+  const unfollow = async () => {
+    await unfollowAPI(unfollowUser)
+      .then((res) => {})
+      .catch((err) => {
+        alert('언팔로우를 실패했습니다');
+      });
+    followinglist();
   };
 
   useEffect(() => {
@@ -28,8 +38,11 @@ export default function FollowingsPage() {
   return (
     <>
       <Header type="follow" text="Followings" />
-      <ScrollContainer $bg>{followings !== null && <FollowList userlist={followings} updatelist={followinglist} />}</ScrollContainer>
+      <ScrollContainer $bg>
+        {followings !== null && <FollowList userlist={followings} updatelist={followinglist} setUnfollowUser={setUnfollowUser} />}
+      </ScrollContainer>
       <NavBar />
+      <ConfirmModal onClick={unfollow} />
     </>
   );
 }

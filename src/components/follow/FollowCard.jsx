@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, UserImg, UserInfoBox, UserIntro, UserName } from 'components/follow/FollowCard.style';
 import Button from 'components/common/button/Button';
-import { followAPI, unfollowAPI } from 'api/follow.api';
+import { followAPI } from 'api/follow.api';
 import { useNavigate } from 'react-router';
+import useConfirm from 'hook/useConfirm';
 
-export default function FollowCard({ username, accountname, intro, image, isfollow, updatelist }) {
+export default function FollowCard({ username, accountname, intro, image, isfollow, updatelist, setUnfollowUser }) {
   const navigate = useNavigate();
+  const { openConfirm } = useConfirm();
+
   //팔로우
   const handleFollow = async () => {
     await followAPI(accountname)
       .then(() => {})
       .catch(() => {
-        alert('언팔로우를 실패했습니다');
+        alert('팔로우를 실패했습니다');
       });
     updatelist();
   };
 
   //언팔로우
-  const handleUnfllow = async () => {
-    await unfollowAPI(accountname)
-      .then((res) => {})
-      .catch((err) => {
-        alert('언팔로우를 실패했습니다');
-      });
-    updatelist();
+  const handleUnfllow = () => {
+    openConfirm({
+      content: '팔로우를 취소할까요?',
+      type: 'follow',
+    });
+    setUnfollowUser(accountname);
   };
 
   //해당 유저 프로필로 이동

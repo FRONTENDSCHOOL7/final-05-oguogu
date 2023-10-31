@@ -28,7 +28,7 @@ export default function PostDetailPage() {
 
   return (
     <>
-      <Header type="postdetail" />
+      <Header />
       <ScrollContainer $bg>
         {post !== null && (
           <>
