@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalBottomBg = styled.section`
+export const ModalBottomContainer = styled.section`
   width : 390px;
   padding : 32px 0 10px 0;
   background-color : white;

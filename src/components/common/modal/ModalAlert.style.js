@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-  export const BlackBg = styled.div`
+  export const BlackContainer = styled.div`
   width : 100%;
   height : 100%;
   background-color : rgba(0, 0, 0, 0.3);
@@ -10,7 +10,7 @@ import styled from "styled-components";
   top : 0;
   `
 
-export const ModalAlertBg = styled.section`
+export const ModalAlertContainer = styled.section`
   width : 252px;
   height : 110px;
   background-color : white;

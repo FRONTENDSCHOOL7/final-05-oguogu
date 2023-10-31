@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalBottomBg, ModalBottomEle } from './Modalbottom.style';
+import { ModalBottomContainer, ModalBottomEle } from './Modalbottom.style';
 import ModalAlert from './ModalAlert';
 
 export default function ModalBottom({ type }) {
@@ -12,19 +12,19 @@ export default function ModalBottom({ type }) {
   switch (type) {
     case 'profileMore' :
       return (
-        <ModalBottomBg>
+        <ModalBottomContainer>
           <ModalBottomEle>설정 및 개인정보</ModalBottomEle>
           <ModalBottomEle onClick={openModalAlert}>로그아웃</ModalBottomEle>
           {isAlertOpen && (
             <ModalAlert kind='logout'
               onClose={() => setAlertOpen(false)} />
           )}
-        </ModalBottomBg>
+        </ModalBottomContainer>
       );
 
     case 'profileProduct' :
       return (
-        <ModalBottomBg>
+        <ModalBottomContainer>
           <ModalBottomEle onClick={openModalAlert}>삭제</ModalBottomEle>
           <ModalBottomEle>수정</ModalBottomEle>
           <ModalBottomEle>웹사이트에서 상품 보기</ModalBottomEle>
@@ -32,41 +32,45 @@ export default function ModalBottom({ type }) {
             <ModalAlert kind='deleteProduct'
               onClose={() => setAlertOpen(false)} />
           )}
-        </ModalBottomBg>
+        </ModalBottomContainer>
       );
 
     case 'profilePost' :
       return (
-        <ModalBottomBg>
+        <ModalBottomContainer>
           <ModalBottomEle onClick={openModalAlert}>삭제</ModalBottomEle>
           <ModalBottomEle>수정</ModalBottomEle>
           {isAlertOpen && (
             <ModalAlert kind='deletePost'
               onClose={() => setAlertOpen(false)} />
           )}
-        </ModalBottomBg>
+        </ModalBottomContainer>
       );
     
     case 'postPost' :
       return (
-        <ModalBottomBg>
+        <ModalBottomContainer>
           <ModalBottomEle>신고하기</ModalBottomEle>
-        </ModalBottomBg>
+        </ModalBottomContainer>
       );
     
     case 'postComment' :
       return (
-        <ModalBottomBg>
+        <ModalBottomContainer>
           <ModalBottomEle>신고하기</ModalBottomEle>
-        </ModalBottomBg>
+        </ModalBottomContainer>
       );
     
     case 'chatRoom' :
       return (
-        <ModalBottomBg>
+        <ModalBottomContainer>
           <ModalBottomEle onClick={openModalAlert}>채팅방 나가기</ModalBottomEle>
           <ModalBottomEle>신고하기</ModalBottomEle>
-        </ModalBottomBg>
+          {isAlertOpen && (
+            <ModalAlert kind='deleteChatRoom'
+              onClose={() => setAlertOpen(false)} />
+          )}
+        </ModalBottomContainer>
       );
     
   }
