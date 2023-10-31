@@ -10,21 +10,24 @@ export default function FollowersPage() {
   const { accountname } = useParams();
   const [followers, setFollowers] = useState(null);
 
-  useEffect(() => {
-    const follwerList = follwerListAPI(accountname);
-    follwerList
+  const followerlist = () => {
+    follwerListAPI(accountname)
       .then((res) => {
         setFollowers(res);
       })
       .catch((err) => {
         alert('팔로워 목록 불러오기에 실패했습니다');
       });
+  };
+
+  useEffect(() => {
+    followerlist();
   }, []);
 
   return (
     <>
       <Header type="follow" text="Followers" />
-      <ScrollContainer $bg>{followers !== null && <FollowList userlist={followers} />}</ScrollContainer>
+      <ScrollContainer $bg>{followers !== null && <FollowList userlist={followers} updatelist={followerlist} />}</ScrollContainer>
       <NavBar />
     </>
   );

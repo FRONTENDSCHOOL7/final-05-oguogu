@@ -31,16 +31,12 @@ export default function HomePage() {
   return (
     <>
       <Header type="home" rightOnClick={toSearch} />
-      {/* <ScrollContainer>
-        <ProductList />
-        <FollowingFeed posts={feed} />
-      </ScrollContainer> */}
       {feed === null ||
         (feed.length === 0 ? (
           <NoneFeed />
         ) : (
           <ScrollContainer>
-            <ProductList />
+            <ProductList type="home" accountname />
             <FollowingFeed posts={feed} />
           </ScrollContainer>
         ))}

@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import FollowCard from './FollowCard';
 import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 
-export default function FollowList({ userlist }) {
+export default function FollowList({ userlist, updatelist }) {
   const makelist = () => {
+    console.log('test');
     return userlist.map((user) => (
-      <FollowCard key={user._id} username={user.username} accountname={user.accountname} intro={user.intro} image={user.image} isfollow={user.isfollow} />
+      <FollowCard
+        key={user._id}
+        username={user.username}
+        accountname={user.accountname}
+        intro={user.intro}
+        image={user.image}
+        isfollow={user.isfollow}
+        updatelist={updatelist}
+      />
     ));
   };
 
