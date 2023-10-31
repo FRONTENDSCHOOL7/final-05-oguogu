@@ -28,6 +28,10 @@ export const ProfileHeader = styled.section`
     color: var(--gray-01);
   }
 
+  & > span p {
+    cursor: pointer;
+  }
+
   & > span span {
     display: block;
     font-weight: bold;
