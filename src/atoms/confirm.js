@@ -6,5 +6,6 @@ export const confirmState = atom({
     isOpen: false,
     content: '',
     type: '',
+    onClick: null,
   },
 });

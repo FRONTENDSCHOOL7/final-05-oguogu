@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import FollowCard from './FollowCard';
 import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 
-export default function FollowList({ userlist, updatelist, setUnfollowUser }) {
+export default function FollowList({ userlist, updatelist }) {
   const makelist = () => {
     return userlist.map((user) => (
       <FollowCard
@@ -14,7 +14,6 @@ export default function FollowList({ userlist, updatelist, setUnfollowUser }) {
         image={user.image}
         isfollow={user.isfollow}
         updatelist={updatelist}
-        setUnfollowUser={setUnfollowUser}
       />
     ));
   };

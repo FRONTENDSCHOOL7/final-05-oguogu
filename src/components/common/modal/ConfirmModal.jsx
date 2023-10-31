@@ -1,9 +1,11 @@
 import React from 'react';
 import { ConfirmDimmed, ModalAlertContainer, ModalAlertNo, ModalAlertYes } from 'components/common/modal/ConfirmModal.style';
 import useConfirm from 'hook/useConfirm';
+import useModal from 'hook/useModal';
 
-export default function ConfirmModal({ onClick }) {
+export default function ConfirmModal() {
   const { confirmData, closeConfirm } = useConfirm();
+  const { closeModal } = useModal();
 
   const confirmYes = {
     delete: '삭제',
@@ -19,9 +21,10 @@ export default function ConfirmModal({ onClick }) {
     logout: '취소',
   };
 
-  const clickConfirmNo = () => {
+  const clickConfirmYes = () => {
     closeConfirm();
-    onClick();
+    closeModal();
+    confirmData.onClick();
   };
 
   return (
@@ -31,7 +34,7 @@ export default function ConfirmModal({ onClick }) {
         <ModalAlertContainer>
           <p>{confirmData.content}</p>
           <ModalAlertNo onClick={closeConfirm}>{confirmNo[confirmData.type]}</ModalAlertNo>
-          <ModalAlertYes onClick={clickConfirmNo}>{confirmYes[confirmData.type]}</ModalAlertYes>
+          <ModalAlertYes onClick={clickConfirmYes}>{confirmYes[confirmData.type]}</ModalAlertYes>
         </ModalAlertContainer>
       </>
     )

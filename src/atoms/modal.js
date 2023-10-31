@@ -4,5 +4,7 @@ export const modalState = atom({
   key: 'modalState',
   default: {
     isOpen: false,
+    type: '',
+    callback: [],
   },
 });

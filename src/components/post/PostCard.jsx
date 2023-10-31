@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart } from './PostCard.style';
-import { useLocation, useNavigate, useParams } from 'react-router';
-import { postDeleteAPI } from 'api/post.api';
-import ModalBottom from 'components/common/modal/Modalbottom';
+import { useLocation, useNavigate } from 'react-router';
+import useModal from 'hook/useModal';
+import useConfirm from 'hook/useConfirm';
 
 export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted }) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const ellipsis = location !== `/post/${id}`;
+  const userInfo = JSON.parse(localStorage.getItem('oguUserInfo'));
+  const { openModal, closeModal } = useModal();
+  const { openConfirm } = useConfirm();
 
   //게시글 상세페이지로 이동
   const handletoPost = () => {
@@ -24,13 +27,16 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   //heart토글
   const handleToggleHeart = () => {};
 
-
-
-    //게시글 더보기 모달
-    const [ModalBottomOpen, setModalBottomOpen] = useState(false);
-    const toggleModalBottom = () => {
-      setModalBottomOpen(!ModalBottomOpen);
-    };
+  //게시글 더보기 버튼
+  const handleMoreBtn = () => {
+    userInfo.accountname === authaccount
+      ? openModal({
+          type: 'myPost',
+        })
+      : openModal({
+          type: 'userPost',
+        });
+  };
 
   return (
     <Container>
@@ -53,10 +59,8 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
         <PostDate>
           {createdDate[0]}년 {createdDate[1]}월 {createdDate[2]}일
         </PostDate>
-        <MoreBtn onClick={toggleModalBottom}/>
+        <MoreBtn onClick={handleMoreBtn} />
       </PostBox>
-      {ModalBottomOpen && 
-      <ModalBottom type='profilePost' post_id={id}/>}
     </Container>
   );
 }

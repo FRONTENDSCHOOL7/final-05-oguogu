@@ -7,7 +7,7 @@ export const ModalDimmed = styled.div`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.52);
+  background-color: rgba(0, 0, 0, 0.32);
   z-index: 100;
 `;
 
@@ -19,7 +19,7 @@ export const ModalBottomContainer = styled.section`
   position: fixed;
   bottom: 0;
   left: 50%;
-  z-index: 200;
+  z-index: 101;
   transform: translateX(-50%);
 
   &::before {

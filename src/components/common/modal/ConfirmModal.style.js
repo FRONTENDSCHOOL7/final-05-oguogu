@@ -14,7 +14,7 @@ export const ModalAlertContainer = styled.section`
   height: 110px;
   background-color: white;
   border-radius: 10px;
-  z-index: 300;
+  z-index: 201;
   position: fixed;
   top: 50%;
   left: 50%;

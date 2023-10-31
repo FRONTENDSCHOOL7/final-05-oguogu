@@ -21,7 +21,6 @@ export default function ProfileBox({ accountname, isMyProfile }) {
       .catch((err) => {
         alert(err);
       });
-    console.log('프로필로딩');
   };
 
   //팔로워 리스트 페이지로 이동

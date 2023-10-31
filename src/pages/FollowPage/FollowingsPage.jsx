@@ -10,7 +10,6 @@ import ConfirmModal from 'components/common/modal/ConfirmModal';
 export default function FollowingsPage() {
   const { accountname } = useParams();
   const [followings, setFollowings] = useState(null);
-  const [unfollowUser, setUnfollowUser] = useState(null);
 
   const followinglist = () => {
     follwingListAPI(accountname)
@@ -22,15 +21,6 @@ export default function FollowingsPage() {
       });
   };
 
-  const unfollow = async () => {
-    await unfollowAPI(unfollowUser)
-      .then((res) => {})
-      .catch((err) => {
-        alert('언팔로우를 실패했습니다');
-      });
-    followinglist();
-  };
-
   useEffect(() => {
     followinglist();
   }, []);
@@ -38,11 +28,9 @@ export default function FollowingsPage() {
   return (
     <>
       <Header type="follow" text="Followings" />
-      <ScrollContainer $bg>
-        {followings !== null && <FollowList userlist={followings} updatelist={followinglist} setUnfollowUser={setUnfollowUser} />}
-      </ScrollContainer>
+      <ScrollContainer $bg>{followings !== null && <FollowList userlist={followings} updatelist={followinglist} />}</ScrollContainer>
       <NavBar />
-      <ConfirmModal onClick={unfollow} />
+      <ConfirmModal />
     </>
   );
 }
