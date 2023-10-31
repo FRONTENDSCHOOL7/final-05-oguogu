@@ -21,7 +21,7 @@ export const unfollowAPI = async (accountname) => {
 };
 
 //팔로잉 리스트
-export const follwingListAPI = async () => {
+export const follwingListAPI = async (accountname) => {
   try {
     const result = await tokenInstance.get(`profile/${accountname}/following`);
     return result.data;
@@ -31,7 +31,7 @@ export const follwingListAPI = async () => {
 };
 
 //팔로워 리스트
-export const follwerListAPI = async () => {
+export const follwerListAPI = async (accountname) => {
   try {
     const result = await tokenInstance.get(`profile/${accountname}/follower`);
     return result.data;

@@ -1,13 +1,25 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import FollowCard from './FollowCard';
+import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 
-export default function FollowList() {
+export default function FollowList({ userlist }) {
+  const makelist = () => {
+    return userlist.map((user) => (
+      <FollowCard key={user._id} username={user.username} accountname={user.accountname} intro={user.intro} image={user.image} isfollow={user.isfollow} />
+    ));
+  };
+
   return (
     <Container>
-      <FollowCard />
-      <FollowCard />
-      <FollowCard />
+      {userlist.length ? (
+        makelist()
+      ) : (
+        <EmptyBox>
+          <EmptyImg />
+          <EmptyText>팔로워가 없어요</EmptyText>
+        </EmptyBox>
+      )}
     </Container>
   );
 }

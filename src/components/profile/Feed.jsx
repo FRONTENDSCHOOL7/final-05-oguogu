@@ -20,24 +20,23 @@ export default function Feed({ accountname }) {
   }, [accountname]);
 
   return (
-    posts !== null && (
-      <Container>
-        <FeedHeader>
-          <SectionTitle>게시물</SectionTitle>
-          <div>
-            <PostNormalBtn $clicked={postType === 'normal'} onClick={() => setPostType('normal')} />
-            <PostGalleryBtn $clicked={postType === 'gallery'} onClick={() => setPostType('gallery')} />
-          </div>
-        </FeedHeader>
-        {posts.length ? (
+    <Container>
+      <FeedHeader>
+        <SectionTitle>게시물</SectionTitle>
+        <div>
+          <PostNormalBtn $clicked={postType === 'normal'} onClick={() => setPostType('normal')} />
+          <PostGalleryBtn $clicked={postType === 'gallery'} onClick={() => setPostType('gallery')} />
+        </div>
+      </FeedHeader>
+      {posts !== null &&
+        (posts.length ? (
           <PostList type={postType} posts={posts} />
         ) : (
           <EmptyBox>
             <EmptyImg />
             <EmptyText>게시물이 없어요</EmptyText>
           </EmptyBox>
-        )}
-      </Container>
-    )
+        ))}
+    </Container>
   );
 }
