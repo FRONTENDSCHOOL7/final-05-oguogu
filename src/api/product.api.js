@@ -13,7 +13,7 @@ export const productUploadAPI = async (product) => {
 
   try {
     const result = await tokenInstance.post('product', reqData);
-    console.log(result.data);
+    return result.data.product;
   } catch (error) {
     throw error;
   }
@@ -21,7 +21,6 @@ export const productUploadAPI = async (product) => {
 
 //상품 리스트
 export const productListAPI = async (accountname) => {
-  console.log(accountname);
   try {
     const result = await tokenInstance.get(`product/${accountname}`);
     return result.data.product;

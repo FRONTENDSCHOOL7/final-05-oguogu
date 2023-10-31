@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from 'components/product/ProductCard';
-import { CardBox, Container, EmptyBox, EmptyImg, EmptyText, MoreLink, SectionTitle } from 'components/product/ProductList.style';
+import { CardBox, Container, MoreLink, SectionTitle } from 'components/product/ProductList.style';
+import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import { productListAPI } from 'api/product.api';
 

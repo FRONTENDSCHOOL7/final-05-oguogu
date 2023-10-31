@@ -62,7 +62,7 @@ export const BasicButton = styled.button`
   background-color: var(--main-color-01);
   color: var(--white);
   ${(props) => props.$size}
-
+  flex-shrink: 0;
   &:disabled {
     background-color: var(--main-color-02);
     cursor: default;
@@ -77,6 +77,7 @@ export const ShadowButton = styled.button`
   font-size: 12px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   ${(props) => props.$size}
+  flex-shrink: 0;
 `;
 
 export const BorderButton = styled.button`
@@ -84,6 +85,7 @@ export const BorderButton = styled.button`
   color: ${(props) => (props.$pink ? 'var(--main-color-01)' : 'var(--gray-01)')};
   background-color: var(--white);
   ${(props) => props.$size}
+  flex-shrink: 0;
 `;
 
 export const BackBtn = styled.button`
@@ -91,4 +93,5 @@ export const BackBtn = styled.button`
   height: 22px;
   background: url(${iconBack}) no-repeat;
   background-size: cover;
+  flex-shrink: 0;
 `;
