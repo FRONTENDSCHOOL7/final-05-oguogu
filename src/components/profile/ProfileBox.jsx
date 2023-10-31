@@ -4,9 +4,18 @@ import { profileAPI } from 'api/profile.api';
 import Button from 'components/common/button/Button';
 import iconShare from 'assets/images/icon_share.png';
 import iconChat from 'assets/images/icon_message_small.png';
+import { useNavigate } from 'react-router';
 
 export default function ProfileBox({ accountname, isMyProfile }) {
   const [profileInfo, setProfileInfo] = useState(null);
+  const navigate = useNavigate();
+
+  const toFollowerlist = () => {
+    navigate(`/profile/${accountname}/followers`);
+  };
+  const toFollowinglist = () => {
+    navigate(`/profile/${accountname}/followings`);
+  };
 
   useEffect(() => {
     const promise = profileAPI(accountname);
@@ -24,13 +33,13 @@ export default function ProfileBox({ accountname, isMyProfile }) {
     <ProfileBoxBg>
       <ProfileHeader>
         <span>
-          <p>
+          <p onClick={toFollowerlist}>
             <span>{profileInfo.followerCount}</span>followers
           </p>
         </span>
         <ProfileImage $img={profileInfo.image} />
         <span>
-          <p>
+          <p onClick={toFollowinglist}>
             <span>{profileInfo.followingCount}</span>followings
           </p>
         </span>

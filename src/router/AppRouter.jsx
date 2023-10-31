@@ -12,6 +12,8 @@ import ProfilePage from 'pages/ProfilePage/ProfilePage';
 import { ProtectedRoutePage, PublicRoutePage } from 'router/AccessRouter';
 import Follow from 'pages/Follow/Follow';
 import PostDetailPage from 'pages/PostDetailPage/PostDetailPage';
+import FollowersPage from 'pages/ProfilePage/FollowersPage';
+import FollowingsPage from 'pages/ProfilePage/FollowingsPage';
 
 export default function AppRouter() {
   return (
@@ -27,7 +29,13 @@ export default function AppRouter() {
           <Route path="/chatlist" element={<ChatListPage />} />
           <Route path="/chatroom" element={<ChatRoomPage />} />
           <Route path="/upload" element={<PostUploadPage />} />
-          <Route path="/profile/:accountname" element={<ProfilePage />} />
+          <Route path="/profile">
+            <Route path=":accountname">
+              <Route index element={<ProfilePage />} />
+              <Route path="followers" element={<FollowersPage />} />
+              <Route path="followings" element={<FollowingsPage />} />
+            </Route>
+          </Route>
           <Route path="/post/:postid" element={<PostDetailPage />} />
           <Route path="/profile/follow" element={<Follow />} />
         </Route>
