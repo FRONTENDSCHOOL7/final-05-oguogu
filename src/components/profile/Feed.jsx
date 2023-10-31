@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, FeedHeader, SectionTitle, EmptyBox, PostNormalBtn, PostGalleryBtn } from 'components/profile/Feed.style';
 import PostList from 'components/post/PostList';
 import { postListAPI } from 'api/post.api';
-import { EmptyImg, EmptyText } from 'components/product/ProductList.style';
+import { EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 
 export default function Feed({ accountname }) {
   const [posts, setPosts] = useState(null);
