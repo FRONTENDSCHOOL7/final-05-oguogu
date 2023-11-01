@@ -4,7 +4,7 @@ import { ProfileImage } from 'components/comment/CommentList.style';
 import { useNavigate } from 'react-router';
 import useModal from 'hook/useModal';
 import useConfirm from 'hook/useConfirm';
-import { commentDeleteAPI, commentReportAPI } from 'api/comment';
+import { commentDeleteAPI, commentReportAPI } from 'api/comment.api';
 
 export default function CommentCard({ id, postid, content, date, authimg, authaccountname, authname, update }) {
   const navigate = useNavigate();

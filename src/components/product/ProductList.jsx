@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ProductCard from 'components/product/ProductCard';
 import { CardBox, Container, MoreLink, SectionTitle } from 'components/product/ProductList.style';
 import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
@@ -9,7 +9,7 @@ export default function ProductList({ type, accountname }) {
   const [products, setProducts] = useState(null);
   const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
-  const userPorductList = () => {
+  const userPorductList = useCallback(() => {
     productListAPI(accountname)
       .then((res) => {
         setProducts(res);
@@ -17,7 +17,7 @@ export default function ProductList({ type, accountname }) {
       .catch((err) => {
         alert('상품목록 불러오기에 실패했습니다.');
       });
-  };
+  }, [accountname]);
 
   const followingProductList = () => {};
 
@@ -27,7 +27,7 @@ export default function ProductList({ type, accountname }) {
     } else if (type === 'home') {
       followingProductList();
     }
-  }, [accountname, type]);
+  }, [userPorductList, type]);
 
   const productlist = () => {
     return products.map((product) => {

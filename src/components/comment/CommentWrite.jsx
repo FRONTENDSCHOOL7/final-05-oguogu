@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Input, WriteButton } from 'components/comment/CommentWrite.style';
 import { ProfileImage } from 'components/comment/CommentList.style';
-import { commentWriteAPI } from 'api/comment';
+import { commentWriteAPI } from 'api/comment.api';
 
 export default function CommentWrite({ postid, update }) {
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -14,7 +14,7 @@ export default function CommentWrite({ postid, update }) {
     } else {
       setBtnDisabled(false);
     }
-  });
+  }, [comment]);
 
   const commentWrite = async (e) => {
     e.preventDefault();
