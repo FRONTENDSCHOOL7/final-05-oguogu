@@ -1,5 +1,14 @@
 import styled, { keyframes } from 'styled-components';
 
+const dimmedAni = keyframes`
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 0;
+  }
+`;
+
 export const ModalDimmed = styled.div`
   width: 390px;
   height: 100vh;
@@ -9,14 +18,16 @@ export const ModalDimmed = styled.div`
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.32);
   z-index: 100;
+  animation: 0.1s ease-out 0s 1 normal none running ${dimmedAni};
+  transition: background-color 0.3s ease-out 0s;
 `;
 
 const modalAni = keyframes`
   0%{
-    bottom: -100%;
+    transform: translate(-50%,100%);
   }
   100%{
-    bottom: 0;
+    transform: translate(-50%,0);
   }
 `;
 
@@ -30,7 +41,8 @@ export const ModalBottomContainer = styled.section`
   left: 50%;
   z-index: 101;
   transform: translateX(-50%);
-  animation: ${modalAni} 0.3s ease-out 0s 1 normal none running;
+  animation: 0.3s ease-out 0s 1 normal none running ${modalAni};
+
   &::before {
     content: '';
     background-color: var(--gray-02);
