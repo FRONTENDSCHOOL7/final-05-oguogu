@@ -2,7 +2,6 @@ import styled from "styled-components";
 import iconPicture from "assets/images/icon_picture.png"
 
 export const AddProductPageContainer = styled.div`
-  height : 100%;
   width : 100%;
   padding : 30px 34px;
   font-size : 12px;
@@ -12,16 +11,25 @@ export const AddProductPageContainer = styled.div`
 export const AddImage = styled.section`
   height : 236px;
   background-color : white;
+  
+  
 `
 
 export const ImageBox = styled.div`
   background-color : var(--gray-03);
+  width : 100%;
   height : 204px;
   margin-top : 18px;
   border : 1px solid var(--gray-02);
   border-radius : 10px;
   position : relative;
-
+  overflow : hidden;
+  
+  img{
+    width:100%;
+    height:100%;
+    object-fit : cover;
+  }
 `
 
 export const AddImageBtn = styled.button`

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from 'components/common/header/Header';
 import { AddImage, AddImageBtn, ProductInfoInput, AddProductPageContainer, ImageBox, Label, AddProductInfo } from './AddProductPage.style';
+import { productUploadAPI } from 'api/product.api';
+import { imgUploadAPI } from 'api/image.api';
 
 export default function AddProductPage() {
   
@@ -12,20 +14,31 @@ export default function AddProductPage() {
   };
   const formattedPrice = productPrice && Number(productPrice).toLocaleString();
 
-    //게시글 내용이 있을때만 버튼 활성화
-    const [productname, setProductname] = useState('');
-    const [url, setUrl] = useState('');
-    const [submitDisabled, setSubmitDisabled] = useState(true);
+  //상품 이미지 등록
+  const [productImage, setProductImage] = useState();
+  const fileInputRef = useRef();
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProductImage(imageUrl);
+    }
+  }
 
-    useEffect(() => {
-      if (productname === '' || formattedPrice === '' || url === '') {
-        setSubmitDisabled(true);
-      } else {
-        setSubmitDisabled(false);
-      }
-    }, [productname, formattedPrice, url]);
+  //상품 등록 내용이 모두 입력됐을 때 버튼 활성화
+  const [productname, setProductname] = useState('');
+  const [url, setUrl] = useState('');
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
-      // 내용 입력 받기
+  useEffect(() => {
+    if (productname === '' || formattedPrice === '' || url === '' || !productImage) {
+      setSubmitDisabled(true);
+    } else {
+      setSubmitDisabled(false);
+    }
+  }, [productname, formattedPrice, url, productImage]);
+
+  // 내용 입력 받기
   const handleOnChangeProductname = (e) => {
     setProductname(e.target.value);
   };
@@ -34,9 +47,24 @@ export default function AddProductPage() {
   };
 
     //게시글 업로드
-    const handleSubmit = () => {
-      console.log('상품 등록 완료')
-
+    const handleSubmit = async () => {
+      try {
+        // 1. 제품 이미지를 업로드하고 이미지 URL을 얻습니다.
+        const uploadedImageResponse = await imgUploadAPI(productImage);
+        const productImageURL = uploadedImageResponse.imageUrl;
+  
+        // 2. 업로드한 이미지 URL 및 기타 세부 정보를 사용하여 제품을 생성합니다.
+        await productUploadAPI({
+          itemName: productname,
+          price: formattedPrice,
+          link: url,
+          itemImg: productImageURL,
+        });
+  
+        console.log('상품 등록 완료');
+      } catch (error) {
+        console.error('상품 등록 실패:', error);
+      }
     };
 
   return (
@@ -46,7 +74,10 @@ export default function AddProductPage() {
         <AddImage>
           이미지 등록
           <ImageBox>
-            <AddImageBtn />
+          {productImage && <img src={productImage} alt="" />}
+            <AddImageBtn onClick={() => fileInputRef.current.click()}>
+              <input style={{display:'none'}} type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} />
+            </AddImageBtn>
           </ImageBox>
         </AddImage>
         <AddProductInfo>
