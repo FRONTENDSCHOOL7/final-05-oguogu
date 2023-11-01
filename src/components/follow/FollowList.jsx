@@ -5,7 +5,6 @@ import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMess
 
 export default function FollowList({ userlist, updatelist }) {
   const makelist = () => {
-    console.log('test');
     return userlist.map((user) => (
       <FollowCard
         key={user._id}

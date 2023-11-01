@@ -4,7 +4,10 @@ import { Bg, Wrap, TextBox, Time, ReverseWrap, TextBox2, Container, Bottom, Butt
 import iconChatCircle from 'assets/images/icon_chat_circle.svg';
 import iconPicture from 'assets/images/icon_picture.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ModalBottom from 'components/common/modal/Modalbottom';
+import useModal from 'hook/useModal';
+import BottomModal from 'components/common/modal/BottomModal';
+import ConfirmModal from 'components/common/modal/ConfirmModal';
+import useConfirm from 'hook/useConfirm';
 
 function ChatRoomPage() {
   // 뒤로가기
@@ -123,16 +126,38 @@ function ChatRoomPage() {
     );
   });
 
-  //더보기 버튼 제어
-  const [ModalBottomOpen, setModalBottomOpen] = useState(false);
-  const toggleModalBottom = () => {
-    setModalBottomOpen(!ModalBottomOpen);
+  //모달 클릭 이벤트
+  const { openModal, closeModal } = useModal();
+  const { openConfirm } = useConfirm();
+  const handleHeaderRight = () => {
+    openModal({
+      type: 'chatroom',
+      callback: [exitChatRoom, reportUserConfirm],
+    });
+  };
+  //채팅방나가기 -> 채팅리스트로 이동
+  const exitChatRoom = () => {
+    navigate('/chatlist');
+    closeModal();
+  };
+  //유저신고
+  const reportUser = () => {
+    alert('🚨 신고가 완료되었습니다. 신속하게 처리하겠습니다.');
+    closeModal();
+  };
+  //유저신고 confirm모달 열기
+  const reportUserConfirm = () => {
+    openConfirm({
+      content: '해당 유저를 신고할까요?',
+      type: 'report',
+      onClick: reportUser,
+    });
   };
 
   return (
     <>
       <Bg>
-        <Header type="chatroom" text={location.state?.accountId} leftOnClick={goBack} rightOnClick={toggleModalBottom}/>
+        <Header type="chatroom" text={location.state?.accountId} leftOnClick={goBack} rightOnClick={handleHeaderRight} />
 
         <Container ref={containerRef}>
           {listItem}
@@ -165,8 +190,8 @@ function ChatRoomPage() {
           </Bottom>
         </Container>
       </Bg>
-      {ModalBottomOpen && 
-      <ModalBottom type='chatRoom'/>}
+      <BottomModal />
+      <ConfirmModal />
     </>
   );
 }
