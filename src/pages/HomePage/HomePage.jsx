@@ -7,8 +7,6 @@ import FollowingFeed from 'components/home/FollowingFeed';
 import NoneFeed from 'components/home/NoneFeed';
 import ProductList from 'components/product/ProductList';
 import { follwingPostAPI } from 'api/post.api';
-import useModal from 'hook/useModal';
-import useConfirm from 'hook/useConfirm';
 import BottomModal from 'components/common/modal/BottomModal';
 import ConfirmModal from 'components/common/modal/ConfirmModal';
 
@@ -22,8 +20,7 @@ export default function HomePage() {
 
   //팔로잉 게시글 목록 요청 api
   useEffect(() => {
-    const promise = follwingPostAPI();
-    promise
+    follwingPostAPI()
       .then((res) => {
         setFeed(res.posts);
       })
@@ -45,6 +42,8 @@ export default function HomePage() {
           </ScrollContainer>
         ))}
       <NavBar />
+      <BottomModal />
+      <ConfirmModal />
     </>
   );
 }

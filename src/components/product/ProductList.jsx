@@ -9,14 +9,23 @@ export default function ProductList({ type, accountname }) {
   const [products, setProducts] = useState(null);
   const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
+  const userPorductList = () => {
+    productListAPI(accountname)
+      .then((res) => {
+        setProducts(res);
+      })
+      .catch((err) => {
+        alert('상품목록 불러오기에 실패했습니다.');
+      });
+  };
+
+  const followingProductList = () => {};
+
   useEffect(() => {
     if (type === 'profile') {
-      const promise = productListAPI(accountname);
-      promise.then((res) => {
-        setProducts(res);
-      });
+      userPorductList();
     } else if (type === 'home') {
-      //팔로잉 유저들의 판매상품
+      followingProductList();
     }
   }, [accountname, type]);
 
@@ -24,7 +33,15 @@ export default function ProductList({ type, accountname }) {
     return products.map((product) => {
       return (
         <li key={product.id}>
-          <ProductCard id={product.id} price={product.price} name={product.itemName} link={product.link} img={product.itemImage} />
+          <ProductCard
+            id={product.id}
+            price={product.price}
+            name={product.itemName}
+            link={product.link}
+            img={product.itemImage}
+            authaccountname={product.author.accountname}
+            update={userPorductList}
+          />
         </li>
       );
     });

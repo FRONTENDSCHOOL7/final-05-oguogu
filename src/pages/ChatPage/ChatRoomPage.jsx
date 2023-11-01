@@ -6,6 +6,8 @@ import iconPicture from 'assets/images/icon_picture.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useModal from 'hook/useModal';
 import BottomModal from 'components/common/modal/BottomModal';
+import ConfirmModal from 'components/common/modal/ConfirmModal';
+import useConfirm from 'hook/useConfirm';
 
 function ChatRoomPage() {
   // 뒤로가기
@@ -124,21 +126,32 @@ function ChatRoomPage() {
     );
   });
 
-  //바텀모달 클릭 이벤트
+  //모달 클릭 이벤트
   const { openModal, closeModal } = useModal();
+  const { openConfirm } = useConfirm();
   const handleHeaderRight = () => {
     openModal({
       type: 'chatroom',
-      callback: [exitChatRoom, reportUser],
+      callback: [exitChatRoom, reportUserConfirm],
     });
   };
+  //채팅방나가기 -> 채팅리스트로 이동
   const exitChatRoom = () => {
     navigate('/chatlist');
     closeModal();
   };
+  //유저신고
   const reportUser = () => {
     alert('🚨 신고가 완료되었습니다. 신속하게 처리하겠습니다.');
     closeModal();
+  };
+  //유저신고 confirm모달 열기
+  const reportUserConfirm = () => {
+    openConfirm({
+      content: '해당 유저를 신고할까요?',
+      type: 'report',
+      onClick: reportUser,
+    });
   };
 
   return (
@@ -178,6 +191,7 @@ function ChatRoomPage() {
         </Container>
       </Bg>
       <BottomModal />
+      <ConfirmModal />
     </>
   );
 }

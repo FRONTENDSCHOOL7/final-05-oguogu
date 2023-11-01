@@ -7,6 +7,8 @@ import { PostBox } from './PostDetailPage.style';
 import { postDetailAPI } from 'api/post.api';
 import CommentList from 'components/comment/CommentList';
 import CommentWrite from 'components/comment/CommentWrite';
+import BottomModal from 'components/common/modal/BottomModal';
+import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function PostDetailPage() {
   const [post, setPost] = useState(null);
@@ -24,7 +26,7 @@ export default function PostDetailPage() {
 
   useEffect(() => {
     postDetail();
-  }, []);
+  }, [postDetail]);
 
   return (
     <>
@@ -47,11 +49,13 @@ export default function PostDetailPage() {
                 hearted={post.hearted}
               />
             </PostBox>
-            <CommentList postid={postid} commentCount={post.commentCount} />
+            <CommentList postid={postid} commentCount={post.commentCount} update={postDetail} />
           </>
         )}
       </ScrollContainer>
       <CommentWrite postid={postid} update={postDetail} />
+      <BottomModal />
+      <ConfirmModal />
     </>
   );
 }

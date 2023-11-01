@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ProfileBox from 'components/profile/ProfileBox';
 import Header from 'components/common/header/Header';
 import NavBar from 'components/common/navbar/NavBar';
@@ -37,10 +37,18 @@ export default function ProfilePage() {
   const toEditProfile = () => {
     navigate('/profile/edit');
   };
-  //신고하기
+  //유저신고
   const reportUser = () => {
     alert('🚨 신고가 완료되었습니다. 신속하게 처리하겠습니다.');
     closeModal();
+  };
+  //유저신고 confirm모달 열기
+  const reportUserConfirm = () => {
+    openConfirm({
+      content: '해당 유저를 신고할까요?',
+      type: 'report',
+      onClick: reportUser,
+    });
   };
 
   const handleHeaderRight = () => {
@@ -51,7 +59,7 @@ export default function ProfilePage() {
         })
       : openModal({
           type: 'userProfile',
-          callback: [reportUser],
+          callback: [reportUserConfirm],
         });
   };
   return (
