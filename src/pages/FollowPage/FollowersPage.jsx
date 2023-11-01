@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import { ScrollContainer } from 'components/common/container/Container.style';
 import Header from 'components/common/header/Header';
 import NavBar from 'components/common/navbar/NavBar';
 import FollowList from 'components/follow/FollowList';
 import { follwerListAPI } from 'api/follow.api';
-import { useParams } from 'react-router';
+import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function FollowersPage() {
   const { accountname } = useParams();
@@ -29,6 +30,7 @@ export default function FollowersPage() {
       <Header type="follow" text="Followers" />
       <ScrollContainer $bg>{followers !== null && <FollowList userlist={followers} updatelist={followerlist} />}</ScrollContainer>
       <NavBar />
+      <ConfirmModal />
     </>
   );
 }

@@ -47,17 +47,17 @@ export default function Header({ type, text, btnText, rightOnClick, btndisabled 
           <EditBtn type="button" onClick={rightOnClick} />
         </Container>
       );
-    case 'postdetail':
+    case 'edit':
       return (
         <Container $justify="space-between">
           <Button vari="back" onClick={toBack} />
+          <EditBtn type="button" onClick={rightOnClick} />
         </Container>
       );
     default:
       return (
         <Container $justify="space-between">
           <Button vari="back" onClick={toBack} />
-          <EditBtn type="button" onClick={rightOnClick} />
         </Container>
       );
   }

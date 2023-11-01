@@ -1,34 +1,36 @@
 import { ScrollContainer } from 'components/common/container/Container.style';
 import Header from 'components/common/header/Header';
 import PostCard from 'components/post/PostCard';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { PostBox } from './PostDetailPage.style';
 import { postDetailAPI } from 'api/post.api';
 import CommentList from 'components/comment/CommentList';
 import CommentWrite from 'components/comment/CommentWrite';
+import BottomModal from 'components/common/modal/BottomModal';
+import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function PostDetailPage() {
   const [post, setPost] = useState(null);
   const { postid } = useParams();
 
   //게시글정보 불러오기
-  const postDetail = async () => {
+  const postDetail = useCallback(async () => {
     try {
       const data = await postDetailAPI(postid);
       setPost(data);
     } catch (err) {
       alert('게시글 불러오기에 실패했습니다.');
     }
-  };
+  }, [postid]);
 
   useEffect(() => {
     postDetail();
-  }, []);
+  }, [postDetail]);
 
   return (
     <>
-      <Header type="postdetail" />
+      <Header />
       <ScrollContainer $bg>
         {post !== null && (
           <>
@@ -47,11 +49,13 @@ export default function PostDetailPage() {
                 hearted={post.hearted}
               />
             </PostBox>
-            <CommentList postid={postid} commentCount={post.commentCount} />
+            <CommentList postid={postid} commentCount={post.commentCount} update={postDetail} />
           </>
         )}
       </ScrollContainer>
       <CommentWrite postid={postid} update={postDetail} />
+      <BottomModal />
+      <ConfirmModal />
     </>
   );
 }

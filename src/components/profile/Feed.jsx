@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Container, FeedHeader, SectionTitle, EmptyBox, PostNormalBtn, PostGalleryBtn } from 'components/profile/Feed.style';
 import PostList from 'components/post/PostList';
 import { postListAPI } from 'api/post.api';
@@ -8,9 +8,8 @@ export default function Feed({ accountname }) {
   const [posts, setPosts] = useState(null);
   const [postType, setPostType] = useState('normal');
 
-  useEffect(() => {
-    const promise = postListAPI(accountname);
-    promise
+  const postlist = useCallback(() => {
+    postListAPI(accountname)
       .then((res) => {
         setPosts(res);
       })
@@ -18,6 +17,10 @@ export default function Feed({ accountname }) {
         alert('게시글 로딩 실패');
       });
   }, [accountname]);
+
+  useEffect(() => {
+    postlist();
+  }, [postlist]);
 
   return (
     <Container>
@@ -30,7 +33,7 @@ export default function Feed({ accountname }) {
       </FeedHeader>
       {posts !== null &&
         (posts.length ? (
-          <PostList type={postType} posts={posts} />
+          <PostList type={postType} posts={posts} update={postlist} />
         ) : (
           <EmptyBox>
             <EmptyImg />
