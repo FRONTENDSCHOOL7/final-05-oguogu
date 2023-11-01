@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const ModalDimmed = styled.div`
   width: 390px;
@@ -11,6 +11,15 @@ export const ModalDimmed = styled.div`
   z-index: 100;
 `;
 
+const modalAni = keyframes`
+  0%{
+    bottom: -100%;
+  }
+  100%{
+    bottom: 0;
+  }
+`;
+
 export const ModalBottomContainer = styled.section`
   width: 390px;
   padding: 32px 0 10px 0;
@@ -21,7 +30,7 @@ export const ModalBottomContainer = styled.section`
   left: 50%;
   z-index: 101;
   transform: translateX(-50%);
-
+  animation: ${modalAni} 0.3s ease-out 0s 1 normal none running;
   &::before {
     content: '';
     background-color: var(--gray-02);
