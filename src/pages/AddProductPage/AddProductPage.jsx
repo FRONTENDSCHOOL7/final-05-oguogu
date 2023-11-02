@@ -3,9 +3,12 @@ import Header from 'components/common/header/Header';
 import { AddImage, AddImageBtn, ProductInfoInput, AddProductPageContainer, ImageBox, Label, AddProductInfo } from './AddProductPage.style';
 import { productUploadAPI } from 'api/product.api';
 import { imgUploadAPI } from 'api/image.api';
+import { useNavigate } from 'react-router';
 
 export default function AddProductPage() {
   
+  const navigate = useNavigate();
+
   //가격에 입력되는 값 천의 자리에 콤마 붙이기
   const [productPrice, setProductPrice] = useState('');
   const handlePriceChange = (e) => {
@@ -15,10 +18,12 @@ export default function AddProductPage() {
   const formattedPrice = productPrice && Number(productPrice).toLocaleString();
 
   //상품 이미지 등록
+  const [image,setImage] = useState();
   const [productImage, setProductImage] = useState();
   const fileInputRef = useRef();
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
+    setImage(file);
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProductImage(imageUrl);
@@ -46,26 +51,34 @@ export default function AddProductPage() {
     setUrl(e.target.value);
   };
 
-    //게시글 업로드
-    const handleSubmit = async () => {
-      try {
-        // 1. 제품 이미지를 업로드하고 이미지 URL을 얻습니다.
-        const uploadedImageResponse = await imgUploadAPI(productImage);
-        const productImageURL = uploadedImageResponse.imageUrl;
-  
-        // 2. 업로드한 이미지 URL 및 기타 세부 정보를 사용하여 제품을 생성합니다.
-        await productUploadAPI({
-          itemName: productname,
-          price: formattedPrice,
-          link: url,
-          itemImg: productImageURL,
+
+ // 상품등록
+const handleSubmit = () => {
+
+  // 이미지 업로드
+  imgUploadAPI(image)
+    .then((imgPath) => {
+      // 이미지 업로드 성공
+      const content = {
+        itemName: productname,
+        price: formattedPrice,
+        link: url,
+        itemImg: imgPath,
+      };
+
+      // 상품 등록
+      productUploadAPI(content)
+        .then(() => {
+          navigate(-1);
+        })
+        .catch((err) => {
+          alert(err.message);
         });
-  
-        console.log('상품 등록 완료');
-      } catch (error) {
-        console.error('상품 등록 실패:', error);
-      }
-    };
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
+};
 
   return (
     <>

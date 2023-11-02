@@ -54,6 +54,11 @@ export default function ProfileBox({ accountname, isMyProfile }) {
     loadProfileInfo();
   }, [accountname]);
 
+  //상품 등록 페이지로 이동
+  const navigateToAddProduct = () => {
+    navigate('/addproduct');
+  };
+
   return profileInfo !== null ? (
     <ProfileBoxBg>
       <ProfileHeader>
@@ -78,7 +83,7 @@ export default function ProfileBox({ accountname, isMyProfile }) {
       {isMyProfile ? (
         <ProfileBtns $gap="16px">
           <Button size="md" vari="border" text="프로필 수정" />
-          <Button size="sm" vari="border" text="상품등록" />
+          <Button size="sm" vari="border" text="상품등록" onClick={navigateToAddProduct}/>
         </ProfileBtns>
       ) : (
         <ProfileBtns $gap="12px">
