@@ -5,7 +5,7 @@ export const ScrollContainer = styled.main`
   height: calc(100% - 108px);
   display: flex;
   flex-direction: column;
-  background-color: var(--gray-03);
+  background-color: ${(props) => (props.$bg ? 'var(--white)' : 'var(--gray-03)')};
   overflow-y: scroll;
 
   &::-webkit-scrollbar {

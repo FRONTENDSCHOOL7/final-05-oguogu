@@ -45,3 +45,34 @@ export const postDetailAPI = async (postid) => {
     throw error;
   }
 };
+
+//게시글 수정
+export const PostEditAPI = async (content, img, postid) => {
+  const reqData = {
+    post: {
+      content: content,
+      image: img, //"imageurl1, imageurl2" 형식으로
+    },
+  };
+
+  try {
+    const result = await tokenInstance.put(`post/${postid}`, reqData);
+    if (result.data.post) {
+      return result.data.post;
+    } else {
+      return result.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+//게시글 삭제
+export const PostDeleteAPI = async (postid) => {
+  try {
+    const result = await tokenInstance.delete(`post/${postid}`);
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+};

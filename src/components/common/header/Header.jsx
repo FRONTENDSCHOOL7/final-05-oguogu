@@ -4,7 +4,7 @@ import logo from 'assets/images/logo_oguogu.png';
 import Button from 'components/common/button/Button';
 import { useNavigate } from 'react-router';
 
-export default function Header({ type, text, btnText, rightOnClick, leftOnClick }) {
+export default function Header({ type, text, btnText, rightOnClick, btndisabled }) {
   const navigate = useNavigate();
   const toBack = () => {
     navigate(-1);
@@ -28,7 +28,7 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
     case 'follow':
       return (
         <Container>
-          <Button vari="back" onClick={toBack}/>
+          <Button vari="back" onClick={toBack} />
           <CenterText>{text}</CenterText>
         </Container>
       );
@@ -36,7 +36,7 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
       return (
         <Container $justify="space-between">
           <Button vari="back" onClick={toBack} />
-          <Button size="sm" text={btnText} onClick={rightOnClick} />
+          <Button size="sm" text={btnText} onClick={rightOnClick} disabled={btndisabled} />
         </Container>
       );
     case 'chatroom':
@@ -47,11 +47,17 @@ export default function Header({ type, text, btnText, rightOnClick, leftOnClick 
           <EditBtn type="button" onClick={rightOnClick} />
         </Container>
       );
-    default:
+    case 'edit':
       return (
         <Container $justify="space-between">
           <Button vari="back" onClick={toBack} />
           <EditBtn type="button" onClick={rightOnClick} />
+        </Container>
+      );
+    default:
+      return (
+        <Container $justify="space-between">
+          <Button vari="back" onClick={toBack} />
         </Container>
       );
   }

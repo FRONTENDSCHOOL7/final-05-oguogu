@@ -30,7 +30,7 @@ export default function FollowingFeed({ posts }) {
       <ButtonBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
         {buttons}
       </ButtonBox>
-      <PostList posts={posts} />
+      <PostList type="normal" posts={posts} />
     </Container>
   );
 }

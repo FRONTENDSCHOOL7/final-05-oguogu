@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, PostImgCard, PostImgContainer } from 'components/post/PostList.style';
 import PostCard from 'components/post/PostCard';
 
-export default function PostList({ type, posts }) {
+export default function PostList({ type, posts, update }) {
   const postlist = () => {
     if (type === 'gallery') {
       //이미지가 있는 게시글 필터링
@@ -34,6 +34,7 @@ export default function PostList({ type, posts }) {
               heartCount={post.heartCount}
               createdDate={date}
               hearted={post.hearted}
+              update={update}
             />
           </li>
         );
