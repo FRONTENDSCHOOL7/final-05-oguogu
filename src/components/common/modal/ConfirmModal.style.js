@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ModalDimmed } from 'components/common/modal/BottomModal.style';
+
+const opacityAni = keyframes`
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`;
 
 export const ConfirmDimmed = styled(ModalDimmed)`
   z-index: 200;
@@ -20,6 +29,8 @@ export const ModalAlertContainer = styled.section`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  animation: 0.3s ease-out 0s 1 normal none running ${opacityAni};
+  transition: background-color 0.3s ease-out 0s;
 
   p {
     width: 100%;

@@ -5,7 +5,7 @@ const dimmedAni = keyframes`
     opacity: 0;
   }
   100%{
-    opacity: 0;
+    opacity: 1;
   }
 `;
 
