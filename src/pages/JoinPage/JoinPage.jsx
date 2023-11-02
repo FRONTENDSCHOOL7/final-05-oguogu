@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from 'react-query';
 import EmailPwPage from './EmailPwPage';
 import Header from 'components/login/Header';
 import { Container } from 'pages/JoinPage/EmailPwPage.style';
 import ProfileSettingPage from './ProfileSettingPage';
 import Button from 'components/common/button/Button';
 import useUserForm from 'hook/useUserForm';
-import { emailValidAPI } from 'api/join.api';
 
 export default function JoinPage() {
   const { email, password, isValidValues } = useUserForm();
   const [disabled, setDisabled] = useState(true);
   const [emailPwPageVisible, setEmailPwPageVisible] = useState(false);
-  const [dupeErrVisible, setDupeErrvisible] = useState(false);
-
-  console.log('useEffect', dupeErrVisible);
+  const [dupeErrVisible, setDupeErrvisible] = useState(true);
+  // dupeErrVisible이 false 때 : 사용 가능한 이메일
+  // dupeErrVisible이 true 때 : 중복 가입상태
 
   const handleDupeErrVisible = (value) => {
     setDupeErrvisible(value);
@@ -33,25 +31,9 @@ export default function JoinPage() {
     }
   };
 
-  //이메일 중복 검사
-  // const emailMutation = useMutation(emailValidAPI, {
-  //   onSuccess: (result) => {
-  //     if (result.message === '사용 가능한 이메일 입니다.') {
-  //       console.log('성공시:', result.message);
-  //       setEmailPwPageVisible(true);
-  //     } else if (result.message === '이미 가입된 이메일 주소 입니다.') {
-  //       console.log('중복가입', result.message);
-  //       setEmailPwPageVisible(false);
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     console.log('실패시', error.message);
-  //   },
-  // });
-
   // 버튼 활성화
   useEffect(() => {
-    setDisabled(!(email && password && isValidValues.email && isValidValues.password && dupeErrVisible));
+    setDisabled(!(email && password && isValidValues.email && isValidValues.password && !dupeErrVisible));
   }, [email, password, isValidValues.password, isValidValues.email, dupeErrVisible]);
 
   return (

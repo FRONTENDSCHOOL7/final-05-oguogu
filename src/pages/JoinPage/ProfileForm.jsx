@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { ImageWrap, ChangeImg } from 'pages/JoinPage/ProfileForm.style';
 import { Container, Label, Input, Line, ErrMsg } from 'pages/JoinPage/EmailPwPage.style';
@@ -12,8 +11,7 @@ import useUserForm from 'hook/useUserForm';
 export default function ProfileForm() {
   const navigate = useNavigate();
 
-  const { email, password, username, setUsername, accountname, setAccountname, isValidValues, handleChange, handleSetErrorMessage, errorMessage } =
-    useUserForm();
+  const { email, password, username, setUsername, accountname, setAccountname, handleSetErrorMessage, errorMessage } = useUserForm();
   const [image, setImage] = useState('https://api.mandarin.weniv.co.kr/1698652522939.png');
   const [intro, setIntro] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -22,7 +20,7 @@ export default function ProfileForm() {
   const [introFocus, setIntroFocus] = useState(false);
   const [errUsernameVisible, setErrUsernameVisible] = useState(false);
   const [errAccountnameVisible, setErrAccountnameVisible] = useState(false);
-  const [joinError, setJoinError] = useState('');
+  const [idDupeErrMsg, setIdDupeErrMsg] = useState('');
 
   // 프로필사진 업로드
   const handleImgUpload = async (event) => {
@@ -51,24 +49,8 @@ export default function ProfileForm() {
     }
   };
 
-  //accountname 계정ID 중복검사
-  const idMutation = useMutation(accountValidAPI, {
-    onSuccess: (result) => {
-      if (result.message === '사용 가능한 계정ID 입니다.') {
-        console.log('사용가능ID', result.message);
-      } else if (result.message === '이미 가입된 계정ID 입니다.') {
-        console.log('중복가입ID', result.message);
-      } else {
-        console.log(result.message);
-      }
-    },
-    onError: (error) => {
-      console.log('실패시', error.message);
-      console.error(error);
-    },
-  });
-
   const handleData = (event) => {
+    setIdDupeErrMsg(''); //accountname 에러 두줄 생김 방지를 위한 동기화
     const value = event.target.value;
     switch (event.target.id) {
       case 'username':
@@ -86,20 +68,36 @@ export default function ProfileForm() {
   };
 
   // 인풋값 에러메시지
-  const handleBlur = (event) => {
-    console.log('핸들블러동작');
+  const handleBlur = async (event) => {
     setUsernameFocus(false);
     setAccountnameFocus(false);
     setIntroFocus(false);
     handleSetErrorMessage();
 
-    if (event.target.id === 'username') {
-      setErrUsernameVisible(true);
-      setErrAccountnameVisible(false);
-    } else if (event.target.id === 'accountname') {
-      setErrAccountnameVisible(true);
-      setErrUsernameVisible(false);
-    }
+    // accountname 중복검사
+    await accountValidAPI(accountname)
+      .then((result) => {
+        if (result.message === '이미 가입된 계정ID 입니다.') {
+          const errmsg = result.message;
+          setIdDupeErrMsg(errmsg);
+        }
+      })
+      .catch((error) => {
+        console.log('실패시', error.message);
+      });
+
+    // 유효성검사 에러메시지
+    const errMsgVisible = async () => {
+      if (event.target.id === 'username') {
+        setErrUsernameVisible(true);
+        setErrAccountnameVisible(false);
+      } else if (event.target.id === 'accountname') {
+        setErrAccountnameVisible(true);
+        setErrUsernameVisible(false);
+      }
+    };
+
+    await errMsgVisible();
   };
 
   // 인풋값 밑줄포커스
@@ -119,15 +117,15 @@ export default function ProfileForm() {
     }
   };
 
+  // 버튼 활성화
   useEffect(() => {
-    setDisabled(!(username && accountname && intro));
-  }, [username, accountname, intro]);
+    setDisabled(!(username && accountname && !idDupeErrMsg));
+  }, [username, accountname, idDupeErrMsg]);
 
+  // 회원가입버튼 누른 후 동작
   const handleSubmit = (event) => {
     event.preventDefault();
     const promise = joinAPI({ username, email, password, accountname, intro, image });
-
-    console.log('통신후', accountname, username, intro, email, password);
 
     promise
       .then((res) => {
@@ -135,7 +133,6 @@ export default function ProfileForm() {
           const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username, userimg: res.user.image };
           localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));
           navigate('/login');
-          console.log(res);
         }
       })
       .catch((error) => {
@@ -144,7 +141,7 @@ export default function ProfileForm() {
           // 서버에서 응답을 받았지만 응답 상태 코드가 오류인 경우
           console.error('Server Error:', error.response.status, error.response.data);
           const errMessage = error.response.data.message;
-          setJoinError(errMessage);
+          setIdDupeErrMsg(errMessage);
         } else {
           console.error('에러 발생:', error);
         }
@@ -193,6 +190,7 @@ export default function ProfileForm() {
           ></Input>
           <Line $accountnameFocus={accountnameFocus}></Line>
           {errAccountnameVisible && (!accountname || errorMessage.accountname) && <ErrMsg>*{errorMessage.accountname}</ErrMsg>}
+          {idDupeErrMsg && <ErrMsg>*{idDupeErrMsg}</ErrMsg>}
 
           <Label htmlFor="intro">소개</Label>
           <Input
@@ -206,7 +204,6 @@ export default function ProfileForm() {
             onBlur={handleBlur}
           ></Input>
           <Line $introFocus={introFocus}></Line>
-          {joinError && <ErrMsg>{joinError}</ErrMsg>}
         </form>
         <Button size="lg" vari="basic" text="오구오구 시작하기" type="submit" onClick={handleSubmit} disabled={disabled} />
       </Container>
