@@ -43,10 +43,18 @@ export default function FollowingFeed({ feed }) {
     observe(target.current);
   }, []);
 
+  useEffect(() => {
+    if (curKategorie !== '#전체') {
+      const filterPostlist = posts.filter((post) => JSON.parse(post.content).kate === curKategorie);
+      setPosts(filterPostlist);
+    }
+  }, [curKategorie]);
+
   //게시글 카테고리 선택
   const handleSelectBtn = (e) => {
     setCurKategorie(e.target.textContent);
   };
+
   const buttons = kategorie.map((btn, index) => {
     return (
       <ButtonItem key={index}>

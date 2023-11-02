@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart } from './PostCard.style';
 import { useLocation, useNavigate } from 'react-router';
 import useModal from 'hook/useModal';
 import useConfirm from 'hook/useConfirm';
 import { PostDeleteAPI } from 'api/post.api';
+import { heartAPI, unheartAPI } from 'api/heart.api';
 
 export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted, update }) {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   const userInfo = JSON.parse(localStorage.getItem('oguUserInfo'));
   const { openModal, closeModal } = useModal();
   const { openConfirm } = useConfirm();
+  const [isheart, setIsHeart] = useState(hearted);
 
   //게시글 상세페이지로 이동
   const handletoPost = () => {
@@ -26,16 +28,37 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
     window.open(postImg, '_blank');
   };
   //heart토글
-  const handleToggleHeart = () => {};
+  const handleToggleHeart = () => {
+    if (isheart) {
+      unheartAPI(id)
+        .then(() => {
+          update();
+          setIsHeart(false);
+        })
+        .catch((err) => {
+          alert('좋아요취소를 실패했습니다');
+        });
+    } else {
+      heartAPI(id)
+        .then(() => {
+          update();
+          setIsHeart(true);
+        })
+        .catch((err) => {
+          alert('좋아요를 실패했습니다');
+        });
+    }
+  };
 
   //게시글 삭제
-  const postDelete = async () => {
-    await PostDeleteAPI(id)
-      .then(() => {})
+  const postDelete = () => {
+    PostDeleteAPI(id)
+      .then(() => {
+        update();
+      })
       .catch((err) => {
         alert('게시글 삭제를 실패했습니다.');
       });
-    update();
   };
   //게시글 수정 -> 수정페이지로 이동
   const toPostEditPage = () => {
@@ -90,7 +113,7 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
         </PostText>
         {postImg !== '' && <PostImg src={postImg} onClick={handleClickImg} />}
         <div style={{ marginTop: '-7px' }}>
-          <PostHeart $hearted={hearted} onClick={handleToggleHeart}>
+          <PostHeart $hearted={isheart} onClick={handleToggleHeart}>
             {heartCount}
           </PostHeart>
           <PostComment onClick={handletoPost}>{commentCount}</PostComment>
