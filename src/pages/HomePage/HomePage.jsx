@@ -12,7 +12,7 @@ import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function HomePage() {
   const [feed, setFeed] = useState(null);
-
+  const userInfo = JSON.parse(localStorage.getItem('oguUserInfo'));
   const navigate = useNavigate();
   const toSearch = () => {
     navigate('/search');
@@ -37,7 +37,7 @@ export default function HomePage() {
           <NoneFeed />
         ) : (
           <ScrollContainer>
-            <ProductList type="home" accountname />
+            <ProductList type="home" accountname={userInfo.accountname} />
             <FollowingFeed feed={feed} />
           </ScrollContainer>
         ))}
