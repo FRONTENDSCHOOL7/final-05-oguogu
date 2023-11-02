@@ -22,9 +22,9 @@ export default function ConfirmModal() {
   };
 
   const clickConfirmYes = () => {
-    closeConfirm();
     closeModal();
     confirmData.onClick();
+    closeConfirm();
   };
 
   return (

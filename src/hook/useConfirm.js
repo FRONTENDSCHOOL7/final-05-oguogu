@@ -22,7 +22,7 @@ export default function useConfirm() {
     setConfirmData((prev) => ({ ...prev, isShow: false }));
     setTimeout(() => {
       setConfirmData({ isOpen: false, content: '', type: '', onClick: null });
-    }, 300);
+    }, 290);
   }, [setConfirmData]);
 
   return { confirmData, openConfirm, closeConfirm };
