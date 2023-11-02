@@ -33,12 +33,11 @@ export const productEditAPI = async (product, productid) => {
   const reqData = {
     product: {
       itemName: product.itemName,
-      price: product.price,
+      price: parseInt((product.price).replace(/,/g , '')),
       link: product.link,
       itemImage: product.itemImg,
     },
   };
-
   try {
     const result = await tokenInstance.put(`product/${productid}`, reqData);
     if (result.data.product) {
@@ -56,6 +55,16 @@ export const productDeleteAPI = async (productid) => {
   try {
     const result = await tokenInstance.delete(`product/${productid}`);
     return result.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//상품상세
+export const productDetailAPI = async (productid) => {
+  try {
+    const result = await tokenInstance.get(`product/detail/${productid}`);
+    return result.data.product;
   } catch (error) {
     throw error;
   }

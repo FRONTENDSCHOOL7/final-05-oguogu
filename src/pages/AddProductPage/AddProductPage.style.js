@@ -11,8 +11,6 @@ export const AddProductPageContainer = styled.div`
 export const AddImage = styled.section`
   height : 236px;
   background-color : white;
-  
-  
 `
 
 export const ImageBox = styled.div`
@@ -49,7 +47,6 @@ export const AddImageBtn = styled.button`
 export const AddProductInfo = styled.form`
 margin-top : 31px;
 `
-
 
 export const Label = styled.label`
   display: block;

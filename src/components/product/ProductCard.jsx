@@ -39,7 +39,7 @@ export default function ProductCard({ id, img, name, price, link, authaccountnam
   //상품수정 -> 수정페이지로 이동
   const productEdit = () => {
     closeModal();
-    navigate(`product/${id}/edit`);
+    navigate(`../../product/${id}/edit`);
   };
 
   //웹사이트에서 상품보기 -> 링크로 이동(새창)
