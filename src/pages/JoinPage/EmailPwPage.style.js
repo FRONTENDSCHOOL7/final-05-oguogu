@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   padding: 41px 34px 0;
+  form {
+    margin-bottom: 30px;
+  }
 `;
 
 export const CommonFont = `
@@ -14,6 +17,7 @@ export const Label = styled.label`
   display: block;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 16px;
   padding-left: 0.2em;
   color: var(--gray-01);
   font-size: 12px;
@@ -53,7 +57,6 @@ export const Line = styled.div`
     props.$emailFocus || props.$pwFocus || props.$accountnameFocus || props.$introFocus || props.$usernameFocus ? 'var(--main-color-01)' : 'var(--gray-02)'};
   position: relative;
   top: -5px;
-  margin-bottom: 15px;
 `;
 
 export const Join = styled.button`
@@ -73,4 +76,5 @@ export const ErrMsg = styled.p`
   font-weight: 500;
   ${CommonFont}
   margin-top:6px;
+  margin-bottom: 6px;
 `;

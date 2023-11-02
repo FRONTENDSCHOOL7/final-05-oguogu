@@ -10,6 +10,7 @@ export const emailValidAPI = async (email) => {
 
   try {
     const result = await instance.post('user/emailvalid', reqData);
+    console.log(result.data);
     return result.data;
     // 사용 가능한 이메일인 경우
     //"message": "사용 가능한 이메일 입니다."
