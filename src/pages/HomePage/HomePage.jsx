@@ -20,7 +20,7 @@ export default function HomePage() {
 
   //팔로잉 게시글 목록 요청 api
   useEffect(() => {
-    follwingPostAPI()
+    follwingPostAPI(0)
       .then((res) => {
         setFeed(res.posts);
       })
@@ -38,7 +38,7 @@ export default function HomePage() {
         ) : (
           <ScrollContainer>
             <ProductList type="home" accountname />
-            <FollowingFeed posts={feed} />
+            <FollowingFeed feed={feed} />
           </ScrollContainer>
         ))}
       <NavBar />

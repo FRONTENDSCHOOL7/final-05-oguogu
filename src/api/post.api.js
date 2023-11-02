@@ -19,7 +19,7 @@ export const postUploadAPI = async (content, img) => {
 //팔로잉 게시글 목록(피드)
 export const follwingPostAPI = async (skip) => {
   try {
-    const result = await tokenInstance.get(`post/feed/?limit=10&ksip=${skip}`);
+    const result = await tokenInstance.get(`post/feed/?limit=5&skip=${skip}`);
     return result.data;
   } catch (error) {
     throw error;
