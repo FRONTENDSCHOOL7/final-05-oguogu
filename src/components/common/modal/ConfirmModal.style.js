@@ -3,19 +3,23 @@ import { ModalDimmed } from 'components/common/modal/BottomModal.style';
 
 const slideDown = keyframes`
   0%{
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -70%);
+    opacity: 0;
   }
   100%{
     transform: translate(-50%, -50%);
+    opacity: 1;
   }
 `;
 
 const slideUp = keyframes`
   0%{
     transform: translate(-50%, -50%);
+    opacity: 1;
   }
   100%{
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -70%);
+    opacity: 0;
   }
 `;
 
