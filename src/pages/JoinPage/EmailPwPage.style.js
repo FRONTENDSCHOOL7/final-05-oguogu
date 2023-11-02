@@ -33,7 +33,6 @@ export const Input = styled.input`
   font-size: 14px;
   font-weight: 400;
   ${CommonFont}
-
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
@@ -54,13 +53,11 @@ export const Input = styled.input`
 export const Line = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${(props) => (props.$emailFocus || props.$pwFocus ? 'var(--main-color-01)' : 'var(--gray-02)')};
+  background-color: ${(props) =>
+    props.$emailFocus || props.$pwFocus || props.$accountnameFocus || props.$introFocus || props.$usernameFocus ? 'var(--main-color-01)' : 'var(--gray-02)'};
   position: relative;
-  top: -2px;
+  top: -5px;
 `;
-
-export const EmailInput = styled(Input)``;
-export const PwInput = styled(Input)``;
 
 export const Join = styled.button`
   display: block;
