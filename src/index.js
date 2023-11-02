@@ -9,6 +9,7 @@ root.render(
   <RecoilRoot>
     <App />
   </RecoilRoot>
+
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
