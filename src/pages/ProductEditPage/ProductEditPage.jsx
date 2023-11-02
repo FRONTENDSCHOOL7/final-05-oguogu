@@ -6,7 +6,7 @@ import { imgUploadAPI } from 'api/image.api';
 import { useNavigate, useParams } from 'react-router';
 
 export default function ProductEditPage() {
-  const [image,setImage] = useState();
+  const [image, setImage] = useState();
   const [productImage, setProductImage] = useState();
   const fileInputRef = useRef();
   const [productname, setProductname] = useState('');
@@ -15,46 +15,46 @@ export default function ProductEditPage() {
   const [url, setUrl] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const navigate = useNavigate();
-  const { productid } = useParams(); 
+  const { productid } = useParams();
+  const [currentFocus, setCurrentFocus] = useState(null);
 
   useEffect(() => {
     // 상품 ID를 사용하여 상품 정보 가져오기
     const getProductData = async () => {
       try {
         const productData = await productDetailAPI(productid);
-        setProductname(productData.itemName)
-        setProductPrice(productData.price)
-        setUrl(productData.link)
-        setProductImage(productData.itemImage)
+        setProductname(productData.itemName);
+        setProductPrice(productData.price);
+        setUrl(productData.link);
+        setProductImage(productData.itemImage);
       } catch (error) {
         alert.error('상품 정보를 가져오는 데 실패했습니다.', error);
       }
     };
-    
+
     getProductData();
   }, [productid]);
 
   //상품 수정 요청
   const handleProductEdit = () => {
     //이미지 업로드
-    imgUploadAPI(image)
-    .then((imgPath) =>{
-    const product ={
-      itemName: productname,
-      price: formattedPrice,
-      link: url,
-      itemImg: image===undefined ? productImage : imgPath,
-    };
-    //상품 수정
-    productEditAPI(product, productid)
-      .then(() => {
-        navigate(-1);
-      })
-      .catch((error) => {
-        alert.error('상품 수정에 실패했습니다.', error);
-      });
-  });
-};
+    imgUploadAPI(image).then((imgPath) => {
+      const product = {
+        itemName: productname,
+        price: formattedPrice,
+        link: url,
+        itemImg: image === undefined ? productImage : imgPath,
+      };
+      //상품 수정
+      productEditAPI(product, productid)
+        .then(() => {
+          navigate(-1);
+        })
+        .catch((error) => {
+          alert.error('상품 수정에 실패했습니다.', error);
+        });
+    });
+  };
 
   //가격에 입력되는 값 천의 자리에 콤마 붙이기
   const handlePriceChange = (e) => {
@@ -91,14 +91,14 @@ export default function ProductEditPage() {
 
   return (
     <>
-      <Header type='btn' btnText='저장' btndisabled={submitDisabled} rightOnClick={handleProductEdit}/>
+      <Header type="btn" btnText="저장" btndisabled={submitDisabled} rightOnClick={handleProductEdit} />
       <AddProductPageContainer>
         <AddImage>
           이미지 등록
           <ImageBox>
-          {productImage && <img src={productImage} alt="" />}
+            {productImage && <img src={productImage} alt="" />}
             <AddImageBtn onClick={() => fileInputRef.current.click()}>
-              <input style={{display:'none'}} type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} />
+              <input style={{ display: 'none' }} type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} />
             </AddImageBtn>
           </ImageBox>
         </AddImage>
@@ -108,7 +108,10 @@ export default function ProductEditPage() {
             type="text"
             placeholder="2~15자 이내여야 합니다."
             value={productname}
-            onChange={handleOnChangeProductname} 
+            onChange={handleOnChangeProductname}
+            onFocus={() => setCurrentFocus('product-name')}
+            onBlur={() => setCurrentFocus('')}
+            $isfocus={currentFocus === 'product-name'}
           />
           <Label htmlFor="product-price">가격</Label>
           <ProductInfoInput
@@ -116,18 +119,22 @@ export default function ProductEditPage() {
             placeholder="숫자만 입력 가능합니다."
             value={formattedPrice}
             onChange={handlePriceChange}
+            onFocus={() => setCurrentFocus('product-price')}
+            onBlur={() => setCurrentFocus('')}
+            $isfocus={currentFocus === 'product-price'}
           />
           <Label htmlFor="product-link">판매 링크</Label>
           <ProductInfoInput
             type="url"
             placeholder="URL을 입력해 주세요."
             value={url}
-            onChange={handleOnChangeUrl} 
+            onChange={handleOnChangeUrl}
+            onFocus={() => setCurrentFocus('product-link')}
+            onBlur={() => setCurrentFocus('')}
+            $isfocus={currentFocus === 'product-link'}
           />
         </AddProductInfo>
       </AddProductPageContainer>
     </>
   );
 }
-
-

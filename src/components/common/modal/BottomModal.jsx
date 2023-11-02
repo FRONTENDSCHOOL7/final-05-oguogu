@@ -22,8 +22,8 @@ export default function BottomModal() {
   return (
     modalData.isOpen && (
       <>
-        <ModalDimmed onClick={closeModal} />
-        <ModalBottomContainer>
+        <ModalDimmed onClick={closeModal} $isShow={modalData.isShow} />
+        <ModalBottomContainer $isShow={modalData.isShow}>
           {modalType[modalData.type].map((item, index) => (
             <ModalBottomEle key={index + 1} onClick={modalData.callback[index]} type="button">
               {item}

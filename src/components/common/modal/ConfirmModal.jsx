@@ -30,8 +30,8 @@ export default function ConfirmModal() {
   return (
     confirmData.isOpen && (
       <>
-        <ConfirmDimmed onClick={closeConfirm} />
-        <ModalAlertContainer>
+        <ConfirmDimmed onClick={closeConfirm} $isShow={confirmData.isShow} />
+        <ModalAlertContainer $isShow={confirmData.isShow}>
           <p>{confirmData.content}</p>
           <ModalAlertNo onClick={closeConfirm}>{confirmNo[confirmData.type]}</ModalAlertNo>
           <ModalAlertYes onClick={clickConfirmYes}>{confirmYes[confirmData.type]}</ModalAlertYes>

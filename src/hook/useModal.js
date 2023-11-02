@@ -10,6 +10,7 @@ export default function useModal() {
     ({ type, callback }) => {
       setModalData({
         isOpen: true,
+        isShow: true,
         type: type,
         callback: callback,
       });
@@ -18,7 +19,10 @@ export default function useModal() {
   );
 
   const closeModal = useCallback(() => {
-    setModalData({ isOpen: false, type: '', callback: [] });
+    setModalData((prev) => ({ ...prev, isShow: false }));
+    setTimeout(() => {
+      setModalData({ isOpen: false, type: '', callback: [] });
+    }, 290);
   }, [setModalData]);
 
   return { modalData, openModal, closeModal };

@@ -1,12 +1,21 @@
 import styled, { keyframes } from 'styled-components';
 import { ModalDimmed } from 'components/common/modal/BottomModal.style';
 
-const opacityAni = keyframes`
+const slideDown = keyframes`
   0%{
-    opacity: 0;
+    transform: translate(-50%, -60%);
   }
   100%{
-    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+const slideUp = keyframes`
+  0%{
+    transform: translate(-50%, -50%);
+  }
+  100%{
+    transform: translate(-50%, -60%);
   }
 `;
 
@@ -29,7 +38,7 @@ export const ModalAlertContainer = styled.section`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
-  animation: 0.3s ease-out 0s 1 normal none running ${opacityAni};
+  animation: 0.3s ease-out 0s 1 normal none running ${(p) => (p.$isShow ? slideDown : slideUp)};
   transition: background-color 0.3s ease-out 0s;
 
   p {

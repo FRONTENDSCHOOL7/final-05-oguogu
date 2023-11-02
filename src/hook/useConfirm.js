@@ -9,6 +9,7 @@ export default function useConfirm() {
     ({ content, type, onClick }) => {
       setConfirmData({
         isOpen: true,
+        isShow: true,
         content: content,
         type: type,
         onClick: onClick,
@@ -18,7 +19,10 @@ export default function useConfirm() {
   );
 
   const closeConfirm = useCallback(() => {
-    setConfirmData({ isOpen: false, content: '', type: '', onClick: null });
+    setConfirmData((prev) => ({ ...prev, isShow: false }));
+    setTimeout(() => {
+      setConfirmData({ isOpen: false, content: '', type: '', onClick: null });
+    }, 290);
   }, [setConfirmData]);
 
   return { confirmData, openConfirm, closeConfirm };
