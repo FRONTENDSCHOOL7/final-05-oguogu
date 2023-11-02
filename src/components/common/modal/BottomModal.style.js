@@ -1,5 +1,41 @@
 import styled, { keyframes } from 'styled-components';
 
+export const fadeIn = keyframes`
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`;
+
+export const fadeOut = keyframes`
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+`;
+
+const slideUp = keyframes`
+  0%{
+    transform: translate(-50%,100%);
+  }
+  100%{
+    transform: translate(-50%,0);
+  }
+`;
+
+const slideDown = keyframes`
+  0%{
+    transform: translate(-50%,0);
+  }
+  100%{
+    transform: translate(-50%,100%);
+  }
+`;
+
 export const ModalDimmed = styled.div`
   width: 390px;
   height: 100vh;
@@ -9,15 +45,8 @@ export const ModalDimmed = styled.div`
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.32);
   z-index: 100;
-`;
-
-const modalAni = keyframes`
-  0%{
-    bottom: -100%;
-  }
-  100%{
-    bottom: 0;
-  }
+  animation: 0.3s ease-out 0s 1 normal none running ${(p) => (p.$isShow ? fadeIn : fadeOut)};
+  transition: background-color 0.3s ease-out 0s;
 `;
 
 export const ModalBottomContainer = styled.section`
@@ -30,7 +59,9 @@ export const ModalBottomContainer = styled.section`
   left: 50%;
   z-index: 101;
   transform: translateX(-50%);
-  animation: ${modalAni} 0.3s ease-out 0s 1 normal none running;
+  animation: 0.3s ease-out 0s 1 normal none running ${(p) => (p.$isShow ? slideUp : slideDown)};
+  transition: transform 0.3s ease-out 0s;
+
   &::before {
     content: '';
     background-color: var(--gray-02);

@@ -16,9 +16,9 @@ export const commentWriteAPI = async (postid, content) => {
 };
 
 //댓글 리스트
-export const commentListAPI = async (postid) => {
+export const commentListAPI = async (postid, skip) => {
   try {
-    const result = await tokenInstance.get(`post/${postid}/comments`);
+    const result = await tokenInstance.get(`post/${postid}/comments/?limit=10&skip=${skip}`);
     return result.data.comments;
   } catch (error) {
     throw error;

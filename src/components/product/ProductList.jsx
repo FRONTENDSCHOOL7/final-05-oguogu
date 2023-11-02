@@ -4,6 +4,7 @@ import { CardBox, Container, MoreLink, SectionTitle } from 'components/product/P
 import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import { productListAPI } from 'api/product.api';
+import { follwingListAPI } from 'api/follow.api';
 
 export default function ProductList({ type, accountname }) {
   const [products, setProducts] = useState(null);
@@ -15,11 +16,34 @@ export default function ProductList({ type, accountname }) {
         setProducts(res);
       })
       .catch((err) => {
-        alert('상품목록 불러오기에 실패했습니다.');
+        alert('판매상품목록 불러오기에 실패했습니다.');
       });
   }, [accountname]);
 
-  const followingProductList = () => {};
+  const followingProductList = async () => {
+    follwingListAPI(accountname)
+      .then((res) => {
+        const accountnamelist = res;
+        accountnamelist.forEach((element) => {
+          productListAPI(element.accountname)
+            .then((res) => {
+              setProducts((prev) => {
+                if (prev !== null) {
+                  return [...prev, ...res];
+                } else {
+                  return res;
+                }
+              });
+            })
+            .catch((err) => {
+              alert('판매상품 목록 불러오기에 실패했습니다');
+            });
+        });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   useEffect(() => {
     if (type === 'profile') {

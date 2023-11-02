@@ -12,7 +12,7 @@ import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function HomePage() {
   const [feed, setFeed] = useState(null);
-
+  const userInfo = JSON.parse(localStorage.getItem('oguUserInfo'));
   const navigate = useNavigate();
   const toSearch = () => {
     navigate('/search');
@@ -20,7 +20,7 @@ export default function HomePage() {
 
   //팔로잉 게시글 목록 요청 api
   useEffect(() => {
-    follwingPostAPI()
+    follwingPostAPI(0)
       .then((res) => {
         setFeed(res.posts);
       })
@@ -37,8 +37,8 @@ export default function HomePage() {
           <NoneFeed />
         ) : (
           <ScrollContainer>
-            <ProductList type="home" accountname />
-            <FollowingFeed posts={feed} />
+            <ProductList type="home" accountname={userInfo.accountname} />
+            <FollowingFeed feed={feed} />
           </ScrollContainer>
         ))}
       <NavBar />

@@ -1,5 +1,27 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ModalDimmed } from 'components/common/modal/BottomModal.style';
+
+const slideDown = keyframes`
+  0%{
+    transform: translate(-50%, -70%);
+    opacity: 0;
+  }
+  100%{
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+`;
+
+const slideUp = keyframes`
+  0%{
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100%{
+    transform: translate(-50%, -70%);
+    opacity: 0;
+  }
+`;
 
 export const ConfirmDimmed = styled(ModalDimmed)`
   z-index: 200;
@@ -20,6 +42,8 @@ export const ModalAlertContainer = styled.section`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  animation: 0.3s ease-out 0s 1 normal none running ${(p) => (p.$isShow ? slideDown : slideUp)};
+  transition: background-color 0.3s ease-out 0s;
 
   p {
     width: 100%;
