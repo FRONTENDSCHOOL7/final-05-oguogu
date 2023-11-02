@@ -18,7 +18,7 @@ export const ModalDimmed = styled.div`
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.32);
   z-index: 100;
-  animation: 0.1s ease-out 0s 1 normal none running ${dimmedAni};
+  animation: 0.3s ease-out 0s 1 normal none running ${dimmedAni};
   transition: background-color 0.3s ease-out 0s;
 `;
 
@@ -42,6 +42,7 @@ export const ModalBottomContainer = styled.section`
   z-index: 101;
   transform: translateX(-50%);
   animation: 0.3s ease-out 0s 1 normal none running ${modalAni};
+  transition: transform 0.3s ease-out 0s;
 
   &::before {
     content: '';

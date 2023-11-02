@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ButtonBox, ButtonItem, Container, SectionTitle } from './FollowingFeed.style';
 import Button from 'components/common/button/Button';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import PostList from 'components/post/PostList';
+import { Target } from 'components/common/container/Container.style';
 
 export default function FollowingFeed({ posts }) {
   const [curKategorie, setCurKategorie] = useState('#전체');
   const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
+  const skip = useRef(0);
+  const target = useRef(null);
 
   const kategorie = ['#전체', '#내새꾸자랑', '#고민있어요', '#질문있어요', '#내새꾸간식', '#내새꾸선물'];
 
@@ -31,6 +34,7 @@ export default function FollowingFeed({ posts }) {
         {buttons}
       </ButtonBox>
       <PostList type="normal" posts={posts} />
+      <Target ref={target} />
     </Container>
   );
 }

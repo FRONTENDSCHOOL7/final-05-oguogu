@@ -1,13 +1,42 @@
 import { commentListAPI } from 'api/comment.api';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CommentCard from 'components/comment/CommentCard';
 import { Container } from 'components/comment/CommentList.style';
+import { Target } from 'components/common/container/Container.style';
+import useObserve from 'hook/useObserve';
 
 export default function CommentList({ postid, commentCount, update }) {
   const [comments, setComments] = useState(null);
+  const skip = useRef(0);
+  const target = useRef(null);
 
   //댓글목록 불러오기
-  const commentList = useCallback(async () => {
+  const addCommentList = () => {
+    if (skip.current > 10) {
+      commentListAPI(postid, skip.current - 10)
+        .then((res) => {
+          setComments((prev) => {
+            if (prev !== null) {
+              return [...prev, ...res];
+            } else {
+              return res;
+            }
+          });
+        })
+        .catch(() => {
+          alert('댓글 불러오기에 실패했습니다.');
+          skip.current -= 10;
+        });
+    }
+  };
+
+  const [observe, unobserve] = useObserve(() => {
+    console.log('hi');
+    skip.current += 10;
+    addCommentList();
+  });
+
+  useEffect(() => {
     commentListAPI(postid)
       .then((res) => {
         setComments(res);
@@ -15,11 +44,11 @@ export default function CommentList({ postid, commentCount, update }) {
       .catch(() => {
         alert('댓글 불러오기에 실패했습니다.');
       });
-  }, [postid]);
+  }, [commentCount]);
 
   useEffect(() => {
-    commentList();
-  }, [commentCount, commentList]);
+    if (skip.current === 0) observe(target.current);
+  }, []);
 
   const commentlist = () => {
     return comments.map((item) => {
@@ -39,5 +68,10 @@ export default function CommentList({ postid, commentCount, update }) {
     });
   };
 
-  return <>{comments !== null && <Container>{commentlist()}</Container>}</>;
+  return (
+    <Container>
+      {comments !== null && commentlist()}
+      <Target ref={target} />
+    </Container>
+  );
 }

@@ -12,3 +12,8 @@ export const ScrollContainer = styled.main`
     display: none;
   }
 `;
+
+export const Target = styled.div`
+  width: 100%;
+  height: 30px;
+`;

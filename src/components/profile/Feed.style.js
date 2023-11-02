@@ -11,7 +11,7 @@ export const Container = styled.section`
   background-color: var(--white);
   margin-top: 6px;
   position: relative;
-  padding: 60px 16px 30px 16px;
+  padding: 60px 16px 0 16px;
 `;
 
 export const FeedHeader = styled.div`
