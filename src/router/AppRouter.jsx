@@ -13,6 +13,8 @@ import { ProtectedRoutePage, PublicRoutePage } from 'router/AccessRouter';
 import PostDetailPage from 'pages/PostDetailPage/PostDetailPage';
 import FollowersPage from 'pages/FollowPage/FollowersPage';
 import FollowingsPage from 'pages/FollowPage/FollowingsPage';
+import AddProductPage from 'pages/AddProductPage/AddProductPage';
+import ProductEditPage from 'pages/ProductEditPage/ProductEditPage';
 
 export default function AppRouter() {
   return (
@@ -28,6 +30,8 @@ export default function AppRouter() {
           <Route path="/chatlist" element={<ChatListPage />} />
           <Route path="/chatroom" element={<ChatRoomPage />} />
           <Route path="/upload" element={<PostUploadPage />} />
+          <Route path="/addproduct" element={<AddProductPage/>} />
+          <Route path="/product/:productid/edit" element={<ProductEditPage/>} />
           <Route path="/profile">
             <Route path=":accountname">
               <Route index element={<ProfilePage />} />
