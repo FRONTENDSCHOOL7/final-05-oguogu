@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useModal from 'hook/useModal';
 import { ModalBottomContainer, ModalBottomEle, ModalDimmed } from 'components/common/modal/BottomModal.style';
 import { useLocation } from 'react-router';
@@ -18,7 +18,7 @@ export default function BottomModal() {
     userProduct: ['웹사이트에서 상품보기'],
     chatroom: ['채팅방 나가기', '신고하기'],
   };
-  // onClick={onClickArray[index]}
+
   return (
     modalData.isOpen && (
       <>
