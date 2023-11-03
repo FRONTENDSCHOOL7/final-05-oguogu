@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import iconOgudogGray from 'assets/images/icon_ogudog_gray.png';
 
 export const CenterText = styled.h1`
   color: var(--black);
@@ -21,14 +20,13 @@ export const ImageWrap = styled.div`
   justify-content: center;
   margin: 0 auto;
   flex-shrink: 0;
-  background: url(${iconOgudogGray}) no-repeat center/79.836px 52.941px;
 
   position: relative;
 
   img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
