@@ -12,7 +12,7 @@ export default function ProfileForm() {
   const navigate = useNavigate();
 
   const { email, password, username, setUsername, accountname, setAccountname, handleSetErrorMessage, errorMessage } = useUserForm();
-  const [image, setImage] = useState('https://api.mandarin.weniv.co.kr/1698652522939.png');
+  const [image, setImage] = useState('https://api.mandarin.weniv.co.kr/1698975821439.png');
   const [intro, setIntro] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [usernameFocus, setUsernameFocus] = useState(false);
@@ -22,6 +22,7 @@ export default function ProfileForm() {
   const [errAccountnameVisible, setErrAccountnameVisible] = useState(false);
   const [idDupeErrMsg, setIdDupeErrMsg] = useState('');
 
+  // 미리보기만 해놓고 실제로 호출하는건 오구오구시작하기 버튼 눌렀을 때로
   // 프로필사진 업로드
   const handleImgUpload = async (event) => {
     const file = event.target.files[0];
@@ -33,13 +34,10 @@ export default function ProfileForm() {
         const newImage = event.target.result;
         setImage(newImage);
 
-        // 이미지를 로컬 스토리지에 저장 (Base64로 인코딩)
-        localStorage.setItem('userImage', newImage);
-
         // 이미지 업로드 API 호출 (Header에서 직접 호출)
         try {
           const imgUploadResult = await imgUploadAPI(file);
-          localStorage.setItem('uploadedImage', imgUploadResult);
+          setImage(imgUploadResult);
         } catch (error) {
           console.error('이미지 업로드 실패:', error);
         }
