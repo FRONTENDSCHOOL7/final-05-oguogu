@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Image, ChangeBtn } from 'components/join/ProfileForm.style';
+import { Image, ChangeBtn, ImageWrap } from 'components/join/ProfileForm.style';
 import { Container, Label, Input, Line, ErrMsg } from 'components/join/EmailPwPage.style';
 import iconPicture from 'assets/images/icon_picture.png';
 import { accountValidAPI } from 'api/join.api';
 import { imgUploadAPI } from 'api/image.api';
 import useUserForm from 'hook/useUserForm';
-import { ImageWrap } from 'pages/JoinPage/ProfileForm.style';
 
 export default function ProfileForm({ handleSubmit, idDupeErrMsg, setIdDupeErrMsg, intro, setIntro, image, setImage, updateProfileInfo }) {
   const { handleSetErrorMessage, errorMessage, setUsername, username, setAccountname, accountname } = useUserForm();
