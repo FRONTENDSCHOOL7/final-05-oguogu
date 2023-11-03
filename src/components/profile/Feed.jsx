@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Container, FeedHeader, SectionTitle, EmptyBox, PostNormalBtn, PostGalleryBtn } from 'components/profile/Feed.style';
+import { Container, FeedHeader, SectionTitle, EmptyBox, PostNormalBtn, PostGalleryBtn, LoaderBox } from 'components/profile/Feed.style';
 import PostList from 'components/post/PostList';
 import { postListAPI } from 'api/post.api';
 import { EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 import { Target } from 'components/common/container/Container.style';
 import useObserve from 'hook/useObserve';
+import Loader from 'components/common/loader/Loader';
 
 export default function Feed({ accountname }) {
   const [posts, setPosts] = useState(null);
@@ -46,6 +47,7 @@ export default function Feed({ accountname }) {
 
   useEffect(() => {
     if (skip.current === 0) observe(target.current);
+    updatepostlist();
   }, []);
 
   return (
@@ -57,17 +59,20 @@ export default function Feed({ accountname }) {
           <PostGalleryBtn $clicked={postType === 'gallery'} onClick={() => setPostType('gallery')} />
         </div>
       </FeedHeader>
-      {posts !== null &&
-        (posts.length ? (
-          <>
-            <PostList type={postType} posts={posts} update={updatepostlist} />
-          </>
+      {posts !== null ? (
+        posts.length ? (
+          <PostList type={postType} posts={posts} update={updatepostlist} />
         ) : (
           <EmptyBox>
             <EmptyImg />
             <EmptyText>게시물이 없어요</EmptyText>
           </EmptyBox>
-        ))}
+        )
+      ) : (
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      )}
       <Target ref={target} />
     </Container>
   );

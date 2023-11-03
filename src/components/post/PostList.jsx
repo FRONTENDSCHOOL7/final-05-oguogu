@@ -3,6 +3,7 @@ import { Container, PostImgCard, PostImgContainer } from 'components/post/PostLi
 import PostCard from 'components/post/PostCard';
 
 export default function PostList({ type, posts, update }) {
+  console.log(posts);
   const postlist = () => {
     if (type === 'gallery') {
       //이미지가 있는 게시글 필터링
