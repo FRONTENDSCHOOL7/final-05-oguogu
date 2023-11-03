@@ -24,8 +24,8 @@ export default function ProductList({ type, accountname }) {
     follwingListAPI(accountname)
       .then((res) => {
         const accountnamelist = res;
-        accountnamelist.forEach((element) => {
-          productListAPI(element.accountname)
+        accountnamelist.forEach((user) => {
+          productListAPI(user.accountname)
             .then((res) => {
               setProducts((prev) => {
                 if (prev !== null) {

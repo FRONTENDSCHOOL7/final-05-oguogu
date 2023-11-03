@@ -15,6 +15,7 @@ import FollowersPage from 'pages/FollowPage/FollowersPage';
 import FollowingsPage from 'pages/FollowPage/FollowingsPage';
 import AddProductPage from 'pages/AddProductPage/AddProductPage';
 import ProductEditPage from 'pages/ProductEditPage/ProductEditPage';
+import SearchPage from 'pages/SearchPage/SearchPage';
 import ProfileEditPage from 'pages/ProfileEditPage/ProfileEditPage';
 
 export default function AppRouter() {
@@ -31,6 +32,7 @@ export default function AppRouter() {
           <Route path="/chatlist" element={<ChatListPage />} />
           <Route path="/chatroom" element={<ChatRoomPage />} />
           <Route path="/upload" element={<PostUploadPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/addproduct" element={<AddProductPage />} />
           <Route path="/product/:productid/edit" element={<ProductEditPage />} />
           <Route path="/profile">
