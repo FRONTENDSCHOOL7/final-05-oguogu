@@ -39,8 +39,6 @@ export default function SearchPage() {
   const userSearch = () => {
     userSearchAPI(searchKeyword)
       .then((res) => {
-        console.log(searchKeyword);
-        console.log(res);
         setSearchResultList(res);
       })
       .catch((err) => {
@@ -57,7 +55,6 @@ export default function SearchPage() {
   }, [searchKeyword]);
 
   useEffect(() => {
-    console.log(searchResultList);
     if (searchResultList) {
       const slicelist = searchResultList.slice(0, view * 12);
       setViewSearchList(slicelist);
