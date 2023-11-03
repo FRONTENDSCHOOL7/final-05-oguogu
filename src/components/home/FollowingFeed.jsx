@@ -7,7 +7,7 @@ import { follwingPostAPI } from 'api/post.api';
 import { Target } from 'components/common/container/Container.style';
 import useObserve from 'hook/useObserve';
 
-export default function FollowingFeed({ feed }) {
+export default function FollowingFeed({ feed, update }) {
   const [curKategorie, setCurKategorie] = useState('#전체');
   const [posts, setPosts] = useState(feed);
   const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
@@ -45,10 +45,12 @@ export default function FollowingFeed({ feed }) {
 
   useEffect(() => {
     if (curKategorie !== '#전체') {
-      const filterPostlist = posts.filter((post) => JSON.parse(post.content).kate === curKategorie);
+      const filterPostlist = feed.filter((post) => JSON.parse(post.content).kate === curKategorie);
       setPosts(filterPostlist);
+    } else {
+      setPosts(feed);
     }
-  }, [curKategorie]);
+  }, [curKategorie, feed]);
 
   //게시글 카테고리 선택
   const handleSelectBtn = (e) => {
@@ -71,7 +73,7 @@ export default function FollowingFeed({ feed }) {
       <ButtonBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
         {buttons}
       </ButtonBox>
-      <PostList type="normal" posts={posts} />
+      <PostList type="normal" posts={posts} update={update} />
       <Target ref={target} />
     </Container>
   );

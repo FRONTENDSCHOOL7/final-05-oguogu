@@ -18,13 +18,6 @@ export default function Header({ type, text, btnText, rightOnClick, btndisabled 
           <SearchBtn onClick={rightOnClick} />
         </Container>
       );
-    case 'search':
-      return (
-        <Container $justify="space-between">
-          <Button vari="back" onClick={toBack} />
-          <SerachInput placeholder="계정 검색" />
-        </Container>
-      );
     case 'follow':
       return (
         <Container>

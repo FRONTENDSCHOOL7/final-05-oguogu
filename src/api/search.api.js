@@ -1,6 +1,6 @@
 import { tokenInstance } from 'api/axiosInstance';
 
-// 내 프로필 정보 불러오기
+// 유저검색
 export const userSearchAPI = async (keyword) => {
   try {
     const result = await tokenInstance.get(`user/searchuser/?keyword=${keyword}`);
