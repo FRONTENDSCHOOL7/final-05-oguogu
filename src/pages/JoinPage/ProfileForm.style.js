@@ -43,12 +43,10 @@ export const ChangeImg = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  position: absolute;
-  top: 36%;
-  left: 54%;
+  transform: translate(219px, -42px);
   img {
     object-fit: cover;
     width: 22px;
+    cursor: pointer;
   }
 `;
