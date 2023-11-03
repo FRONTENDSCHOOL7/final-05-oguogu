@@ -173,7 +173,7 @@ export default function ProfileForm() {
             onFocus={handleFocus}
           ></Input>
           <Line $usernameFocus={usernameFocus}></Line>
-          {errUsernameVisible && (!username || errorMessage.username) && <ErrMsg>*{errorMessage.username}</ErrMsg>}
+          {errUsernameVisible && errorMessage.username && <ErrMsg>*{errorMessage.username}</ErrMsg>}
 
           <Label htmlFor="accountname">계정 ID</Label>
           <Input
@@ -187,7 +187,7 @@ export default function ProfileForm() {
             onFocus={handleFocus}
           ></Input>
           <Line $accountnameFocus={accountnameFocus}></Line>
-          {errAccountnameVisible && (!accountname || errorMessage.accountname) && <ErrMsg>*{errorMessage.accountname}</ErrMsg>}
+          {errAccountnameVisible && errorMessage.accountname && <ErrMsg>*{errorMessage.accountname}</ErrMsg>}
           {idDupeErrMsg && <ErrMsg>*{idDupeErrMsg}</ErrMsg>}
 
           <Label htmlFor="intro">소개</Label>
