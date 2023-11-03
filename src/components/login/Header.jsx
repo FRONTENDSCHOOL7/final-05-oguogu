@@ -6,7 +6,7 @@ import { Container, CenterText } from 'components/login/Header.style';
 export default function Header({ text }) {
   const navigate = useNavigate();
   const toBack = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   return (
