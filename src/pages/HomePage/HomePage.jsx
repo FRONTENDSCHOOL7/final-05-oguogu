@@ -18,8 +18,7 @@ export default function HomePage() {
     navigate('/search');
   };
 
-  //팔로잉 게시글 목록 요청 api
-  useEffect(() => {
+  const followPost = () => {
     follwingPostAPI(0)
       .then((res) => {
         setFeed(res.posts);
@@ -27,6 +26,11 @@ export default function HomePage() {
       .catch((err) => {
         alert('error: ' + err);
       });
+  };
+
+  //팔로잉 게시글 목록 요청 api
+  useEffect(() => {
+    followPost();
   }, []);
 
   return (
@@ -38,7 +42,7 @@ export default function HomePage() {
         ) : (
           <ScrollContainer>
             <ProductList type="home" accountname={userInfo.accountname} />
-            <FollowingFeed feed={feed} />
+            <FollowingFeed feed={feed} update={followPost} />
           </ScrollContainer>
         ))}
       <NavBar />

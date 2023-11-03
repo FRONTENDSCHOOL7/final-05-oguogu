@@ -3,6 +3,7 @@ import iconGalleryMore from 'assets/images/icon_img_layers.png';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.ul`
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   gap: 20px;

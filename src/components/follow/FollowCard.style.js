@@ -34,3 +34,9 @@ export const UserIntro = styled.p`
   font-size: 12px;
   line-height: 14px;
 `;
+
+export const UserAccount = styled.p`
+  color: var(--gray-01);
+  font-size: 12px;
+  line-height: 14px;
+`;
