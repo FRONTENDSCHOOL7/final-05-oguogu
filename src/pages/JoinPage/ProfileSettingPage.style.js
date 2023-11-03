@@ -8,6 +8,10 @@ export const Container = styled.div`
   flex-direction: column;
   position: relative;
   padding-top: 36px;
+
+  button {
+    margin: 0 auto;
+  }
 `;
 
 export const Wrap = styled.div`
