@@ -10,27 +10,24 @@ export const CenterText = styled.h1`
 `;
 
 export const ImageWrap = styled.div`
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 1px solid var(--gray-02);
-  overflow: hidden;
+  display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  flex-shrink: 0;
-
-  position: relative;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
 
-export const ChangeImg = styled.label`
+export const Image = styled.div`
+  width: 110px;
+  height: 110px;
+  border: 1px solid var(--gray-02);
+  border-radius: 55px;
+  background-image: url(${(props) => props.$img});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`;
+
+export const ChangeBtn = styled.label`
   width: 36px;
   height: 36px;
   border: none;
