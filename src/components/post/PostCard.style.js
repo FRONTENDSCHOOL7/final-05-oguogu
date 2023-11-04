@@ -79,10 +79,12 @@ export const UserName = styled.p`
   font-weight: var(--medium);
   color: var(--black);
   margin-bottom: 2px;
+  width: fit-content;
   cursor: pointer;
 `;
 
 export const UserId = styled.p`
+  width: fit-content;
   font-size: 12px;
   line-height: 14px;
   color: var(--gray-01);

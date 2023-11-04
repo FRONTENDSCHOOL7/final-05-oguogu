@@ -12,7 +12,7 @@ export default function FollowingFeed() {
   const [curKategorie, setCurKategorie] = useState('#전체');
   const [feed, setFeed] = useState(null);
   const [posts, setPosts] = useState(null);
-  const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
+  const { scrollRef, isDrag, isStart, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
   const kategorie = ['#전체', '#내새꾸자랑', '#고민있어요', '#질문있어요', '#내새꾸간식', '#내새꾸선물'];
   const skip = useRef(0);
   const target = useRef(null);
@@ -68,7 +68,7 @@ export default function FollowingFeed() {
 
   //게시글 카테고리 선택
   const handleSelectBtn = (e) => {
-    setCurKategorie(e.target.textContent);
+    if (!isDrag) setCurKategorie(e.target.textContent);
   };
 
   const buttons = kategorie.map((btn, index) => {
@@ -82,7 +82,7 @@ export default function FollowingFeed() {
   return (
     <Container>
       <SectionTitle>피드</SectionTitle>
-      <ButtonBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
+      <ButtonBox onMouseDown={onDragStart} onMouseMove={isStart ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
         {buttons}
       </ButtonBox>
       {posts !== null ? (

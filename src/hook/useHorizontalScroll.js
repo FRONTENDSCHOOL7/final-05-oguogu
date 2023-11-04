@@ -3,25 +3,28 @@ import { useState, useRef, useCallback, useMemo } from 'react';
 export default function useHorizontalScroll() {
   const scrollRef = useRef(null);
   const [isDrag, setIsDrag] = useState(false);
+  const [isStart, setIsStart] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [startX, setStartX] = useState(0);
 
   const onDragStart = useCallback(
     (e) => {
       e.preventDefault();
-      setIsDrag(true);
+      setIsDrag(false);
+      setIsStart(true);
       setStartX(e.pageX + scrollLeft);
     },
     [scrollLeft]
   );
 
   const onDragEnd = useCallback(() => {
-    setIsDrag(false);
+    setIsStart(false);
   }, []);
 
   const onDragMove = useCallback(
     (e) => {
-      if (isDrag) {
+      if (isStart) {
+        setIsDrag(true);
         const { scrollWidth, clientWidth } = scrollRef.current;
         let newScrollLeft = startX - e.pageX;
 
@@ -35,7 +38,7 @@ export default function useHorizontalScroll() {
         scrollRef.current.scrollLeft = newScrollLeft;
       }
     },
-    [isDrag, startX]
+    [isStart, startX]
   );
 
   const onThrottleDragMove = useMemo(() => {
@@ -59,6 +62,7 @@ export default function useHorizontalScroll() {
   return {
     scrollRef,
     isDrag,
+    isStart,
     onDragStart,
     onThrottleDragMove,
     onDragEnd,

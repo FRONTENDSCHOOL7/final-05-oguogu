@@ -9,7 +9,7 @@ import Loader from 'components/common/loader/Loader';
 
 export default function ProductList({ type, accountname }) {
   const [products, setProducts] = useState(null);
-  const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
+  const { scrollRef, isDrag, isStart, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
   const userPorductList = useCallback(() => {
     productListAPI(accountname)
@@ -79,7 +79,7 @@ export default function ProductList({ type, accountname }) {
         products.length ? (
           <>
             <MoreLink to="/product">더보기</MoreLink>
-            <CardBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
+            <CardBox onMouseDown={onDragStart} onMouseMove={isStart ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
               {productlist()}
             </CardBox>
           </>
