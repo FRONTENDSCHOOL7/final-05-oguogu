@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ImageWrap, ChangeImg } from 'pages/JoinPage/ProfileForm.style';
-import { Container, Label, Input, Line, ErrMsg } from 'pages/JoinPage/EmailPwPage.style';
-import Button from 'components/common/button/Button';
+import React, { useState } from 'react';
+import { Image, ChangeBtn, ImageWrap } from 'components/join/ProfileForm.style';
+import { Container, Label, Input, Line, ErrMsg } from 'components/join/EmailPwPage.style';
 import iconPicture from 'assets/images/icon_picture.png';
-import { joinAPI, accountValidAPI } from 'api/join.api';
+import { accountValidAPI } from 'api/join.api';
 import { imgUploadAPI } from 'api/image.api';
 import useUserForm from 'hook/useUserForm';
 
-export default function ProfileForm() {
-  const navigate = useNavigate();
+export default function ProfileForm({ handleSubmit, idDupeErrMsg, setIdDupeErrMsg, intro, setIntro, image, setImage, updateProfileInfo }) {
+  const { handleSetErrorMessage, errorMessage, setUsername, username, setAccountname, accountname } = useUserForm();
 
-  const { email, password, username, setUsername, accountname, setAccountname, handleSetErrorMessage, errorMessage } = useUserForm();
-  const [image, setImage] = useState('https://api.mandarin.weniv.co.kr/1698975821439.png');
-  const [intro, setIntro] = useState('');
-  const [disabled, setDisabled] = useState(false);
   const [usernameFocus, setUsernameFocus] = useState(false);
   const [accountnameFocus, setAccountnameFocus] = useState(false);
   const [introFocus, setIntroFocus] = useState(false);
   const [errUsernameVisible, setErrUsernameVisible] = useState(false);
   const [errAccountnameVisible, setErrAccountnameVisible] = useState(false);
-  const [idDupeErrMsg, setIdDupeErrMsg] = useState('');
 
+  const handleUpdate = () => {
+    // 콜백 함수를 사용하여 변경된 상태를 부모 컴포넌트에 전달
+    updateProfileInfo(username, accountname);
+  };
+
+  console.log(errorMessage);
   // 미리보기만 해놓고 실제로 호출하는건 오구오구시작하기 버튼 눌렀을 때로
   // 프로필사진 업로드
   const handleImgUpload = async (event) => {
@@ -71,6 +70,7 @@ export default function ProfileForm() {
     setAccountnameFocus(false);
     setIntroFocus(false);
     handleSetErrorMessage();
+    handleUpdate(event);
 
     // accountname 중복검사
     await accountValidAPI(accountname)
@@ -115,46 +115,15 @@ export default function ProfileForm() {
     }
   };
 
-  // 버튼 활성화
-  useEffect(() => {
-    setDisabled(!(username && accountname && !idDupeErrMsg));
-  }, [username, accountname, idDupeErrMsg]);
-
-  // 회원가입버튼 누른 후 동작
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const promise = joinAPI({ username, email, password, accountname, intro, image });
-
-    promise
-      .then((res) => {
-        if (res.user) {
-          const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username, userimg: res.user.image };
-          localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));
-          navigate('/login');
-        }
-      })
-      .catch((error) => {
-        // 에러 핸들링
-        if (error.response) {
-          // 서버에서 응답을 받았지만 응답 상태 코드가 오류인 경우
-          console.error('Server Error:', error.response.status, error.response.data);
-          const errMessage = error.response.data.message;
-          setIdDupeErrMsg(errMessage);
-        } else {
-          console.error('에러 발생:', error);
-        }
-      });
-  };
-
   return (
     <>
       <ImageWrap>
-        <img src={image} />
+        <Image $img={image} />
       </ImageWrap>
       {image && (
-        <ChangeImg htmlFor="chooseImg">
+        <ChangeBtn htmlFor="chooseImg">
           <img src={iconPicture} alt="이미지업로드" />
-        </ChangeImg>
+        </ChangeBtn>
       )}
       <input type="file" id="chooseImg" name="chooseImg" accept="image/*" onChange={handleImgUpload} style={{ display: 'none' }} />
 
@@ -173,7 +142,7 @@ export default function ProfileForm() {
             onFocus={handleFocus}
           ></Input>
           <Line $usernameFocus={usernameFocus}></Line>
-          {errUsernameVisible && errorMessage.username && <ErrMsg>*{errorMessage.username}</ErrMsg>}
+          {errUsernameVisible && (!username || errorMessage.username) && <ErrMsg>*{errorMessage.username}</ErrMsg>}
 
           <Label htmlFor="accountname">계정 ID</Label>
           <Input
@@ -203,7 +172,6 @@ export default function ProfileForm() {
           ></Input>
           <Line $introFocus={introFocus}></Line>
         </form>
-        <Button size="lg" vari="basic" text="오구오구 시작하기" type="submit" onClick={handleSubmit} disabled={disabled} />
       </Container>
     </>
   );

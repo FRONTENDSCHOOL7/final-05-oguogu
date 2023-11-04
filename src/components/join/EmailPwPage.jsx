@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Label, Input, Line, ErrMsg } from 'pages/JoinPage/EmailPwPage.style';
+import { Label, Input, Line, ErrMsg } from 'components/join/EmailPwPage.style';
 import useUserForm from 'hook/useUserForm';
 import { emailValidAPI } from 'api/join.api';
 
