@@ -35,12 +35,12 @@ export default function AppRouter() {
           <Route path="/chatlist" element={<ChatListPage />} />
           <Route path="/chatroom" element={<ChatRoomPage />} />
           <Route path="/upload" element={<PostUploadPage />} />
-          <Route path="/search" element={<SearchPage />} />
           <Route path="/addproduct" element={<AddProductPage />} />
-          <Route path="/postedit" element={<PostEditPage />} />
+          <Route path="/post/:postid/edit" element={<PostEditPage />} />
           <Route path="/product/:productid/edit" element={<ProductEditPage />} />
           <Route path="/product" element={<AllProductPage />} />
           <Route path="/product/:accountname" element={<UserProductPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/profile">
             <Route path=":accountname">
               <Route index element={<ProfilePage />} />

@@ -55,7 +55,7 @@ export default function useHorizontalScroll() {
       };
     };
 
-    const throttleDragMove = throttle(onDragMove, 40);
+    const throttleDragMove = throttle(onDragMove, 50);
     return throttleDragMove;
   }, [onDragMove]);
 

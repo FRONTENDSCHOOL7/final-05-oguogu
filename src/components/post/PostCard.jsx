@@ -36,7 +36,6 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
           setIsHeart(false);
         })
         .catch((err) => {
-          console.log(err);
           alert('좋아요취소를 실패했습니다');
         });
     } else {
@@ -46,7 +45,6 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
           setIsHeart(true);
         })
         .catch((err) => {
-          console.log(err);
           alert('좋아요를 실패했습니다');
         });
     }
