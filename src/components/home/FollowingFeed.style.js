@@ -38,8 +38,3 @@ export const ButtonBox = styled.ul`
 export const ButtonItem = styled.li`
   flex-shrink: 0;
 `;
-
-export const LoaderBox = styled.div`
-  position: relative;
-  min-height: calc(100vh - 440px);
-`;
