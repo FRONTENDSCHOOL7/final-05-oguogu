@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Wrap, ProfileSettingCenterText, CenterSubText } from 'pages/JoinPage/ProfileSettingPage.style';
+import { Container2, Wrap, ProfileSettingCenterText, CenterSubText } from 'pages/JoinPage/ProfileSettingPage.style';
 import Button from 'components/common/button/Button';
 import ProfileForm from '../../components/join/ProfileForm';
 import { joinAPI } from 'api/join.api';
@@ -53,7 +53,7 @@ export default function ProfileSettingPage() {
 
   return (
     <>
-      <Container>
+      <Container2>
         <Wrap>
           <ProfileSettingCenterText>프로필 설정</ProfileSettingCenterText>
           <CenterSubText>나중에 언제든지 변경할 수 있습니다</CenterSubText>
@@ -69,7 +69,7 @@ export default function ProfileSettingPage() {
           updateProfileInfo={updateProfileInfo}
         />
         <Button size="lg" vari="basic" text="오구오구 시작하기" type="submit" onClick={handleSubmit} disabled={disabled} />
-      </Container>
+      </Container2>
     </>
   );
 }

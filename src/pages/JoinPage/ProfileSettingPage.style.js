@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Container = styled.div`
+export const Container2 = styled.div`
   width: 100%;
   border-bottom: none;
   background-color: var(--white);
