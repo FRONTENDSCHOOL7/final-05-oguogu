@@ -80,7 +80,6 @@ export default function ProfileBox({ accountname, isMyProfile }) {
           </p>
         </span>
       </ProfileHeader>
-
       <ProfileMain>
         <li>{profileInfo.username}</li>
         <li>@{profileInfo.accountname}</li>
