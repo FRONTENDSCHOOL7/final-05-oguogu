@@ -10,7 +10,7 @@ display : flex ;
 align-items : center ;
 text-align: center;
 background-color : var(--main-color-01);
-`
+`;
 
 export const OguoguSlogan = styled.div`
 width : 100% ;
