@@ -17,6 +17,7 @@ import AddProductPage from 'pages/AddProductPage/AddProductPage';
 import ProductEditPage from 'pages/ProductEditPage/ProductEditPage';
 import SearchPage from 'pages/SearchPage/SearchPage';
 import ProfileEditPage from 'pages/ProfileEditPage/ProfileEditPage';
+import PostEditPage from 'pages/PostEditPage/PostEditPage';
 
 export default function AppRouter() {
   return (
@@ -34,7 +35,8 @@ export default function AppRouter() {
           <Route path="/upload" element={<PostUploadPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/addproduct" element={<AddProductPage />} />
-          <Route path="/product/:productid/edit" element={<ProductEditPage />} />
+          <Route path="/postedit" element={<PostEditPage />} />
+          <Route path="/product/:productid/edit" element={<ProductEditPage  />} />
           <Route path="/profile">
             <Route path=":accountname">
               <Route index element={<ProfilePage />} />
