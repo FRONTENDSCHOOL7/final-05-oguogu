@@ -54,7 +54,6 @@ export const PostEditAPI = async (content, img, postid) => {
       image: img, //"imageurl1, imageurl2" 형식으로
     },
   };
-
   try {
     const result = await tokenInstance.put(`post/${postid}`, reqData);
     if (result.data.post) {
