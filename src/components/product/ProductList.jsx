@@ -5,10 +5,11 @@ import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMess
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import { productListAPI } from 'api/product.api';
 import { follwingListAPI } from 'api/follow.api';
+import Loader from 'components/common/loader/Loader';
 
 export default function ProductList({ type, accountname }) {
   const [products, setProducts] = useState(null);
-  const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
+  const { scrollRef, isDrag, isStart, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
   const userPorductList = useCallback(() => {
     productListAPI(accountname)
@@ -24,8 +25,8 @@ export default function ProductList({ type, accountname }) {
     follwingListAPI(accountname)
       .then((res) => {
         const accountnamelist = res;
-        accountnamelist.forEach((element) => {
-          productListAPI(element.accountname)
+        accountnamelist.forEach((user) => {
+          productListAPI(user.accountname)
             .then((res) => {
               setProducts((prev) => {
                 if (prev !== null) {
@@ -72,13 +73,13 @@ export default function ProductList({ type, accountname }) {
   };
 
   return (
-    products !== null && (
-      <Container type={type}>
-        <SectionTitle>판매 상품</SectionTitle>
-        {products.length ? (
+    <Container type={type}>
+      <SectionTitle>판매 상품</SectionTitle>
+      {products !== null ? (
+        products.length ? (
           <>
             <MoreLink to="/product">더보기</MoreLink>
-            <CardBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
+            <CardBox onMouseDown={onDragStart} onMouseMove={isStart ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
               {productlist()}
             </CardBox>
           </>
@@ -87,8 +88,10 @@ export default function ProductList({ type, accountname }) {
             <EmptyImg />
             <EmptyText>판매중인 상품이 없어요</EmptyText>
           </EmptyBox>
-        )}
-      </Container>
-    )
+        )
+      ) : (
+        <Loader />
+      )}
+    </Container>
   );
 }

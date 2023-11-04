@@ -127,4 +127,3 @@ const handlePostEdit = () => {
       </Categorybox>
     </UploadPageBg>
   );
-}

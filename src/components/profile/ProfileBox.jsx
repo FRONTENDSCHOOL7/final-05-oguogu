@@ -6,6 +6,7 @@ import iconShare from 'assets/images/icon_share.png';
 import iconChat from 'assets/images/icon_message_small.png';
 import { profileAPI } from 'api/profile.api';
 import { followAPI, unfollowAPI } from 'api/follow.api';
+import Loader from 'components/common/loader/Loader';
 
 export default function ProfileBox({ accountname, isMyProfile }) {
   const [profileInfo, setProfileInfo] = useState(null);
@@ -59,6 +60,11 @@ export default function ProfileBox({ accountname, isMyProfile }) {
     navigate('/addproduct');
   };
 
+  //프로필수정 페이지로 이동
+  const navigateToProfileEdit = () => {
+    navigate(`/profile/${accountname}/edit`);
+  };
+
   return profileInfo !== null ? (
     <ProfileBoxBg>
       <ProfileHeader>
@@ -74,7 +80,6 @@ export default function ProfileBox({ accountname, isMyProfile }) {
           </p>
         </span>
       </ProfileHeader>
-
       <ProfileMain>
         <li>{profileInfo.username}</li>
         <li>@{profileInfo.accountname}</li>
@@ -82,8 +87,8 @@ export default function ProfileBox({ accountname, isMyProfile }) {
       </ProfileMain>
       {isMyProfile ? (
         <ProfileBtns $gap="16px">
-          <Button size="md" vari="border" text="프로필 수정" />
-          <Button size="sm" vari="border" text="상품등록" onClick={navigateToAddProduct}/>
+          <Button size="md" vari="border" text="프로필 수정" onClick={navigateToProfileEdit} />
+          <Button size="sm" vari="border" text="상품등록" onClick={navigateToAddProduct} />
         </ProfileBtns>
       ) : (
         <ProfileBtns $gap="12px">
@@ -98,6 +103,8 @@ export default function ProfileBox({ accountname, isMyProfile }) {
       )}
     </ProfileBoxBg>
   ) : (
-    <ProfileBoxBg />
+    <ProfileBoxBg>
+      <Loader />
+    </ProfileBoxBg>
   );
 }

@@ -1,26 +1,38 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ButtonBox, ButtonItem, Container, SectionTitle } from './FollowingFeed.style';
+import { ButtonBox, ButtonItem, Container, LoaderBox, SectionTitle } from './FollowingFeed.style';
 import Button from 'components/common/button/Button';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import PostList from 'components/post/PostList';
 import { follwingPostAPI } from 'api/post.api';
 import { Target } from 'components/common/container/Container.style';
 import useObserve from 'hook/useObserve';
+import Loader from 'components/common/loader/Loader';
 
-export default function FollowingFeed({ feed }) {
+export default function FollowingFeed() {
   const [curKategorie, setCurKategorie] = useState('#전체');
-  const [posts, setPosts] = useState(feed);
-  const { scrollRef, isDrag, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
+  const [feed, setFeed] = useState(null);
+  const [posts, setPosts] = useState(null);
+  const { scrollRef, isDrag, isStart, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
   const kategorie = ['#전체', '#내새꾸자랑', '#고민있어요', '#질문있어요', '#내새꾸간식', '#내새꾸선물'];
-  const skip = useRef(5);
+  const skip = useRef(0);
   const target = useRef(null);
+
+  const followPost = () => {
+    follwingPostAPI(0)
+      .then((res) => {
+        setFeed(res.posts);
+      })
+      .catch((err) => {
+        alert('error: ' + err);
+      });
+  };
 
   const addPostlist = () => {
     if (skip.current > 5) {
       follwingPostAPI(skip.current - 5)
         .then((res) => {
           if (res.posts.length !== 0) {
-            setPosts((prevPosts) => {
+            setFeed((prevPosts) => {
               return [...prevPosts, ...res.posts];
             });
           } else {
@@ -41,18 +53,22 @@ export default function FollowingFeed({ feed }) {
 
   useEffect(() => {
     observe(target.current);
+    followPost();
   }, []);
 
   useEffect(() => {
+    console.log(feed);
     if (curKategorie !== '#전체') {
-      const filterPostlist = posts.filter((post) => JSON.parse(post.content).kate === curKategorie);
+      const filterPostlist = feed.filter((post) => JSON.parse(post.content).kate === curKategorie);
       setPosts(filterPostlist);
+    } else {
+      setPosts(feed);
     }
-  }, [curKategorie]);
+  }, [curKategorie, feed]);
 
   //게시글 카테고리 선택
   const handleSelectBtn = (e) => {
-    setCurKategorie(e.target.textContent);
+    if (!isDrag) setCurKategorie(e.target.textContent);
   };
 
   const buttons = kategorie.map((btn, index) => {
@@ -63,15 +79,20 @@ export default function FollowingFeed({ feed }) {
     );
   });
 
-  //선택한 카테고리에 따라 게시글 필터링
-
   return (
     <Container>
       <SectionTitle>피드</SectionTitle>
-      <ButtonBox onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
+      <ButtonBox onMouseDown={onDragStart} onMouseMove={isStart ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
         {buttons}
       </ButtonBox>
-      <PostList type="normal" posts={posts} />
+      {posts !== null ? (
+        <PostList type="normal" posts={posts} update={followPost} />
+      ) : (
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      )}
+
       <Target ref={target} />
     </Container>
   );

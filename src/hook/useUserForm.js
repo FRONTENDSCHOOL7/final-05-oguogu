@@ -46,7 +46,6 @@ export default function useUserForm() {
 
   const handleSetErrorMessage = useCallback(() => {
     // 입력한 값이 없을 때 || 유효하지 않은 값일 때
-    console.log(username);
     setErrorMessage({
       email: (!email && USER_WARNING_MSG.email.require) || (!isValidValues.email && USER_WARNING_MSG.email.format),
       password: (!password && USER_WARNING_MSG.password.require) || (!isValidValues.password && USER_WARNING_MSG.password.format),

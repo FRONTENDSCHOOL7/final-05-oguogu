@@ -106,9 +106,9 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
     <Container>
       <ProfileImg $img={profileImg} onClick={handletoProfile} />
       <PostBox>
-        <div onClick={handletoProfile}>
-          <UserName>{authname}</UserName>
-          <UserId>@{authaccount}</UserId>
+        <div>
+          <UserName onClick={handletoProfile}>{authname}</UserName>
+          <UserId onClick={handletoProfile}>@{authaccount}</UserId>
         </div>
         <PostText $ell={ellipsis} onClick={handletoPost}>
           {text}
