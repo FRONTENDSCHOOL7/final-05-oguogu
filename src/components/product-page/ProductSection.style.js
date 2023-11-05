@@ -7,19 +7,25 @@ export const Container = styled.div`
 `;
 
 export const Title = styled(SectionTitle)`
-  margin: 0;
+  margin: 0 0 2px 0;
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
   gap: 15px;
-  margin: 18px auto;
+  margin: 6px 0;
+  padding: 10px 0;
+  background-color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const ProductList = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  margin-top: 2px;
 `;
 
 export const ItemContainer = styled.li`

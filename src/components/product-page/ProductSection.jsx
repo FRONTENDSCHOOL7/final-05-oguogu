@@ -10,6 +10,7 @@ export default function ProductSection({ type, accountname, username }) {
   const [products, setProducts] = useState(null);
 
   const userPorductList = useCallback(() => {
+    console.log('업데이트');
     productListAPI(accountname)
       .then((res) => {
         setProducts(res);
@@ -110,7 +111,7 @@ export default function ProductSection({ type, accountname, username }) {
       followingProductList();
     }
     setCurSort('최신순');
-  }, [type]);
+  }, [userPorductList, type]);
 
   return (
     <Container>

@@ -23,7 +23,7 @@ export default function ProductItem({ id, img, name, price, link, authaccountnam
   const productDelete = () => {
     productDeleteAPI(id)
       .then(() => {
-        // update();
+        update();
       })
       .catch((err) => alert('상품삭제를 실패했습니다.'));
   };
