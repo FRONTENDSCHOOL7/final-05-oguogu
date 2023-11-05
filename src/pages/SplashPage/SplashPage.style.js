@@ -21,7 +21,7 @@ export const OguText = styled.p`
   font-size : 14px;
   color : white;
   opacity:0%;
-  padding-top : 14px;
+  padding-top : 12px;
   animation: show 0.5s ease-in-out ;
   animation-fill-mode : forwards;
   animation-delay : 1.8s;

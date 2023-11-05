@@ -9,7 +9,8 @@ import facebookLogoActive from 'assets/images/logo_facebook_white.png';
 import oguoguLogoActive from 'assets/images/icon_ogudog_white.png';
 import { OguoguSlogan, SplashPageBg } from "pages/SplashPage/SplashPage.style";
 
-export const OguoguSlogan2 = styled(OguoguSlogan)`
+export const OguoguSlogan2 = styled.div`
+padding-top: 3px;
 width : 100% ;
 font-size : 14px;
 color : white;
@@ -17,7 +18,7 @@ color : white;
     width: 212px;
   }
   p{
-    padding-top : 10px;
+    padding-top : 11px;
   }
 & {
     position: relative;
@@ -27,7 +28,7 @@ color : white;
 
 @keyframes slide {
     from {
-        top : 0px;
+        top :0px;
     }
     to {
         top: -150px;
