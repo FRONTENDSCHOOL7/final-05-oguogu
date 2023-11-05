@@ -18,6 +18,8 @@ import ProductEditPage from 'pages/ProductEditPage/ProductEditPage';
 import SearchPage from 'pages/SearchPage/SearchPage';
 import ProfileEditPage from 'pages/ProfileEditPage/ProfileEditPage';
 import PostEditPage from 'pages/PostEditPage/PostEditPage';
+import AllProductPage from 'pages/ProductPage/AllProductPage';
+import UserProductPage from 'pages/ProductPage/UserProductPage';
 
 export default function AppRouter() {
   return (
@@ -33,9 +35,11 @@ export default function AppRouter() {
           <Route path="/chatlist" element={<ChatListPage />} />
           <Route path="/chatroom" element={<ChatRoomPage />} />
           <Route path="/upload" element={<PostUploadPage />} />
-          <Route path="/addproduct" element={<AddProductPage/>} />
+          <Route path="/addproduct" element={<AddProductPage />} />
           <Route path="/post/:postid/edit" element={<PostEditPage />} />
           <Route path="/product/:productid/edit" element={<ProductEditPage />} />
+          <Route path="/product" element={<AllProductPage />} />
+          <Route path="/product/:accountname" element={<UserProductPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/profile">
             <Route path=":accountname">

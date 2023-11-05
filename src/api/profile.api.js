@@ -20,7 +20,7 @@ export const EditMyInfoAPI = async ({ username, accountname, intro, image }) => 
       image: image,
     },
   };
-  console.log(reqData);
+
   try {
     const result = await tokenInstance.put('user', reqData);
     return result.data;

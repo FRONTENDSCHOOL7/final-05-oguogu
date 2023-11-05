@@ -26,6 +26,10 @@ export const InfoBox = styled.div`
 export const ItemName = styled.span`
   font-size: 14px;
   color: var(--black);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
   cursor: pointer;
 `;
 

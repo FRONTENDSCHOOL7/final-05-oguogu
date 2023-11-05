@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import ProductCard from 'components/product/ProductCard';
-import { CardBox, Container, MoreLink, SectionTitle } from 'components/product/ProductList.style';
+import { CardBox, Container, MoreBtn, SectionTitle } from 'components/product/ProductList.style';
 import { EmptyBox, EmptyImg, EmptyText } from 'components/common/empty/EmptyMessage.style';
 import useHorizontalScroll from 'hook/useHorizontalScroll';
 import { productListAPI } from 'api/product.api';
 import { follwingListAPI } from 'api/follow.api';
 import Loader from 'components/common/loader/Loader';
+import { useNavigate } from 'react-router';
 
 export default function ProductList({ type, accountname }) {
+  const navigate = useNavigate();
   const [products, setProducts] = useState(null);
   const { scrollRef, isDrag, isStart, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
@@ -72,13 +74,20 @@ export default function ProductList({ type, accountname }) {
     });
   };
 
+  const toProductPage = () => {
+    if (type === 'profile') {
+      navigate(`/product/${accountname}`);
+    } else if (type === 'home') {
+      navigate(`/product`);
+    }
+  };
   return (
     <Container type={type}>
       <SectionTitle>판매 상품</SectionTitle>
       {products !== null ? (
         products.length ? (
           <>
-            <MoreLink to="/product">더보기</MoreLink>
+            {products.length > 2 && <MoreBtn onClick={toProductPage}>더보기</MoreBtn>}
             <CardBox onMouseDown={onDragStart} onMouseMove={isStart ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} ref={scrollRef}>
               {productlist()}
             </CardBox>

@@ -32,7 +32,7 @@ export default function PostEditPage() {
     const getPostData = async () => {
       try {
         const postData = await postDetailAPI(postid);
-        const content = JSON.parse(postData.content)
+        const content = JSON.parse(postData.content);
         setText(content.text);
         setCurKategorie(content.kate);
         setPreviewImages(postData.image);
@@ -44,61 +44,59 @@ export default function PostEditPage() {
     getPostData();
   }, [postid]);
 
-
   //카테고리 버튼 클릭이벤트
   const handleSelectBtn = (e) => {
     setCurKategorie(e.target.textContent);
   };
 
-// 사진 추가
-const handleFileSelect = (e) => {
-  const selectedImage = e.target.files[0];
-  images.current = [selectedImage]; 
-  if (selectedImage) {
-    const imageUrl = URL.createObjectURL(selectedImage);
-    setPreviewImages(imageUrl);
-  }
-};
+  // 사진 추가
+  const handleFileSelect = (e) => {
+    const selectedImage = e.target.files[0];
+    images.current = [selectedImage];
+    if (selectedImage) {
+      const imageUrl = URL.createObjectURL(selectedImage);
+      setPreviewImages(imageUrl);
+    }
+  };
 
-// 사진 삭제
-const handleRemoveImage = () => {
-  images.current = []; 
-  setPreviewImages(''); 
-};
-// 게시글 내용 입력 받기
-const handleOnChangeText = (e) => {
-  setText(e.target.value);
-};
+  // 사진 삭제
+  const handleRemoveImage = () => {
+    images.current = [];
+    setPreviewImages('');
+  };
+  // 게시글 내용 입력 받기
+  const handleOnChangeText = (e) => {
+    setText(e.target.value);
+  };
 
-// 게시글 내용이 있을때만 버튼 활성화
-useEffect(() => {
-  text === '' ? setSubmitDisabled(true) : setSubmitDisabled(false);
-}, [text]);
+  // 게시글 내용이 있을때만 버튼 활성화
+  useEffect(() => {
+    text === '' ? setSubmitDisabled(true) : setSubmitDisabled(false);
+  }, [text]);
 
-// 게시글 업로드
-const handlePostEdit = () => {
-  // 이미지업로드 api
-  const uploadImg = imgUploadAPI(images.current[0]);
-  uploadImg
-    .then((res) => {
-      const imgPath = res === 'https://api.mandarin.weniv.co.kr/undefined' ? previewImages : res;
-      const content = { text: text, kate: curKategorie };
-      // 게시글수정 api
-      const promise = PostEditAPI(JSON.stringify(content), imgPath, postid);
-      promise
-        .then((data) => {
-          navigate(`/post/${data.id}`);
-        })
-        .catch((error) => {
-          alert('게시글 업로드 실패', error);
-        });
-    })
-    .catch((error) => {
-      alert('이미지업로드 실패');
-    });
-};
+  // 게시글 업로드
+  const handlePostEdit = () => {
+    // 이미지업로드 api
+    const uploadImg = imgUploadAPI(images.current[0]);
+    uploadImg
+      .then((res) => {
+        const imgPath = res === 'https://api.mandarin.weniv.co.kr/undefined' ? previewImages : res;
+        const content = { text: text, kate: curKategorie };
+        // 게시글수정 api
+        const promise = PostEditAPI(JSON.stringify(content), imgPath, postid);
+        promise
+          .then((data) => {
+            navigate(`/post/${data.id}`);
+          })
+          .catch((error) => {
+            alert('게시글 업로드 실패', error);
+          });
+      })
+      .catch((error) => {
+        alert('이미지업로드 실패');
+      });
+  };
 
-  
   return (
     <UploadPageBg>
       <Header type="btn" btnText="업로드" btndisabled={submitDisabled} rightOnClick={handlePostEdit} />
@@ -127,3 +125,4 @@ const handlePostEdit = () => {
       </Categorybox>
     </UploadPageBg>
   );
+}

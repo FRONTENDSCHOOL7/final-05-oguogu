@@ -57,7 +57,6 @@ export default function FollowingFeed() {
   }, []);
 
   useEffect(() => {
-    console.log(feed);
     if (curKategorie !== '#전체') {
       const filterPostlist = feed.filter((post) => JSON.parse(post.content).kate === curKategorie);
       setPosts(filterPostlist);

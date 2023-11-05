@@ -27,7 +27,7 @@ export default function FollowersPage() {
 
   return (
     <>
-      <Header type="follow" text="Followers" />
+      <Header type="text" text="Followers" />
       <ScrollContainer $bg>{followers !== null && <FollowList userlist={followers} updatelist={followerlist} />}</ScrollContainer>
       <NavBar />
       <ConfirmModal />

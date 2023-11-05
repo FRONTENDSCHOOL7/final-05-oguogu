@@ -24,20 +24,22 @@ export default function Feed({ accountname }) {
   };
 
   const addpostlist = useCallback(() => {
-    postListAPI(accountname, skip.current - 3)
-      .then((res) => {
-        setPosts((prevPosts) => {
-          if (prevPosts !== null) {
-            return [...prevPosts, ...res];
-          } else {
-            return res;
-          }
+    if (skip.current !== 0) {
+      postListAPI(accountname, skip.current)
+        .then((res) => {
+          setPosts((prevPosts) => {
+            if (prevPosts !== null) {
+              return [...prevPosts, ...res];
+            } else {
+              return res;
+            }
+          });
+        })
+        .catch((err) => {
+          alert('게시물 불러오기에 실패했습니다');
+          skip.current -= 3;
         });
-      })
-      .catch((err) => {
-        alert('게시물 불러오기에 실패했습니다');
-        skip.current -= 3;
-      });
+    }
   }, [accountname]);
 
   const [observe, unobserve] = useObserve(() => {
