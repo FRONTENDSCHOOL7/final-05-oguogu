@@ -4,7 +4,7 @@ import { ScrollContainer } from 'components/common/container/Container.style';
 import Header from 'components/common/header/Header';
 import NavBar from 'components/common/navbar/NavBar';
 import FollowList from 'components/follow/FollowList';
-import { follwingListAPI, unfollowAPI } from 'api/follow.api';
+import { follwingListAPI } from 'api/follow.api';
 import ConfirmModal from 'components/common/modal/ConfirmModal';
 
 export default function FollowingsPage() {
@@ -27,7 +27,7 @@ export default function FollowingsPage() {
 
   return (
     <>
-      <Header type="follow" text="Followings" />
+      <Header type="text" text="Followings" />
       <ScrollContainer $bg>{followings !== null && <FollowList userlist={followings} updatelist={followinglist} />}</ScrollContainer>
       <NavBar />
       <ConfirmModal />
