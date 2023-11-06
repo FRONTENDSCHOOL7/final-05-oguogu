@@ -74,7 +74,7 @@ export default function PostEditPage() {
     text === '' ? setSubmitDisabled(true) : setSubmitDisabled(false);
   }, [text]);
 
-  // 게시글 업로드
+  // 게시글 수정
   const handlePostEdit = () => {
     // 이미지업로드 api
     const uploadImg = imgUploadAPI(images.current[0]);
@@ -86,7 +86,7 @@ export default function PostEditPage() {
         const promise = PostEditAPI(JSON.stringify(content), imgPath, postid);
         promise
           .then((data) => {
-            navigate(`/post/${data.id}`);
+            navigate(`/post/${data.id}`, { replace: true });
           })
           .catch((error) => {
             alert('게시글 업로드 실패', error);

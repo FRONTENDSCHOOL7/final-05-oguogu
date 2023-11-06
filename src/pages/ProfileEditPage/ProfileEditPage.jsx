@@ -149,7 +149,7 @@ export default function ProfileEditPage() {
         const newUserInfo = { ...userInfo, accountname: res.user.accountname };
         localStorage.setItem('oguUserInfo', JSON.stringify(newUserInfo));
 
-        navigate(`/profile/${res.user.accountname}`);
+        navigate(`/profile/${res.user.accountname}`, { replace: true });
       })
       .catch((error) => {
         console.log('프로필 수정에 실패했습니다.', error);

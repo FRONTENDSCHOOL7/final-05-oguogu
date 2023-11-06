@@ -33,21 +33,21 @@ export default function PostUploadPage() {
     setCurKategorie(e.target.textContent);
   };
 
-// 사진 추가
-const handleFileSelect = (e) => {
-  const selectedImage = e.target.files[0];
-  images.current = [selectedImage]; // Set the images array with the selected image
-  if (selectedImage) {
-    const imageUrl = URL.createObjectURL(selectedImage);
-    setPreviewImages(imageUrl);
-  }
-};
+  // 사진 추가
+  const handleFileSelect = (e) => {
+    const selectedImage = e.target.files[0];
+    images.current = [selectedImage]; // Set the images array with the selected image
+    if (selectedImage) {
+      const imageUrl = URL.createObjectURL(selectedImage);
+      setPreviewImages(imageUrl);
+    }
+  };
 
-// 사진 삭제
-const handleRemoveImage = () => {
-  images.current = [];
-  setPreviewImages(''); 
-};
+  // 사진 삭제
+  const handleRemoveImage = () => {
+    images.current = [];
+    setPreviewImages('');
+  };
 
   // 게시글 내용 입력 받기
   const handleOnChangeText = (e) => {
@@ -71,7 +71,7 @@ const handleRemoveImage = () => {
         const promise = postUploadAPI(JSON.stringify(content), imgPath);
         promise
           .then((data) => {
-            navigate(`/post/${data.id}`);
+            navigate(`/post/${data.id}`, { replace: true });
           })
           .catch((err) => {
             alert('게시글 업로드 실패');
