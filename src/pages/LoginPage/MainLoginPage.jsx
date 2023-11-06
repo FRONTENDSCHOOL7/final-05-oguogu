@@ -14,9 +14,10 @@ import {
 } from 'pages/LoginPage/MainLoginPage.style';
 import { SplashPageBg } from 'pages/SplashPage/SplashPage.style';
 import SplashPage from '../SplashPage/SplashPage';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function MainLoginPage() {
+  const navigator = useNavigate();
   const kakaoUrl = 'https://www.kakaocorp.com/page/service/service/KakaoTalk';
   const googleUrl = 'https://www.google.co.kr/';
   const facebookUrl = 'https://www.facebook.com/?locale=ko_KR';
@@ -64,10 +65,13 @@ export default function MainLoginPage() {
               >
                 페이스북 계정으로 로그인
               </FacebookLogin>
-              <EmailLogin><Link to="/login">이메일로 로그인</Link></EmailLogin>
+              <EmailLogin onClick={() => navigator('/login')}>이메일로 로그인</EmailLogin>
             </SnsLoginBox>
             <LoginFooter>
-              <FindPassword>비밀번호 찾기</FindPassword>|<Join><Link to="/join">회원가입</Link></Join>
+              <FindPassword>비밀번호 찾기</FindPassword>|
+              <Join>
+                <Link to="/join">회원가입</Link>
+              </Join>
             </LoginFooter>
           </LoginContainer>
         </SplashPageBg>
