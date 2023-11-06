@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    /*======== Import Fonts ========*/
-    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
-    
-    
     /*======== Variable CSS ========*/
     :root {
         /*---------- Color ----------*/
@@ -20,9 +16,10 @@ const GlobalStyle = createGlobalStyle`
         --gray-01: #767676;
         --gray-02: #DBDBDB;
         --gray-03: #F2F2F2;
+        --gray-04: #c4c4c4;
 
         /*---------- Font ----------*/
-        --main-font: '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif';
+        --main-font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
         
         --regular: 400;
         --medium: 500;
@@ -40,6 +37,9 @@ const GlobalStyle = createGlobalStyle`
         margin: -1px;
         border: 0;
         padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     
     *, :after, :before {
@@ -76,6 +76,8 @@ const GlobalStyle = createGlobalStyle`
         width: 390px;
         height: 100vh;
         margin: 0 auto;
+        background-color: var(--white);
+        position: relative;
     }
 `;
 
