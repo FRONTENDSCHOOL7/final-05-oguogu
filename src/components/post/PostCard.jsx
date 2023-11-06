@@ -6,7 +6,7 @@ import useConfirm from 'hook/useConfirm';
 import { PostDeleteAPI } from 'api/post.api';
 import { heartAPI, unheartAPI } from 'api/heart.api';
 
-export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted, update }) {
+export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted, update, type }) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const ellipsis = location !== `/post/${id}`;
@@ -54,7 +54,11 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   const postDelete = () => {
     PostDeleteAPI(id)
       .then(() => {
-        update();
+        if (type === 'detail') {
+          navigate(-1);
+        } else {
+          update();
+        }
       })
       .catch((err) => {
         alert('게시글 삭제를 실패했습니다.');
