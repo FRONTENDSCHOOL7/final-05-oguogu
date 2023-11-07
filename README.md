@@ -242,39 +242,39 @@ function Person(){}
 
 |로그인 페이지|피드 페이지|검색 페이지|
 |:---:|:---:|:---:|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/918da826-2562-4723-b308-d39cce3d4301" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/9a7d0592-13e6-4e02-80bf-ad742fcf0562" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/824dd2ef-06d4-458a-8122-7fc99153f68f" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/918da826-2562-4723-b308-d39cce3d4301" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/9a7d0592-13e6-4e02-80bf-ad742fcf0562" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/824dd2ef-06d4-458a-8122-7fc99153f68f" width="248px">|
 
 ### 2) 프로필
 |프로필 페이지|팔로워/팔로잉 페이지|
 |---|---|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3cead297-839e-4742-b924-9a4bfd121e5b" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/c637ed9e-4b4e-4960-b97a-f4662fc2b4fa" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3cead297-839e-4742-b924-9a4bfd121e5b" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/c637ed9e-4b4e-4960-b97a-f4662fc2b4fa" width="248px">|
 
 |프로필 수정|로그아웃|
 |:---:|:---:|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3e06c64d-7e9d-4938-875f-b4723d85eb72" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a8c4c00a-b88d-40b1-a26b-a4e00efdb599" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3e06c64d-7e9d-4938-875f-b4723d85eb72" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a8c4c00a-b88d-40b1-a26b-a4e00efdb599" width="248px">|
 
 ### 3) 게시글
 |게시글 작성|게시글 수정|게시글 삭제|
 |---|---|---|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d432a36e-a8c0-461a-b13e-3433dc5ddcc3" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/5cd9d788-04ce-478e-8bbe-4618a1532f4f" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f38d02ac-4fac-4c82-abe7-0ed826a9d28c" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d432a36e-a8c0-461a-b13e-3433dc5ddcc3" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/5cd9d788-04ce-478e-8bbe-4618a1532f4f" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f38d02ac-4fac-4c82-abe7-0ed826a9d28c" width="248px">|
 
 |좋아요기능|댓글작성|댓글삭제|
 |:---:|:---:|:---:|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d0350d42-a687-411f-87ff-42f805b670d0" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/83de368b-a2b7-4e5d-825a-92ca3aaca127" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/16621fce-5a5e-4f33-b0d3-b1161b9fcfcb" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d0350d42-a687-411f-87ff-42f805b670d0" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/83de368b-a2b7-4e5d-825a-92ca3aaca127" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/16621fce-5a5e-4f33-b0d3-b1161b9fcfcb" width="248px">|
 
 ### 4) 판매상품
 |상품등록|상품수정|상품삭제|
 |---|---|---|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4884e8fb-cd62-4182-b60e-8093c0894178" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/6da56eb0-eadf-42b2-adee-0968a3a3dc44" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/63c8ca07-a813-42fd-8df6-383f1d8a1eec" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4884e8fb-cd62-4182-b60e-8093c0894178" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/6da56eb0-eadf-42b2-adee-0968a3a3dc44" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/63c8ca07-a813-42fd-8df6-383f1d8a1eec" width="248px">|
 
 |팔로잉 판매상품|유저별 판매상품|상품정렬|
 |:---:|:---:|:---:|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8a75e2b4-c96e-45e7-bb4e-01711069d49f" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/2f03f08f-b036-4e4b-8cd1-eefc6658236d" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/0dcf84ec-c90d-4691-bb15-372f604508fe" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8a75e2b4-c96e-45e7-bb4e-01711069d49f" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/2f03f08f-b036-4e4b-8cd1-eefc6658236d" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/0dcf84ec-c90d-4691-bb15-372f604508fe" width="248px">|
 
 ### 5) 채팅
 |채팅|
 |---|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/07fa1572-bf23-4430-922f-17f673dde447" width="280px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/07fa1572-bf23-4430-922f-17f673dde447" width="248px">|
 
 <br />
 <p align="right"><a href="#top">(🔼 Top)</a></p>
@@ -401,11 +401,13 @@ function Person(){}
 
 ##  **7. 주요코드**
 
-공통컴포넌트 -> 
+### 공통컴포넌트
 
-무한스크롤 -> useObserve
+### 무한스크롤 
 
-유저검색 -> 디바운스
+### 유저검색
+
+### 게시글 필터링
 
 <br/>
 <p align="right"><a href="#top">(🔼 Top)</a></p>
