@@ -60,7 +60,6 @@ export default function ProductSection({ type, accountname, username }) {
   };
 
   const sortList = () => {
-    console.log(products);
     if (products !== null) {
       switch (curSort) {
         case '최신순':
