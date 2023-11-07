@@ -232,47 +232,49 @@ function Person(){}
 
 
 
+
+
 ##  **5. UI & 기능소개**
 ### 1) 홈
 |시작 화면|회원가입 페이지|프로필 설정 페이지|
 |---|---|---|
-|![splash](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f410d4e3-87bd-4d39-a6fb-3d5135a00413)|![회원가입](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/88cf3ecb-25b7-4196-95de-be1da88e1b77)|![프로필설정](https://im3.ezgif.com/tmp/ezgif-3-1fa6501752.gif)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f410d4e3-87bd-4d39-a6fb-3d5135a00413" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/88cf3ecb-25b7-4196-95de-be1da88e1b77" width="280px">|<img src="https://cdn.discordapp.com/attachments/1161566354432851998/1171456196289511524/ezgif.com-video-to-gif.gif?ex=655cbe99&is=654a4999&hm=e24b2cf98bcde12193546db7d9b6e6478eec52f1a73c9687eaad349d21b2d797&" width="280px">|
 
 |로그인 페이지|피드 페이지|검색 페이지|
 |:---:|:---:|:---:|
-|![로그인](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/918da826-2562-4723-b308-d39cce3d4301)|![피드](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/9a7d0592-13e6-4e02-80bf-ad742fcf0562)|![검색](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/824dd2ef-06d4-458a-8122-7fc99153f68f)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/918da826-2562-4723-b308-d39cce3d4301" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/9a7d0592-13e6-4e02-80bf-ad742fcf0562" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/824dd2ef-06d4-458a-8122-7fc99153f68f" width="280px">|
 
 ### 2) 프로필
 |프로필 페이지|팔로워/팔로잉 페이지|
 |---|---|
-|![프로필](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3cead297-839e-4742-b924-9a4bfd121e5b)|![팔로우페이지](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/c637ed9e-4b4e-4960-b97a-f4662fc2b4fa)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3cead297-839e-4742-b924-9a4bfd121e5b" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/c637ed9e-4b4e-4960-b97a-f4662fc2b4fa" width="280px">|
 
 |프로필 수정|로그아웃|
 |:---:|:---:|
-|![프로필수정](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3e06c64d-7e9d-4938-875f-b4723d85eb72)|![로그아웃](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a8c4c00a-b88d-40b1-a26b-a4e00efdb599)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3e06c64d-7e9d-4938-875f-b4723d85eb72" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a8c4c00a-b88d-40b1-a26b-a4e00efdb599" width="280px">|
 
 ### 3) 게시글
 |게시글 작성|게시글 수정|게시글 삭제|
 |---|---|---|
-|![게시글작성](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d432a36e-a8c0-461a-b13e-3433dc5ddcc3)|![게시글수정](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/5cd9d788-04ce-478e-8bbe-4618a1532f4f)|![게시글삭제](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f38d02ac-4fac-4c82-abe7-0ed826a9d28c)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d432a36e-a8c0-461a-b13e-3433dc5ddcc3" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/5cd9d788-04ce-478e-8bbe-4618a1532f4f" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f38d02ac-4fac-4c82-abe7-0ed826a9d28c" width="280px">|
 
 |좋아요기능|댓글작성|댓글삭제|
 |:---:|:---:|:---:|
-|![좋아요기능](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d0350d42-a687-411f-87ff-42f805b670d0)|![댓글작성](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/83de368b-a2b7-4e5d-825a-92ca3aaca127)|![댓글삭제](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/16621fce-5a5e-4f33-b0d3-b1161b9fcfcb)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d0350d42-a687-411f-87ff-42f805b670d0" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/83de368b-a2b7-4e5d-825a-92ca3aaca127" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/16621fce-5a5e-4f33-b0d3-b1161b9fcfcb" width="280px">|
 
 ### 4) 판매상품
 |상품등록|상품수정|상품삭제|
 |---|---|---|
-|![상품등록](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4884e8fb-cd62-4182-b60e-8093c0894178)|![상품수정](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/6da56eb0-eadf-42b2-adee-0968a3a3dc44)|![상품삭제](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/63c8ca07-a813-42fd-8df6-383f1d8a1eec)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4884e8fb-cd62-4182-b60e-8093c0894178" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/6da56eb0-eadf-42b2-adee-0968a3a3dc44" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/63c8ca07-a813-42fd-8df6-383f1d8a1eec" width="280px">|
 
 |팔로잉 판매상품|유저별 판매상품|상품정렬|
 |:---:|:---:|:---:|
-|![팔로잉판매상품](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8a75e2b4-c96e-45e7-bb4e-01711069d49f)|![유저별 판매상품](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/2f03f08f-b036-4e4b-8cd1-eefc6658236d)|![상품정렬](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/0dcf84ec-c90d-4691-bb15-372f604508fe)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8a75e2b4-c96e-45e7-bb4e-01711069d49f" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/2f03f08f-b036-4e4b-8cd1-eefc6658236d" width="280px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/0dcf84ec-c90d-4691-bb15-372f604508fe" width="280px">|
 
 ### 5) 채팅
 |채팅|
 |---|
-|![채팅리스트](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/07fa1572-bf23-4430-922f-17f673dde447)|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/07fa1572-bf23-4430-922f-17f673dde447" width="280px">|
 
 <br />
 <p align="right"><a href="#top">(🔼 Top)</a></p>
