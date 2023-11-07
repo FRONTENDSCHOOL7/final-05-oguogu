@@ -6,7 +6,22 @@ import useConfirm from 'hook/useConfirm';
 import { PostDeleteAPI } from 'api/post.api';
 import { heartAPI, unheartAPI } from 'api/heart.api';
 
-export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted, update, type }) {
+export default function PostCard({
+  id,
+  text,
+  kate,
+  postImg,
+  profileImg,
+  authname,
+  authaccount,
+  commentCount,
+  heartCount,
+  createdDate,
+  isUpdate,
+  hearted,
+  update,
+  type,
+}) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const ellipsis = location !== `/post/${id}`;
@@ -122,7 +137,7 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
           </PostHeart>
           <PostComment onClick={handletoPost}>{commentCount}</PostComment>
         </div>
-        <PostDate>
+        <PostDate $isUpdate={isUpdate}>
           {createdDate[0]}년 {createdDate[1]}월 {createdDate[2]}일
         </PostDate>
         <MoreBtn onClick={handleMoreBtn} />

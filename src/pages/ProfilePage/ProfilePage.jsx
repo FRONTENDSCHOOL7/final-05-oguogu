@@ -1,11 +1,11 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { ScrollContainer } from 'components/common/container/Container.style';
 import ProfileBox from 'components/profile/ProfileBox';
 import Header from 'components/common/header/Header';
 import NavBar from 'components/common/navbar/NavBar';
-import { ScrollContainer } from 'components/common/container/Container.style';
 import ProductList from 'components/product/ProductList';
 import Feed from 'components/profile/Feed';
-import { useNavigate, useParams } from 'react-router';
 import useModal from 'hook/useModal';
 import useConfirm from 'hook/useConfirm';
 import BottomModal from 'components/common/modal/BottomModal';

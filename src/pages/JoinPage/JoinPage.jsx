@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EmailPwPage from '../../components/join/EmailPwPage';
+import EmailPwPage from 'components/join/EmailPwPage';
 import Header from 'components/login/Header';
 import { Container } from 'components/join/EmailPwPage.style';
 import ProfileSettingPage from './ProfileSettingPage';

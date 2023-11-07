@@ -8,6 +8,7 @@ import useModal from 'hook/useModal';
 import BottomModal from 'components/common/modal/BottomModal';
 import ConfirmModal from 'components/common/modal/ConfirmModal';
 import useConfirm from 'hook/useConfirm';
+import profile from 'assets/images/chatting-profile-01.png';
 
 function ChatRoomPage() {
   // 뒤로가기
@@ -103,14 +104,13 @@ function ChatRoomPage() {
   };
 
   // 기존채팅메시지 마크업
-  const image = <img src={iconChatCircle} alt="Chat Circle" />;
+  const image = <img src={profile} style={{ width: '42px' }} alt="Chat Circle" />;
   const contents = [
     {
-      message:
-        '옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.',
+      message: '오늘 날씨가 너무 좋네요!',
       time: '12:39',
     },
-    { message, time: '12:41' },
+    { message: '오늘 산책언제 나갈거에요?', time: '12:41' },
   ];
 
   const listItem = contents.map((item, index) => {
@@ -161,10 +161,10 @@ function ChatRoomPage() {
         <Container ref={containerRef}>
           {listItem}
           <ReverseWrap>
-            <TextBox2>
-              <p>네 말씀하세요</p>
+            {/* <TextBox2>
+              <p>아직 고민중...</p>
             </TextBox2>
-            <Time>12:50</Time>
+            <Time>12:50</Time> */}
           </ReverseWrap>
           {chatItemList}
           <Bottom>
@@ -183,7 +183,7 @@ function ChatRoomPage() {
               onChange={handleInputChange}
               onKeyDown={handleInputKeyDown}
             />
-            <Button $inputText={inputText} onClick={handleSend}>
+            <Button $inputText={inputText} type="button" onClick={handleSend}>
               전송
             </Button>
           </Bottom>

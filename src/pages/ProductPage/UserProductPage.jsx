@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { profileAPI } from 'api/profile.api';
 import { ScrollContainer } from 'components/common/container/Container.style';
 import Header from 'components/common/header/Header';
 import NavBar from 'components/common/navbar/NavBar';
 import ProductSection from 'components/product-page/ProductSection';
-import { useParams } from 'react-router';
-import { profileAPI } from 'api/profile.api';
 import BottomModal from 'components/common/modal/BottomModal';
 import ConfirmModal from 'components/common/modal/ConfirmModal';
 

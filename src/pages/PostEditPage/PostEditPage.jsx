@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { imgUploadAPI } from 'api/image.api';
+import { PostEditAPI, postDetailAPI, postUploadAPI } from 'api/post.api';
 import {
   AddPictureBtn,
   AddPictureContainer,
@@ -13,9 +16,6 @@ import {
 } from 'pages/PostUpload/PostUploadPage.style';
 import Header from 'components/common/header/Header';
 import Button from 'components/common/button/Button';
-import { useNavigate, useParams } from 'react-router-dom';
-import { imgUploadAPI } from 'api/image.api';
-import { PostEditAPI, postDetailAPI, postUploadAPI } from 'api/post.api';
 
 export default function PostEditPage() {
   const fileInputRef = useRef(null);

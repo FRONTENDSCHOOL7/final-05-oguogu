@@ -19,7 +19,7 @@ export default function PostList({ type, posts, update }) {
       return posts.map((post, index) => {
         const content = JSON.parse(post.content);
         const date = post.createdAt.split('T')[0].split('-');
-
+        const isUpdate = post.updatedAt !== post.createdAt;
         return (
           <li key={index}>
             <PostCard
@@ -33,6 +33,7 @@ export default function PostList({ type, posts, update }) {
               commentCount={post.commentCount}
               heartCount={post.heartCount}
               createdDate={date}
+              isUpdate={isUpdate}
               hearted={post.hearted}
               update={update}
             />

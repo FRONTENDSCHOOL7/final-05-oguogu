@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Header from 'components/login/Header';
-import Button from 'components/common/button/Button';
-import { Container, Label, EmailInput, PwInput, Line, Join, ErrMsg } from 'pages/LoginPage/EmailLoginPage.style';
 import { loginAPI } from 'api/login.api';
+import { Container, Label, EmailInput, PwInput, Line, Join, ErrMsg } from 'pages/LoginPage/EmailLoginPage.style';
+import Button from 'components/common/button/Button';
 import useUserForm from 'hook/useUserForm';
+import Header from 'components/login/Header';
 
 export default function EmailLoginPage() {
   const [disabled, setDisabled] = useState(true);
@@ -68,7 +68,6 @@ export default function EmailLoginPage() {
     const promise = loginAPI(email, password);
     promise
       .then((res) => {
-        console.log(res);
         if (res.user) {
           const userInfo = { id: res.user._id, accountname: res.user.accountname, username: res.user.username, userimg: res.user.image };
           localStorage.setItem('oguUserInfo', JSON.stringify(userInfo));

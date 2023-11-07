@@ -50,7 +50,7 @@ export default function Feed({ accountname }) {
   useEffect(() => {
     if (skip.current === 0) observe(target.current);
     updatepostlist();
-  }, []);
+  }, [accountname]);
 
   return (
     <Container>

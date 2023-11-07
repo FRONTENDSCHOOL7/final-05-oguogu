@@ -21,6 +21,10 @@ export const List = styled.li`
   width: 100%;
   padding: 13px 16px 13px 16px;
   border-bottom: 0.5px solid var(--gray-02);
+
+  img {
+    width: 42px;
+  }
 `;
 
 export const Box = styled.div`
