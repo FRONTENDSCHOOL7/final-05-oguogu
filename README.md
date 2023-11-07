@@ -26,7 +26,7 @@ PW: 123123
 
 > 📑 **프로젝트 발표자료**
 
-👉 [오구오구 PPT](https://docs.google.com/presentation/d/1Oww7F_DY7c0HhSB1T-Pc7IBxBc7B9f2ycFKcRLgMpZQ/edit?usp=sharing)
+👉 
 
 <br />
 
