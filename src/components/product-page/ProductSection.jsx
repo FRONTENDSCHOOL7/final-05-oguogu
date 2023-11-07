@@ -13,6 +13,7 @@ export default function ProductSection({ type, accountname, username }) {
     productListAPI(accountname)
       .then((res) => {
         setProducts(res);
+        setCurSort('최신순');
       })
       .catch((err) => {
         alert('판매상품목록 불러오기에 실패했습니다.');
