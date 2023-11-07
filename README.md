@@ -1,6 +1,16 @@
 # <span id='top'> 🐶오구오구🐱</span>
 
-[서비스소개](#이동할위치의텍스트)
+![앱소개메인04-min](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8eaf6dde-41a1-4701-a909-a24a24f6039d)
+
+<div align="center">
+
+<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/132d7542-72ca-4c66-807c-e854f3584fe3" height="30px;"/>
+<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a3d09d8c-f4a4-47d1-a084-602f210fb54b" height="30px;"/>
+<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/b4744123-f8a6-4393-ac45-bfc09b787fda" height="30px;"/>
+<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8471dcd6-3336-477f-865f-a96341fb4e52" height="30px;"/>
+<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4a314fc3-78c9-4d9d-b57b-ad176f81b60a" height="30px;"/>
+
+</div>
 
 ##  **1. 서비스 소개**
 > 🗝️ **오구오구 배포 링크 및 테스트 계정**
@@ -16,7 +26,7 @@ PW: 123123
 
 > 📑 **프로젝트 발표자료**
 
-👉 
+👉 [오구오구 PPT](https://docs.google.com/presentation/d/1Oww7F_DY7c0HhSB1T-Pc7IBxBc7B9f2ycFKcRLgMpZQ/edit?usp=sharing)
 
 <br />
 
@@ -24,7 +34,7 @@ PW: 123123
 
 <div align="center">
 
-| <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/e6b24baa-c56f-42f9-9915-4094603b6fcf" height="25px;"/> <br><img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/57075377-68bf-409b-94a7-86ba6299ffb5" height="25px;" /> |             <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/fc95649e-8a8e-4643-a722-0cdb828d2563" height="25px;"/>              |           <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f30ab509-7b41-499a-9233-577f6e1f753d" height="25px;" />           |                                                                          
+| <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/e6b24baa-c56f-42f9-9915-4094603b6fcf" height="28px;"/> <br><img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/57075377-68bf-409b-94a7-86ba6299ffb5" height="28px;" /> |             <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/fc95649e-8a8e-4643-a722-0cdb828d2563" height="28px;"/>              |           <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f30ab509-7b41-499a-9233-577f6e1f753d" height="28px;" />           |                                                                          
 | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | 
 |                      <img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/7aa6f7e7-880b-4f53-835e-116085fdfa2a" width="120px;" alt=""/>                       | <img src="https://avatars.githubusercontent.com/u/53458437?v=4" width="120px;" alt=""/> | <img src="https://avatars.githubusercontent.com/u/129969049?v=4" width="120px;" alt=""/> |   
 |                                                 [👩🏻‍💻한혜지](https://github.com/hanhj0516)                                                 |                             [👩🏻‍💻최유진](https://github.com/yujin1228)                              |                            [👩🏻‍💻이주연](https://github.com/Meow-Chu)                             |                                                                                                  
@@ -34,13 +44,16 @@ PW: 123123
 <p align="right"><a href="#top">(🔼 Top)</a></p>
 
 ##  **3. 개발기간**
+![milestone](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/9b4f8bbf-948a-46cc-8be8-558a1fdac372)
 
 <br />
 
 ##  **4. 개발환경 및 기술스택**
 ### 개발환경
 
+
 ### 기술스택 및 선정이유
+
 
 ### 폴더구조
 <details>
@@ -292,6 +305,7 @@ function Person(){}
 - 게시물수정,삭제 기능 구현
 - 상품등록,수정 기능 구현
 - 로그아웃 기능구현
+- 모달 기능 구현
 
 <br/>
 
@@ -385,15 +399,23 @@ function Person(){}
 
 ##  **7. 주요코드**
 
+공통컴포넌트 -> 
+
+무한스크롤 -> useObserve
+
+유저검색 -> 디바운스
 
 <br/>
 <p align="right"><a href="#top">(🔼 Top)</a></p>
 
 ##  **8. 리팩토링 계획**
 
-♻️ 반응형작업
-♻️ 로그인,회원가입 유효성 검사 코드 리팩토링
-♻️ 
+♻️ 반응형작업 <br/>
+♻️ 로그인,회원가입 유효성 검사 코드 리팩토링 <br/>
+♻️ 웹 접근성 높이기 <br/> 
+♻️ 네브바 현재 위치하고있는 페이지에 해당하는 버튼 클릭시 top버튼 역할 수행 <br/>
+♻️ 채팅기능 구현 <br/>
+♻️ 날씨 API를 사용하여 산책하기 좋은 날 추천 <br/>
 
 <br/>
 <p align="right"><a href="#top">(🔼 Top)</a></p>
@@ -407,5 +429,6 @@ function Person(){}
 
 
 ### 💛 이주연
+
 
 <p align="right"><a href="#top">(🔼 Top)</a></p>
