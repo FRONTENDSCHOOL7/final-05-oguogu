@@ -238,7 +238,7 @@ function Person(){}
 ### 1) 홈
 |시작 화면|회원가입 페이지|프로필 설정 페이지|
 |---|---|---|
-|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f410d4e3-87bd-4d39-a6fb-3d5135a00413" width="240px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/88cf3ecb-25b7-4196-95de-be1da88e1b77" width="240px">|<img src="https://cdn.discordapp.com/attachments/1161566354432851998/1171456196289511524/ezgif.com-video-to-gif.gif?ex=655cbe99&is=654a4999&hm=e24b2cf98bcde12193546db7d9b6e6478eec52f1a73c9687eaad349d21b2d797&" width="240px">|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f410d4e3-87bd-4d39-a6fb-3d5135a00413" width="248px">|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/88cf3ecb-25b7-4196-95de-be1da88e1b77" width="248px">|<img src="https://cdn.discordapp.com/attachments/1161566354432851998/1171456196289511524/ezgif.com-video-to-gif.gif?ex=655cbe99&is=654a4999&hm=e24b2cf98bcde12193546db7d9b6e6478eec52f1a73c9687eaad349d21b2d797&" width="248px">|
 
 |로그인 페이지|피드 페이지|검색 페이지|
 |:---:|:---:|:---:|
