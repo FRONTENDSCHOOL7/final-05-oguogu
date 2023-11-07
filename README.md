@@ -32,6 +32,7 @@ PW: 123123
 </div>
 <br />
 <p align="right"><a href="#top">(🔼 Top)</a></p>
+
 ##  **3. 개발기간**
 
 <br />
@@ -190,50 +191,75 @@ function Person(){}
   ```
 </details>
 
+<details>
+  <summary>이슈 템플릿</summary>
+  <img width="835" alt="이슈컨벤션" src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/afbde29e-db17-4287-b4f9-702018ae5189">
+
+
+  ✨ Feat        → 기능 및 마크업 구현작업 이슈 생성
+  
+  🐞 Fix           → 버그 발견 및 수정 이슈 생성
+  
+  ♻️ Refactor → 코드 리팩토링 이슈 생성
+  
+  ⚙️ Setting   → 설정 작업 이슈 생성
+
+</aside>
+</details>
+
+<details>
+  <summary>PR 템플릿</summary>
+  <img width="775" alt="피알컨벤션" src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/221cf466-e7dc-4462-892a-0acc4f002bcd">
+
+  
+</details>
+
 <br />
 <p align="right"><a href="#top">(🔼 Top)</a></p>
+
+
 
 ##  **5. UI & 기능소개**
 ### 1) 홈
 |시작 화면|회원가입 페이지|프로필 설정 페이지|
 |---|---|---|
-|![splash]()|![회원가입]()|![프로필설정]()|
+|![splash](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f410d4e3-87bd-4d39-a6fb-3d5135a00413)|![회원가입](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/88cf3ecb-25b7-4196-95de-be1da88e1b77)|![프로필설정](https://im3.ezgif.com/tmp/ezgif-3-1fa6501752.gif)|
 
 |로그인 페이지|피드 페이지|검색 페이지|
 |:---:|:---:|:---:|
-|![로그인]()|![피드]()|![검색]()|
+|![로그인](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/918da826-2562-4723-b308-d39cce3d4301)|![피드](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/9a7d0592-13e6-4e02-80bf-ad742fcf0562)|![검색](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/824dd2ef-06d4-458a-8122-7fc99153f68f)|
 
 ### 2) 프로필
 |프로필 페이지|팔로워/팔로잉 페이지|
 |---|---|
-|![프로필]()|![팔로우페이지]()|
+|![프로필](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3cead297-839e-4742-b924-9a4bfd121e5b)|![팔로우페이지](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/c637ed9e-4b4e-4960-b97a-f4662fc2b4fa)|
 
 |프로필 수정|로그아웃|
 |:---:|:---:|
-|![프로필수정]()|![로그아웃]()|
+|![프로필수정](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/3e06c64d-7e9d-4938-875f-b4723d85eb72)|![로그아웃](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a8c4c00a-b88d-40b1-a26b-a4e00efdb599)|
 
 ### 3) 게시글
 |게시글 작성|게시글 수정|게시글 삭제|
 |---|---|---|
-|![게시글작성]()|![게시글수정]()|![게시글삭제]()|
+|![게시글작성](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d432a36e-a8c0-461a-b13e-3433dc5ddcc3)|![게시글수정](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/5cd9d788-04ce-478e-8bbe-4618a1532f4f)|![게시글삭제](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/f38d02ac-4fac-4c82-abe7-0ed826a9d28c)|
 
-|게시글 상세|댓글작성|댓글삭제|
+|좋아요기능|댓글작성|댓글삭제|
 |:---:|:---:|:---:|
-|![좋아요기능]()|![댓글작성]()|[댓글삭제]()|
+|![좋아요기능](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d0350d42-a687-411f-87ff-42f805b670d0)|![댓글작성](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/83de368b-a2b7-4e5d-825a-92ca3aaca127)|![댓글삭제](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/16621fce-5a5e-4f33-b0d3-b1161b9fcfcb)|
 
 ### 4) 판매상품
 |상품등록|상품수정|상품삭제|
 |---|---|---|
-|![splash]()|![회원가입]()|![프로필]()|
+|![상품등록](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4884e8fb-cd62-4182-b60e-8093c0894178)|![상품수정](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/6da56eb0-eadf-42b2-adee-0968a3a3dc44)|![상품삭제](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/63c8ca07-a813-42fd-8df6-383f1d8a1eec)|
 
 |팔로잉 판매상품|유저별 판매상품|상품정렬|
 |:---:|:---:|:---:|
-|![로그인]()|![피드]()|![검색]()|
+|![팔로잉판매상품](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8a75e2b4-c96e-45e7-bb4e-01711069d49f)|![유저별 판매상품](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/2f03f08f-b036-4e4b-8cd1-eefc6658236d)|![상품정렬](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/0dcf84ec-c90d-4691-bb15-372f604508fe)|
 
 ### 5) 채팅
-|채팅리스트|채팅룸|
-|---|---|
-|![splash]()|![회원가입]()|
+|채팅|
+|---|
+|![채팅리스트](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/07fa1572-bf23-4430-922f-17f673dde447)|
 
 <br />
 <p align="right"><a href="#top">(🔼 Top)</a></p>
@@ -249,17 +275,23 @@ function Person(){}
 
 > **UI 구현**
 
-- 프로필페이지 내 판매상품,게시물 영역
+- 프로필페이지 내 프로필영역,게시물 갤러리형식
 - 팔로잉 팔로워 페이지
 - 상품 등록/수정 페이지
 - 게시글 등록/수정 페이지
+- 모달바텀시트/컨펌모달
+- 검색페이지
+- 스플래시 애니메이션
+- 메인페이지(sns로그인페이지)
+- 404페이지
 
 <br/>
 
 > **기능 구현**
 
-- ㅇㅇ
-- ㅇㅇ
+- 게시물수정,삭제 기능 구현
+- 상품등록,수정 기능 구현
+- 로그아웃 기능구현
 
 <br/>
 
@@ -330,15 +362,23 @@ function Person(){}
 
 > **UI 구현**
 
-- ㅇㅇ
-- ㅇㅇ
+- 이메일로그인 페이지
+- 회원가입 페이지
+- 프로필수정 페이지
+- 채팅목록,채팅방 페이지
 
 <br/>
 
 > **기능 구현**
 
-- ㅇㅇ
-- ㅇㅇ
+- 로그인기능 구현
+  - 유효성 검사
+- 회원가입 기능구현
+  - 유효성 검사
+  - 이메일,계정아이디 중복확인 기능
+- 프로필 수정 기능구현
+
+  
 
 <br/>
 <p align="right"><a href="#top">(🔼 Top)</a></p>
@@ -350,6 +390,10 @@ function Person(){}
 <p align="right"><a href="#top">(🔼 Top)</a></p>
 
 ##  **8. 리팩토링 계획**
+
+♻️ 반응형작업
+♻️ 로그인,회원가입 유효성 검사 코드 리팩토링
+♻️ 
 
 <br/>
 <p align="right"><a href="#top">(🔼 Top)</a></p>
