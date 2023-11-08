@@ -4,11 +4,6 @@
 
 <div align="center">
 <p>🐶반려동물을 사랑하는 모두를 위한 온라인 반려동물 SNS🐱</p>
-<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/132d7542-72ca-4c66-807c-e854f3584fe3" height="30px;"/>
-<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/a3d09d8c-f4a4-47d1-a084-602f210fb54b" height="30px;"/>
-<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/b4744123-f8a6-4393-ac45-bfc09b787fda" height="30px;"/>
-<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/8471dcd6-3336-477f-865f-a96341fb4e52" height="30px;"/>
-<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4a314fc3-78c9-4d9d-b57b-ad176f81b60a" height="30px;"/>
 
 </div>
 
@@ -89,9 +84,6 @@ PW: 123123
 <br />
 
 ### 협업방식
-<img width="20px" src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/5905a744-fe02-4e56-a637-2ee6c6d66e01" >
-<img width="20px" src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/4d48d4ad-22ac-44cd-8ea0-38de0c51d013" >
-<img width="20px" src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/d268045f-e787-4460-8dcb-19c3a34c5467" >
 
 <br />
 
