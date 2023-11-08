@@ -13,6 +13,18 @@
 </div>
 
 ##  **1. 서비스 소개**
+> 🐶🐱 **About 오구오구**
+
+👉 오구오구는 반려동물 커뮤니티이자 중고 거래 및 상품 거래 서비스입니다. <br />
+사용자들은 오구오구에서 반려동물을 사랑하는 이들과 자유롭게 소통하고, 정보를 공유하며, 반려동물 관련 제품들을 거래할 수 있습니다.<br />
+반려동물 양육자의 수와 이와 관련된 산업이 고도로 성장하는 펫코노미(Pet+Economy)시대가 도래함에 따라, 반려동물과 반려인을 위한 따뜻한 공간을 만들자는 취지에서 오구오구 프로젝트는 시작되었습니다.<br />
+오구오구에서는 커뮤니티 회원들과 더 이상 필요하지 않은 반려동물용품을 중고거래함으로써 경제적인 부담을 줄일 할 수 있습니다.<br />
+또한, 반려동물과 관련된 다양한 상품들을 판매하는 공간도 마련되어 있습니다. 필요한 제품을 쉽고 빠르게 찾아볼 수 있으며, 다양한 제품들 중에서 가장 적합한 제품을 선택해 반려동물의 행복을 증진시킬 수 있습니다.<br />
+하지만 오구오구가 제공하는 가장 큰 가치는 바로 'COMMUNICATION'입니다. 오구오구는 반려동물을 사랑하는 모든 이들이 자유롭게 이야기를 나누고, 경험과 정보를 공유하는 활발한 커뮤니티를 만들고자 합니다.<br />
+비반려인이어도 괜찮습니다. 동물을 사랑하는 분들이라면, 언제든 오구오구의 랜선집사가 되어주세요.<br />
+
+<br />
+
 > 🗝️ **오구오구 배포 링크 및 테스트 계정**
 
 👉 [오구오구 시작하기](https://oguogu.netlify.app/)
@@ -52,12 +64,12 @@ PW: 123123
 
 ##  **4. 개발환경 및 기술스택**
 ### 개발환경
-![by](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/b962d167-75fc-42c4-a7f8-6f6250db3411)
+![by](https://media.discordapp.net/attachments/1161566354432851998/1171642196445909063/673ef40d85a50490.png?ex=655d6bd3&is=654af6d3&hm=8df733bccaeee05cf240117930eb452b486ce9c6e720ea1f18c0aa1cf79e6771&=&width=2362&height=992)
 
 
 
 ### 기술스택 및 선정이유
-![stack](https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/aa679a35-fc56-4385-8149-cdfbd7f97c38)
+![stack](https://media.discordapp.net/attachments/1161566354432851998/1171642197058269275/7d878182a3663673.png?ex=655d6bd3&is=654af6d3&hm=c3cfcc632097563f9834d561449869401cf29a1e0fa4cf6ddb21a6f728c20814&=&width=2362&height=660)
 
 ### 작업방식(workflow)
 **branch 작업 방식**
@@ -319,6 +331,12 @@ function Person(){}
 |채팅|
 |---|
 |<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/07fa1572-bf23-4430-922f-17f673dde447" width="248px">|
+
+
+### 6) Not Found
+|404|
+|---|
+|<img src="https://github.com/FRONTENDSCHOOL7/final-05-oguogu/assets/53458437/642c42f8-0953-4e24-b8f7-d3aa1e1c7241" width="248px">|
 
 <br />
 <p align="right"><a href="#top">(🔼 Top)</a></p>
