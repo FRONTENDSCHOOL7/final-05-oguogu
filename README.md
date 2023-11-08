@@ -64,7 +64,7 @@ PW: 123123
 
 ##  **4. 개발환경 및 기술스택**
 ### 개발환경
-![by](https://media.discordapp.net/attachments/1161566354432851998/1171642196445909063/673ef40d85a50490.png?ex=655d6bd3&is=654af6d3&hm=8df733bccaeee05cf240117930eb452b486ce9c6e720ea1f18c0aa1cf79e6771&=&width=2362&height=992)
+![by](https://media.discordapp.net/attachments/1161566354432851998/1171643375380860928/a8a8bf37effeeaa7.png?ex=655d6cec&is=654af7ec&hm=cd7d4c2b617bde970a77e076fd081e961a455d44db5fbec71f1b486e968effed&=&width=2362&height=1116)
 
 
 
