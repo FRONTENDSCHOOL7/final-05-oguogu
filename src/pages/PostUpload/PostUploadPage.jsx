@@ -19,58 +19,55 @@ import { postUploadAPI } from 'api/post.api';
 
 export default function PostUploadPage() {
   const fileInputRef = useRef(null);
-  const images = useRef([]);
-  const [previewImages, setPreviewImages] = useState([]);
+  const images = useRef([]); // 빈 배열로 초기화
+  const [previewImages, setPreviewImages] = useState('');
   const [curKategorie, setCurKategorie] = useState('#내새꾸자랑');
   const [text, setText] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
-  //뒤로가기
+  // 뒤로가기
   const navigate = useNavigate();
-  const back = () => {
-    navigate(-1);
-  };
 
-  //카테고리 버튼 클릭이벤트
+  // 카테고리 버튼 클릭 이벤트
   const handleSelectBtn = (e) => {
     setCurKategorie(e.target.textContent);
   };
 
-  //사진추가
-  const handleFileSelect = (e) => {
-    images.current.push(e.target.files[0]);
-    if (images.current.length) {
-      const imageUrl = URL.createObjectURL(images.current[0]);
-      setPreviewImages([...previewImages, imageUrl]);
-    }
-  };
+// 사진 추가
+const handleFileSelect = (e) => {
+  const selectedImage = e.target.files[0];
+  images.current = [selectedImage]; // Set the images array with the selected image
+  if (selectedImage) {
+    const imageUrl = URL.createObjectURL(selectedImage);
+    setPreviewImages(imageUrl);
+  }
+};
 
-  //사진삭제
-  const handleRemoveImage = (index) => {
-    const updatedpreviewImages = [...previewImages];
-    updatedpreviewImages.splice(index, 1);
-    setPreviewImages(updatedpreviewImages);
-  };
+// 사진 삭제
+const handleRemoveImage = () => {
+  images.current = [];
+  setPreviewImages(''); 
+};
 
-  //게시글 내용 입력 받기
+  // 게시글 내용 입력 받기
   const handleOnChangeText = (e) => {
     setText(e.target.value);
   };
 
-  //게시글 내용이 있을때만 버튼 활성화
+  // 게시글 내용이 있을 때만 버튼 활성화
   useEffect(() => {
     text === '' ? setSubmitDisabled(true) : setSubmitDisabled(false);
   }, [text]);
 
-  //게시글 업로드
+  // 게시글 업로드
   const handleSubmit = () => {
-    //이미지업로드 api
+    // 이미지 업로드 api
     const uploadImg = imgUploadAPI(images.current[0]);
     uploadImg
       .then((res) => {
         const imgPath = res === 'https://api.mandarin.weniv.co.kr/undefined' ? '' : res;
         const content = { text: text, kate: curKategorie };
-        //게시글작성 api
+        // 게시글 작성 api
         const promise = postUploadAPI(JSON.stringify(content), imgPath);
         promise
           .then((data) => {
@@ -81,25 +78,25 @@ export default function PostUploadPage() {
           });
       })
       .catch((err) => {
-        alert('이미지업로드 실패');
+        alert('이미지 업로드 실패');
       });
   };
 
   return (
     <UploadPageBg>
-      <Header type="btn" btnText="업로드" btndisabled={submitDisabled} leftOnClick={back} rightOnClick={handleSubmit} />
+      <Header type="btn" btnText="업로드" btndisabled={submitDisabled} rightOnClick={handleSubmit} />
       <AddPictureContainer>
         <AddPictureBtn onClick={() => fileInputRef.current.click()}>
           <FileInput type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} />
           사진 추가
         </AddPictureBtn>
         <AddPictureList>
-          {previewImages.map((image, index) => (
-            <AddPictureListEle key={index}>
-              <img src={image} alt={`Image ${index}`} />
-              <CanclePictureBtn onClick={() => handleRemoveImage(index)} />
+          {previewImages && (
+            <AddPictureListEle key={1}>
+              <img src={previewImages} alt={`Image`} />
+              <CanclePictureBtn onClick={() => handleRemoveImage()} />
             </AddPictureListEle>
-          ))}
+          )}
         </AddPictureList>
       </AddPictureContainer>
       <EnterText value={text} onChange={handleOnChangeText} placeholder="게시글 입력하기" />
