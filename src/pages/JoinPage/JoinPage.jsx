@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import EmailPwPage from './EmailPwPage';
+import EmailPwPage from '../../components/join/EmailPwPage';
 import Header from 'components/login/Header';
-import { Container } from 'pages/JoinPage/EmailPwPage.style';
+import { Container } from 'components/join/EmailPwPage.style';
 import ProfileSettingPage from './ProfileSettingPage';
 import Button from 'components/common/button/Button';
 import useUserForm from 'hook/useUserForm';

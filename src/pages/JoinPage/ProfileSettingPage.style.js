@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Container = styled.div`
+export const Container2 = styled.div`
   width: 100%;
   border-bottom: none;
   background-color: var(--white);
@@ -8,6 +8,10 @@ export const Container = styled.div`
   flex-direction: column;
   position: relative;
   padding-top: 36px;
+
+  button {
+    margin: 0 auto;
+  }
 `;
 
 export const Wrap = styled.div`

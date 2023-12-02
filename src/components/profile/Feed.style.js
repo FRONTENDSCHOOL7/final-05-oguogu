@@ -51,3 +51,8 @@ export const PostGalleryBtn = styled(PostNormalBtn)`
 export const EmptyBox = styled.div`
   padding: 120px 0;
 `;
+
+export const LoaderBox = styled.div`
+  min-height: calc(100vh - 700px);
+  position: relative;
+`;

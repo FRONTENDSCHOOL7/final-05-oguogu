@@ -27,7 +27,6 @@ function ChatRoomPage() {
     // 스크롤을 컨테이너 하단으로 이동
     const container = containerRef.current;
     container.scrollTop = container.scrollHeight;
-    console.log('스크롤바', containerRef.current);
   }, [chatItems]);
 
   // Chatlist페이지의 메시지 불러오기

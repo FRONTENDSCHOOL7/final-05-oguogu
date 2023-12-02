@@ -20,7 +20,7 @@ export const SectionTitle = styled.h2`
   line-height: 19px;
 `;
 
-export const MoreLink = styled(Link)`
+export const MoreBtn = styled.button`
   color: var(--gray-01);
   font-size: 12px;
   position: absolute;

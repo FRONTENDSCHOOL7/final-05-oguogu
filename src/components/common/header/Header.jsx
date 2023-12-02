@@ -18,7 +18,7 @@ export default function Header({ type, text, btnText, rightOnClick, btndisabled 
           <SearchBtn onClick={rightOnClick} />
         </Container>
       );
-    case 'follow':
+    case 'text':
       return (
         <Container>
           <Button vari="back" onClick={toBack} />

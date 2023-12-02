@@ -47,6 +47,7 @@ export default function PostDetailPage() {
                 heartCount={post.heartCount}
                 createdDate={post.createdAt.split('T')[0].split('-')}
                 hearted={post.hearted}
+                type="detail"
                 update={postDetail}
               />
             </PostBox>

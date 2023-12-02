@@ -20,8 +20,9 @@ export const EditMyInfoAPI = async ({ username, accountname, intro, image }) => 
       image: image,
     },
   };
+
   try {
-    const result = await tokenInstance.put('user');
+    const result = await tokenInstance.put('user', reqData);
     return result.data;
   } catch (error) {
     throw error;

@@ -6,6 +6,7 @@ import iconShare from 'assets/images/icon_share.png';
 import iconChat from 'assets/images/icon_message_small.png';
 import { profileAPI } from 'api/profile.api';
 import { followAPI, unfollowAPI } from 'api/follow.api';
+import Loader from 'components/common/loader/Loader';
 
 export default function ProfileBox({ accountname, isMyProfile }) {
   const [profileInfo, setProfileInfo] = useState(null);
@@ -79,7 +80,6 @@ export default function ProfileBox({ accountname, isMyProfile }) {
           </p>
         </span>
       </ProfileHeader>
-
       <ProfileMain>
         <li>{profileInfo.username}</li>
         <li>@{profileInfo.accountname}</li>
@@ -103,6 +103,8 @@ export default function ProfileBox({ accountname, isMyProfile }) {
       )}
     </ProfileBoxBg>
   ) : (
-    <ProfileBoxBg />
+    <ProfileBoxBg>
+      <Loader />
+    </ProfileBoxBg>
   );
 }

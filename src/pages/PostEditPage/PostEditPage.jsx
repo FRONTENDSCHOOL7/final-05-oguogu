@@ -16,6 +16,24 @@ import Button from 'components/common/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { imgUploadAPI } from 'api/image.api';
 import { PostEditAPI, postDetailAPI, postUploadAPI } from 'api/post.api';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  AddPictureBtn,
+  AddPictureContainer,
+  AddPictureList,
+  AddPictureListEle,
+  CanclePictureBtn,
+  Categorybox,
+  EnterText,
+  FileInput,
+  SelectCategory,
+  UploadPageBg,
+} from 'pages/PostUpload/PostUploadPage.style';
+import Header from 'components/common/header/Header';
+import Button from 'components/common/button/Button';
+import { useNavigate, useParams } from 'react-router-dom';
+import { imgUploadAPI } from 'api/image.api';
+import { PostEditAPI, postDetailAPI, postUploadAPI } from 'api/post.api';
 
 export default function PostEditPage() {
   const fileInputRef = useRef(null);
@@ -100,6 +118,33 @@ const handlePostEdit = () => {
 
   
   return (
+    <UploadPageBg>
+      <Header type="btn" btnText="업로드" btndisabled={submitDisabled} rightOnClick={handlePostEdit} />
+      <AddPictureContainer>
+        <AddPictureBtn onClick={() => fileInputRef.current.click()}>
+          <FileInput type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} />
+          사진 추가
+        </AddPictureBtn>
+        <AddPictureList>
+          {previewImages && (
+            <AddPictureListEle key={1}>
+              <img src={previewImages} alt={`Image`} />
+              <CanclePictureBtn onClick={() => handleRemoveImage()} />
+            </AddPictureListEle>
+          )}
+        </AddPictureList>
+      </AddPictureContainer>
+      <EnterText value={text} onChange={handleOnChangeText} placeholder="게시글 입력하기" />
+      <SelectCategory>카테고리 선택</SelectCategory>
+      <Categorybox>
+        <Button size="md" vari="shadow" text="#내새꾸자랑" selected={curKategorie === '#내새꾸자랑'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#고민있어요" selected={curKategorie === '#고민있어요'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#질문있어요" selected={curKategorie === '#질문있어요'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#내새꾸간식" selected={curKategorie === '#내새꾸간식'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#내새꾸선물" selected={curKategorie === '#내새꾸선물'} onClick={handleSelectBtn} />
+      </Categorybox>
+    </UploadPageBg>
+  );
     <UploadPageBg>
       <Header type="btn" btnText="업로드" btndisabled={submitDisabled} rightOnClick={handlePostEdit} />
       <AddPictureContainer>

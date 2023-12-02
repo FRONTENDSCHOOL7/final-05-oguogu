@@ -31,7 +31,6 @@ export default function CommentList({ postid, commentCount, update }) {
   };
 
   const [observe, unobserve] = useObserve(() => {
-    console.log('hi');
     skip.current += 10;
     addCommentList();
   });

@@ -16,12 +16,12 @@ export default function PostList({ type, posts, update }) {
         );
       });
     } else if (type === 'normal') {
-      return posts.map((post) => {
+      return posts.map((post, index) => {
         const content = JSON.parse(post.content);
         const date = post.createdAt.split('T')[0].split('-');
 
         return (
-          <li key={post.id}>
+          <li key={index}>
             <PostCard
               id={post.id}
               text={content.text}
@@ -41,5 +41,6 @@ export default function PostList({ type, posts, update }) {
       });
     }
   };
+
   return type === 'normal' ? <Container $type={type}>{postlist()}</Container> : <PostImgContainer>{postlist()}</PostImgContainer>;
 }
