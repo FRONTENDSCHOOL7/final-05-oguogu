@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   padding: 41px 34px 0;
-  form {
-    margin-bottom: 30px;
-  }
 `;
 
 export const Join = styled.button`
