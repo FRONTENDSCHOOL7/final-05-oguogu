@@ -8,8 +8,7 @@ export const CommonFont = `
 
 const StyledLabel = styled.label`
   display: block;
-  width: 100%;
-  box-sizing: border-box;
+  text-align: left;
   margin-top: 16px;
   padding-left: 0.2em;
   color: var(--gray-01);
@@ -22,7 +21,7 @@ const StyledInput = styled.input`
   ${CommonFont}
   border: none;
   border-bottom: 1px solid var(--gray-02);
-
+  display: block;
   height: 40px;
   width: 100%;
   color: var(--black);
@@ -44,6 +43,7 @@ const StyledError = styled.p`
   ${CommonFont}
   margin-top:6px;
   margin-bottom: 6px;
+  text-align: left;
 `;
 
 export { StyledLabel, StyledInput, StyledError };

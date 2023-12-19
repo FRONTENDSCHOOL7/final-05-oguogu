@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from 'components/common/button/Button';
-import Input from 'components/common/Input/Input';
-import { StyledInputWrap, StyledButtonWrap } from './LoginForm.style';
+import Input from 'components/common/input/Input';
+import { StyledInputWrap, StyledButtonWrap, StyledCheckbox, StyledCheckboxLable, CheckboxDiv } from './LoginForm.style';
 import { loginAPI } from 'api/login.api';
 
 export default function Loginform() {
+  const [hasError, setHasError] = useState(false);
+  const [error, setErrors] = useState({});
+  const [testLogin, setTestLogin] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.redirectedFrom?.pathname || '/home';
+  const { email, password } = location.state || {};
+
   const {
     setValue,
     register,
@@ -14,14 +22,10 @@ export default function Loginform() {
     setError,
     trigger,
     formState: { errors, isValid },
-  } = useForm({ mode: 'onChange' });
-
-  const [hasError, setHasError] = useState(false);
-  const [error, setErrors] = useState({});
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location?.state?.redirectedFrom?.pathname || '/home';
+  } = useForm({
+    mode: 'onBlur',
+    defaultValues: { email, password },
+  });
 
   const LoginFormSubmit = (formData) => {
     const promise = loginAPI(formData.email, formData.password);
@@ -44,6 +48,20 @@ export default function Loginform() {
       .catch((error) => {
         alert('에러 발생: ' + error.message);
       });
+  };
+
+  const handleCheck = () => {
+    handleFieldChange();
+    if (!testLogin) {
+      setTestLogin(true);
+      setValue('email', 'oguogu5959@naver.com');
+      setValue('password', '123123');
+    } else {
+      setTestLogin(false);
+      setValue('email', '');
+      setValue('password', '');
+    }
+    trigger();
   };
 
   const handleFieldChange = () => {
@@ -72,9 +90,10 @@ export default function Loginform() {
                 pattern: {
                   // eslint-disable-next-line
                   value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                  message: '*올바른 이메일을 입력해 주세요.',
+                  message: '*잘못된 이메일 형식입니다.',
                 },
               }),
+              defaultValue: email || '',
               errors,
             }}
           />
@@ -92,13 +111,19 @@ export default function Loginform() {
                 required: '*비밀번호는 필수 입력 값이에요.',
                 minLength: {
                   value: 6,
-                  message: '*비밀번호는 최소 6자 이상 입력해야 해요.',
+                  message: '*비밀번호는 6자 이상이어야 합니다.',
                 },
               }),
+              defaultValue: email || '',
               errors: errors.password ? { password: errors.password } : error,
             }}
           />
         </StyledInputWrap>
+
+        <CheckboxDiv>
+          <StyledCheckbox onClick={handleCheck} type="checkbox" id="testAccount" title="체크하시면 테스트 계정을 자동으로 입력해 드려요!" className="taste" />
+        </CheckboxDiv>
+        <StyledCheckboxLable htmlFor="testAccount">테스트 계정으로 맛보기</StyledCheckboxLable>
 
         <StyledButtonWrap>
           <Button size="lg" vari="basic" text="로그인" type="submit" onClick={handleSubmit} disabled={!isValid} />
