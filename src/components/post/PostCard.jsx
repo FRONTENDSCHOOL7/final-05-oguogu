@@ -115,8 +115,10 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
         <PostText $ell={ellipsis} onClick={handletoPost}>
           {text}
         </PostText>
-        {postImg !== '' && <PostImg src={postImg} onClick={handleClickImg} />}
         <div style={{ marginTop: '-7px' }}>
+          {postImg.split(',').map((imgUrl, index) => (
+            <PostImg key={index} src={imgUrl} onClick={() => handleClickImg(imgUrl)} />
+          ))}
           <PostHeart $hearted={isheart} onClick={handleToggleHeart}>
             {heartCount}
           </PostHeart>
