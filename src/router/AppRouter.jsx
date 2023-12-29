@@ -7,6 +7,7 @@ import ChatListPage from 'pages/ChatPage/ChatListPage';
 import ChatRoomPage from 'pages/ChatPage/ChatRoomPage';
 import EmailLoginPage from 'pages/LoginPage/EmailLoginPage';
 import JoinPage from 'pages/JoinPage/JoinPage';
+import ProfileSettingPage from 'pages/JoinPage/ProfileSettingPage';
 import PostUploadPage from 'pages/PostUpload/PostUploadPage';
 import ProfilePage from 'pages/ProfilePage/ProfilePage';
 import { ProtectedRoutePage, PublicRoutePage } from 'router/AccessRouter';
@@ -28,7 +29,10 @@ export default function AppRouter() {
         <Route element={<PublicRoutePage />}>
           <Route path="/" element={<MainLoginPage />} />
           <Route path="/login" element={<EmailLoginPage />} />
-          <Route path="/join" element={<JoinPage />} />
+          <Route path="/join">
+            <Route index element={<JoinPage />} />
+            <Route path="profile" element={<ProfileSettingPage />} />
+          </Route>
         </Route>
         <Route element={<ProtectedRoutePage />}>
           <Route path="/home" element={<HomePage />} />

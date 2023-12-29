@@ -1,176 +1,204 @@
-import React, { useState } from 'react';
-import { Image, ChangeBtn, ImageWrap } from 'components/join/ProfileForm.style';
-import { Container, Label, Input, Line, ErrMsg } from 'components/join/EmailPwPage.style';
-import iconPicture from 'assets/images/icon_picture.png';
+import React, { useState, useRef, useEffect } from 'react';
+import Input from 'components/common/input/Input';
+import { Container, ImageFormContainer, InputImage, ProfileInputImgButton, StyledProfileImg } from 'components/join/ProfileForm.style';
+import Button from 'components/common/button/Button';
+import { StyledInputWrap, StyledButtonWrap } from 'components/login/LoginForm.style';
+import DefaultProfileInput from 'assets/images/icon_ogudog_gray.png';
 import { accountValidAPI } from 'api/join.api';
+import { joinAPI } from 'api/join.api';
 import { imgUploadAPI } from 'api/image.api';
-import useUserForm from 'hook/useUserForm';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
-export default function ProfileForm({ handleSubmit, idDupeErrMsg, setIdDupeErrMsg, intro, setIntro, image, setImage, updateProfileInfo }) {
-  const { handleSetErrorMessage, errorMessage, setUsername, username, setAccountname, accountname } = useUserForm();
+export default function ProfileForm() {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    clearErrors,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: 'onBlur',
+    defaultValue: {
+      username: null,
+      accountname: null,
+      intro: null,
+      // 여기에 image는 없는데... 어째서 setValue함수를 사용할 수 있는걸까~~???
+    },
+  });
 
-  const [usernameFocus, setUsernameFocus] = useState(false);
-  const [accountnameFocus, setAccountnameFocus] = useState(false);
-  const [introFocus, setIntroFocus] = useState(false);
-  const [errUsernameVisible, setErrUsernameVisible] = useState(false);
-  const [errAccountnameVisible, setErrAccountnameVisible] = useState(false);
+  const [error, setErrors] = useState({});
+  const [hasError, setHasError] = useState(false);
+  const [profileImg, setProfileImg] = useState(DefaultProfileInput);
+  const inputRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const data = location.state;
 
-  const handleUpdate = () => {
-    // 콜백 함수를 사용하여 변경된 상태를 부모 컴포넌트에 전달
-    updateProfileInfo(username, accountname);
-  };
-
-  console.log(errorMessage);
-  // 미리보기만 해놓고 실제로 호출하는건 오구오구시작하기 버튼 눌렀을 때로
-  // 프로필사진 업로드
-  const handleImgUpload = async (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = async (event) => {
-        const newImage = event.target.result;
-        setImage(newImage);
-
-        // 이미지 업로드 API 호출 (Header에서 직접 호출)
-        try {
-          const imgUploadResult = await imgUploadAPI(file);
-          setImage(imgUploadResult);
-        } catch (error) {
-          console.error('이미지 업로드 실패:', error);
-        }
-      };
-
-      reader.readAsDataURL(file);
+  useEffect(() => {
+    if (data) {
+      setValue('email', data.email);
+      setValue('password', data.password);
     }
-  };
+    setValue('image', DefaultProfileInput);
+    setValue('username', null);
+    setValue('accountname', null);
+    setValue('intro', null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
-  const handleData = (event) => {
-    setIdDupeErrMsg(''); //accountname 에러 두줄 생김 방지를 위한 동기화
-    const value = event.target.value;
-    switch (event.target.id) {
-      case 'username':
-        setUsername(value);
-        break;
-      case 'accountname':
-        setAccountname(value);
-        break;
-      case 'intro':
-        setIntro(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  // 인풋값 에러메시지
-  const handleBlur = async (event) => {
-    setUsernameFocus(false);
-    setAccountnameFocus(false);
-    setIntroFocus(false);
-    handleSetErrorMessage();
-    handleUpdate(event);
-
-    // accountname 중복검사
-    await accountValidAPI(accountname)
-      .then((result) => {
-        if (result.message === '이미 가입된 계정ID 입니다.') {
-          const errmsg = result.message;
-          setIdDupeErrMsg(errmsg);
+  const checkUserIdValid = (accountname) => {
+    const promise = accountValidAPI(accountname);
+    return promise
+      .then((res) => {
+        if (res.message === '이미 가입된 계정ID 입니다.') {
+          setError('accountname', {
+            message: '*이미 사용 중인 ID입니다.',
+          });
+          setHasError(true);
+          return false;
+        } else {
+          setHasError(false);
+          clearErrors('accountname');
+          return true;
         }
       })
       .catch((error) => {
-        console.log('실패시', error.message);
+        alert('에러 발생: ' + error.message);
+        return false;
       });
-
-    // 유효성검사 에러메시지
-    const errMsgVisible = async () => {
-      if (event.target.id === 'username') {
-        setErrUsernameVisible(true);
-        setErrAccountnameVisible(false);
-      } else if (event.target.id === 'accountname') {
-        setErrAccountnameVisible(true);
-        setErrUsernameVisible(false);
-      }
-    };
-
-    await errMsgVisible();
   };
 
-  // 인풋값 밑줄포커스
-  const handleFocus = (event) => {
-    switch (event.target.id) {
-      case 'username':
-        setUsernameFocus(true);
-        break;
-      case 'accountname':
-        setAccountnameFocus(true);
-        break;
-      case 'intro':
-        setIntroFocus(true);
-        break;
-      default:
-        break;
+  const handleImageChange = async (event) => {
+    const file = event.target.files[0];
+    try {
+      const imgUrl = await imgUploadAPI(file);
+      if (imgUrl && !imgUrl.endsWith('undefined')) {
+        setProfileImg(imgUrl);
+        setValue('image', imgUrl);
+      } else {
+        setProfileImg(DefaultProfileInput);
+        setValue('image', DefaultProfileInput);
+      }
+    } catch (error) {
+      console.error('Image upload failed:', error);
     }
+  };
+
+  const handleSubmitData = async (formData) => {
+    try {
+      const isValidUserId = await checkUserIdValid(formData.accountname);
+      let defaultImg = profileImg;
+      if (defaultImg === null) {
+        defaultImg = DefaultProfileInput;
+      }
+      if (isValidUserId) {
+        await joinAPI(formData, data, defaultImg);
+        navigate('/login', {
+          state: {
+            email: formData.email,
+            password: formData.password,
+          },
+        });
+      }
+    } catch (errors) {
+      console.error(errors);
+    }
+  };
+
+  const handleFieldChange = () => {
+    setErrors({});
   };
 
   return (
     <>
-      <ImageWrap>
-        <Image $img={image} />
-      </ImageWrap>
-      {image && (
-        <ChangeBtn htmlFor="chooseImg">
-          <img src={iconPicture} alt="이미지업로드" />
-        </ChangeBtn>
-      )}
-      <input type="file" id="chooseImg" name="chooseImg" accept="image/*" onChange={handleImgUpload} style={{ display: 'none' }} />
-
       <Container>
-        <form onSubmit={handleSubmit}>
-          <Label htmlFor="username">사용자 이름</Label>
-          <Input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            placeholder="2~10자 이내여야 합니다."
-            required
-            onChange={handleData}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-          ></Input>
-          <Line $usernameFocus={usernameFocus}></Line>
-          {errUsernameVisible && (!username || errorMessage.username) && <ErrMsg>*{errorMessage.username}</ErrMsg>}
+        <form
+          onSubmit={handleSubmit((formData) => {
+            setHasError(false);
+            handleSubmitData(formData);
+          })}
+        >
+          <ImageFormContainer>
+            <label>
+              <InputImage id="profileImg" type="file" accept="image/jpg, image/jpeg, image/png" ref={inputRef} onChange={handleImageChange} />
+            </label>
+            <ProfileInputImgButton title="클릭하면 이미지를 불러올 수 있어요." type="button" onClick={() => inputRef.current.click()}>
+              <StyledProfileImg src={profileImg || DefaultProfileInput} alt="기본 프로필" $isDefault={profileImg === DefaultProfileInput} />
+            </ProfileInputImgButton>
+          </ImageFormContainer>
 
-          <Label htmlFor="accountname">계정 ID</Label>
-          <Input
-            type="text"
-            id="accountname"
-            name="accountname"
-            value={accountname}
-            placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-            onChange={handleData}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-          ></Input>
-          <Line $accountnameFocus={accountnameFocus}></Line>
-          {errAccountnameVisible && errorMessage.accountname && <ErrMsg>*{errorMessage.accountname}</ErrMsg>}
-          {idDupeErrMsg && <ErrMsg>*{idDupeErrMsg}</ErrMsg>}
+          <StyledInputWrap>
+            <Input
+              label="사용자이름"
+              id="username"
+              type="text"
+              placeholder="2~10자 이내여야 합니다."
+              onChange={handleFieldChange}
+              hasError={hasError}
+              registerOptions={{
+                ...register('username', {
+                  required: '*계정이름은 필수 입력입니다',
+                  minLength: {
+                    value: 2,
+                    message: '*사용자 이름은 최소 2자 이상이어야 합니다.',
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: '*사용자 이름은 최대 10자까지 허용됩니다.',
+                  },
+                }),
+                errors: errors.username ? { username: errors.username } : error,
+              }}
+            />
+          </StyledInputWrap>
 
-          <Label htmlFor="intro">소개</Label>
+          <StyledInputWrap>
+            <Input
+              label="계정 ID"
+              id="accountname"
+              type="text"
+              placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능해요."
+              onChange={handleFieldChange}
+              hasError={hasError}
+              registerOptions={{
+                ...register('accountname', {
+                  required: '*계정ID는 필수 입력입니다',
+                  pattern: {
+                    value: /^[0-9a-zA-Z._]+$/,
+                    message: '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.',
+                  },
+                  validate: {
+                    uniqueAccount: async (value) => {
+                      const result = await checkUserIdValid(value);
+                      return result === true || result;
+                    },
+                  },
+                }),
+                errors: errors.accountname ? { accountname: errors.accountname } : error,
+              }}
+            />
+          </StyledInputWrap>
+
           <Input
-            type="text"
+            label="소개"
             id="intro"
-            value={intro}
+            type="text"
             placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
-            required
-            onChange={handleData}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          ></Input>
-          <Line $introFocus={introFocus}></Line>
+            onChange={handleFieldChange}
+            hasError={hasError}
+            registerOptions={{
+              ...register('intro', {
+                required: '*간단한 소개 부탁드릴게요!',
+              }),
+              errors: errors.intro ? { intro: errors.intro } : error,
+            }}
+          />
+
+          <StyledButtonWrap>
+            <Button size="lg" vari="basic" text="오구오구 시작하기" onClick={handleSubmit} type="submit" disabled={!isValid} />
+          </StyledButtonWrap>
         </form>
       </Container>
     </>
