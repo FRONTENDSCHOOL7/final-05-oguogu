@@ -24,7 +24,6 @@ export default function ProfileForm() {
       username: null,
       accountname: null,
       intro: null,
-      // 여기에 image는 없는데... 어째서 setValue함수를 사용할 수 있는걸까~~???
     },
   });
 
