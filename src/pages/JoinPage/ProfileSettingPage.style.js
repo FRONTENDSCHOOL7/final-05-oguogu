@@ -28,7 +28,6 @@ export const ProfileSettingCenterText = styled.h1`
 `;
 
 export const CenterSubText = styled.p`
-  margin-bottom: 30px;
   color: var(--gray-01);
   text-align: center;
   font-size: 14px;
