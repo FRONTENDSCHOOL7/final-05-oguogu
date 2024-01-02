@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import Header from 'components/common/header/Header';
-import { Container2 } from 'pages/JoinPage/ProfileSettingPage.style';
-import useUserForm from 'hook/useUserForm';
+import { accountValidAPI } from 'api/join.api';
+import { imgUploadAPI } from 'api/image.api';
 import { myInfoAPI, EditMyInfoAPI } from 'api/profile.api';
+import { Container2 } from 'pages/JoinPage/ProfileSettingPage.style';
 import { Image, ChangeBtn, ImageWrap } from 'components/join/ProfileForm.style';
 import { Container, Label, Input, Line, ErrMsg } from 'components/join/EmailPwPage.style';
 import iconPicture from 'assets/images/icon_picture.png';
-import { accountValidAPI } from 'api/join.api';
-import { imgUploadAPI } from 'api/image.api';
+import Header from 'components/common/header/Header';
+import useUserForm from 'hook/useUserForm';
 
 export default function ProfileEditPage() {
   const { handleSetErrorMessage, errorMessage, setUsername, setAccountname, accountname, username } = useUserForm();
@@ -83,7 +83,7 @@ export default function ProfileEditPage() {
         }
       })
       .catch((error) => {
-        console.log('실패시', error.message);
+        alert('아이디중복확인을 실패했습니다 다시 시도해주세요');
       });
 
     // 유효성검사 에러메시지
@@ -152,7 +152,7 @@ export default function ProfileEditPage() {
         navigate(`/profile/${res.user.accountname}`, { replace: true });
       })
       .catch((error) => {
-        console.log('프로필 수정에 실패했습니다.', error);
+        alert('프로필 수정에 실패했습니다.');
       });
   };
 

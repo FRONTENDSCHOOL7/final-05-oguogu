@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Header from 'components/common/header/Header';
-import { AddImage, AddImageBtn, ProductInfoInput, AddProductPageContainer, ImageBox, Label, AddProductInfo } from '../AddProductPage/AddProductPage.style';
-import { productDetailAPI, productEditAPI, productUploadAPI } from 'api/product.api';
-import { imgUploadAPI } from 'api/image.api';
 import { useNavigate, useParams } from 'react-router';
+import { imgUploadAPI } from 'api/image.api';
+import { productDetailAPI, productEditAPI } from 'api/product.api';
+import { AddImage, AddImageBtn, ProductInfoInput, AddProductPageContainer, ImageBox, Label, AddProductInfo } from '../AddProductPage/AddProductPage.style';
+import Header from 'components/common/header/Header';
 
 export default function ProductEditPage() {
   const [image, setImage] = useState();

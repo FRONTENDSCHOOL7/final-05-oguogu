@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from 'components/common/button/Button';
-import Input from 'components/common/input/Input';
+import Input from 'components/common/Input/Input';
 import { StyledInputWrap, StyledButtonWrap, StyledCheckbox, StyledCheckboxLable, CheckboxDiv } from './LoginForm.style';
 import { loginAPI } from 'api/login.api';
 

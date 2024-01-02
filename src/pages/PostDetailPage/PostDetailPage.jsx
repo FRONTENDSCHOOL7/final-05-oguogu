@@ -1,10 +1,10 @@
-import { ScrollContainer } from 'components/common/container/Container.style';
-import Header from 'components/common/header/Header';
-import PostCard from 'components/post/PostCard';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { ScrollContainer } from 'components/common/container/Container.style';
 import { PostBox } from './PostDetailPage.style';
+import PostCard from 'components/post/PostCard';
 import { postDetailAPI } from 'api/post.api';
+import Header from 'components/common/header/Header';
 import CommentList from 'components/comment/CommentList';
 import CommentWrite from 'components/comment/CommentWrite';
 import BottomModal from 'components/common/modal/BottomModal';
@@ -46,6 +46,7 @@ export default function PostDetailPage() {
                 commentCount={post.commentCount}
                 heartCount={post.heartCount}
                 createdDate={post.createdAt.split('T')[0].split('-')}
+                isUpdate={post.updatedAt !== post.createdAt}
                 hearted={post.hearted}
                 type="detail"
                 update={postDetail}

@@ -26,12 +26,10 @@ const PostReact = css`
 
 const textEllipsis = css`
   overflow: hidden;
-  white-space: normal;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  word-break: keep-all;
 `;
 
 export const Container = styled.article`
@@ -95,6 +93,7 @@ export const PostText = styled.p`
   color: var(--black);
   font-size: 14px;
   line-height: 17px;
+  white-space: pre-wrap;
   ${(props) => props.$ell && textEllipsis}
   cursor: pointer;
 `;
@@ -124,4 +123,10 @@ export const PostHeart = styled.span`
 export const PostDate = styled.span`
   font-size: 10px;
   color: var(--gray-01);
+
+  &::after {
+    content: '(수정됨)';
+    display: ${(props) => (props.$isUpdate ? 'inline-block' : 'none')};
+    margin-left: 3px;
+  }
 `;

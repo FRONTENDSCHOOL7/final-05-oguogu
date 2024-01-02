@@ -29,7 +29,7 @@ export const ProductList = styled.ul`
 `;
 
 export const ItemContainer = styled.li`
-  width: 100%;
+  max-width: 174px;
   display: flex;
   flex-direction: column;
   gap: 7px;

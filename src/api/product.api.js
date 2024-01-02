@@ -5,7 +5,7 @@ export const productUploadAPI = async (product) => {
   const reqData = {
     product: {
       itemName: product.itemName,
-      price: parseInt((product.price).replace(/,/g , '')),
+      price: parseInt(product.price.replace(/,/g, '')),
       link: product.link,
       itemImage: product.itemImg,
     },
@@ -33,7 +33,7 @@ export const productEditAPI = async (product, productid) => {
   const reqData = {
     product: {
       itemName: product.itemName,
-      price: parseInt((product.price).replace(/,/g , '')),
+      price: parseInt(product.price.replace(/,/g, '')),
       link: product.link,
       itemImage: product.itemImg,
     },

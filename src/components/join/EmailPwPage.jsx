@@ -36,7 +36,7 @@ export default function EmailPwPage({ dupeErrVisible, handleDupeErrVisible }) {
         }
       })
       .catch((error) => {
-        console.log('실패시', error.message);
+        alert(error.message);
       });
 
     const errMsg = async () => {

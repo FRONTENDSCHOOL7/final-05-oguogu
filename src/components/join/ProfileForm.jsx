@@ -20,7 +20,7 @@ export default function ProfileForm({ handleSubmit, idDupeErrMsg, setIdDupeErrMs
     updateProfileInfo(username, accountname);
   };
 
-  console.log(errorMessage);
+  alert(errorMessage);
   // 미리보기만 해놓고 실제로 호출하는건 오구오구시작하기 버튼 눌렀을 때로
   // 프로필사진 업로드
   const handleImgUpload = async (event) => {
@@ -81,7 +81,7 @@ export default function ProfileForm({ handleSubmit, idDupeErrMsg, setIdDupeErrMs
         }
       })
       .catch((error) => {
-        console.log('실패시', error.message);
+        alert(error.message);
       });
 
     // 유효성검사 에러메시지

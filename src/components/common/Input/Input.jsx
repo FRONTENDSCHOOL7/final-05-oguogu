@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledLabel, StyledInput, StyledError } from 'components/common/input/Input.style';
+import { StyledLabel, StyledInput, StyledError } from 'components/common/Input/Input.style';
 
 const Input = ({ label, padding, id, type, placeholder, hasError, onSubmit, onChange, registerOptions, value }) => {
   const { onChange: registerOnChange, errors, ...restRegisterOptions } = registerOptions;
