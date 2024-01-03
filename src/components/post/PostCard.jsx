@@ -29,6 +29,7 @@ export default function PostCard({
   const { openModal, closeModal } = useModal();
   const { openConfirm } = useConfirm();
   const [isheart, setIsHeart] = useState(hearted);
+  const [heartNum, setHeartNum] = useState(heartCount);
 
   //게시글 상세페이지로 이동
   const handletoPost = () => {
@@ -47,8 +48,8 @@ export default function PostCard({
     if (isheart) {
       unheartAPI(id)
         .then(() => {
-          update();
           setIsHeart(false);
+          setHeartNum(heartNum - 1);
         })
         .catch((err) => {
           alert('좋아요취소를 실패했습니다');
@@ -56,8 +57,8 @@ export default function PostCard({
     } else {
       heartAPI(id)
         .then(() => {
-          update();
           setIsHeart(true);
+          setHeartNum(heartNum + 1);
         })
         .catch((err) => {
           alert('좋아요를 실패했습니다');
@@ -135,7 +136,7 @@ export default function PostCard({
             <PostImg key={index} src={imgUrl} onClick={() => handleClickImg(imgUrl)} />
           ))}
           <PostHeart $hearted={isheart} onClick={handleToggleHeart}>
-            {heartCount}
+            {heartNum}
           </PostHeart>
           <PostComment onClick={handletoPost}>{commentCount}</PostComment>
         </div>
