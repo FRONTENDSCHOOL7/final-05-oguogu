@@ -53,17 +53,18 @@ export default function PostEditPage() {
   // 사진 추가
   const handleFileSelect = (e) => {
     const selectedImages = Array.from(e.target.files); // 선택된 이미지들을 배열로 변환
-    setImages(images.concat(selectedImages));
-    // setImages((prevImages) => [...prevImages, ...selectedImages]); // 기존 이미지 배열에 추가
+    console.log('Selected Images:', selectedImages);
+    setImages((prevImages) => [...prevImages, ...selectedImages]); // 기존 이미지 배열에 추가
     const previewImageUrls = selectedImages.map((image) =>
       URL.createObjectURL(image)
     );
-    setPreviewImages(previewImages.concat(previewImageUrls));
-    // setPreviewImages((prevPreviewImages) => [
-    //   ...prevPreviewImages,
-    //   ...previewImageUrls,
-    // ]); // 미리보기 이미지 URL들을 상태에 저장
+    console.log('Preview Image URLs:', previewImageUrls);
+    setPreviewImages((prevPreviewImages) => [
+      ...prevPreviewImages,
+      ...previewImageUrls,
+    ]); // 미리보기 이미지 URL들을 상태에 추가
   };
+  
 
   // 사진 삭제
 
@@ -71,12 +72,6 @@ export default function PostEditPage() {
     setImages(images.filter((_, i) => i !== index)); // 선택한 이미지 제거
     setPreviewImages(previewImages.filter((_, i) => i !== index)); // 선택한 이미지 미리보기 URL 제거
   };
-  // const handleRemoveImage = (index) => {
-  //   setImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  //   setPreviewImages((prevPreviewImages) =>
-  //     prevPreviewImages.filter((_, i) => i !== index)
-  //   );
-  // };
 
   // 게시글 내용 입력 받기
   const handleOnChangeText = (e) => {
@@ -96,14 +91,15 @@ export default function PostEditPage() {
         const imgPaths = responses.map((res) =>
           res === 'https://api.mandarin.weniv.co.kr/undefined' ? '' : res
         );
+        const combinedImagePaths = [...previewImages, ...imgPaths];
         const content = { text: text, kate: curKategorie };
-
+  
         // 여러 이미지 업로드의 경우 imgPaths를 배열로 전달
-        const promise = PostEditAPI(JSON.stringify(content), imgPaths, postid);
-
+        const promise = PostEditAPI(JSON.stringify(content), combinedImagePaths.join(','), postid);
+  
         promise
           .then((data) => {
-            navigate(`/post/${data.id}`);
+            navigate(`/post/${data.id}`, { replace: true });
           })
           .catch((error) => {
             alert('게시글 업로드 실패', error);

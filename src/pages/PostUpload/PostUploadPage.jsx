@@ -21,8 +21,6 @@ export default function PostUploadPage() {
   const fileInputRef = useRef(null);
   const [images, setImages] = useState([]); // 초기 상태를 빈 배열로 설정
   const [previewImages, setPreviewImages] = useState([]);
-  // const images = useRef([]); // 빈 배열로 초기화
-  // const [previewImages, setPreviewImages] = useState('');
   const [curKategorie, setCurKategorie] = useState('#내새꾸자랑');
   const [text, setText] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -38,10 +36,12 @@ export default function PostUploadPage() {
 // 사진 추가
 const handleFileSelect = (e) => {
   const selectedImages = Array.from(e.target.files); // 선택된 이미지들을 배열로 변환
+  console.log('Selected Images:', selectedImages);
   setImages(images.concat(selectedImages)); // 기존 이미지 배열에 추가
   const previewImageUrls = selectedImages.map((image) =>
     URL.createObjectURL(image)
   );
+  console.log('Preview Image URLs:', previewImageUrls);
   setPreviewImages(previewImages.concat(previewImageUrls)); // 미리보기 이미지 URL들을 상태에 저장
 };
 
