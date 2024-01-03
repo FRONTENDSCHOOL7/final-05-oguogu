@@ -17,9 +17,9 @@ export const postUploadAPI = async (content, img) => {
 };
 
 //팔로잉 게시글 목록(피드)
-export const follwingPostAPI = async (skip) => {
+export const follwingPostAPI = async () => {
   try {
-    const result = await tokenInstance.get(`post/feed/?limit=5&skip=${skip}`);
+    const result = await tokenInstance.get(`post/feed`);
     return result.data;
   } catch (error) {
     throw error;
@@ -27,9 +27,9 @@ export const follwingPostAPI = async (skip) => {
 };
 
 //유저 게시글 목록
-export const postListAPI = async (accountname, skip) => {
+export const postListAPI = async (accountname) => {
   try {
-    const result = await tokenInstance.get(`post/${accountname}/userpost/?limit=3&skip=${skip}`);
+    const result = await tokenInstance.get(`post/${accountname}/userpost`);
     return result.data.post;
   } catch (error) {
     throw error;

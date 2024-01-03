@@ -10,11 +10,11 @@ import Loader from 'components/common/loader/Loader';
 export default function Feed({ accountname }) {
   const [posts, setPosts] = useState(null);
   const [postType, setPostType] = useState('normal');
-  const skip = useRef(0);
-  const target = useRef(null);
+  // const skip = useRef(0);
+  // const target = useRef(null);
 
   const updatepostlist = () => {
-    postListAPI(accountname, 0)
+    postListAPI(accountname)
       .then((res) => {
         setPosts(res);
       })
@@ -23,32 +23,32 @@ export default function Feed({ accountname }) {
       });
   };
 
-  const addpostlist = useCallback(() => {
-    if (skip.current !== 0) {
-      postListAPI(accountname, skip.current)
-        .then((res) => {
-          setPosts((prevPosts) => {
-            if (prevPosts !== null) {
-              return [...prevPosts, ...res];
-            } else {
-              return res;
-            }
-          });
-        })
-        .catch((err) => {
-          alert('게시물 불러오기에 실패했습니다');
-          skip.current -= 3;
-        });
-    }
-  }, [accountname]);
+  // const addpostlist = useCallback(() => {
+  //   if (skip.current !== 0) {
+  //     postListAPI(accountname, skip.current)
+  //       .then((res) => {
+  //         setPosts((prevPosts) => {
+  //           if (prevPosts !== null) {
+  //             return [...prevPosts, ...res];
+  //           } else {
+  //             return res;
+  //           }
+  //         });
+  //       })
+  //       .catch((err) => {
+  //         alert('게시물 불러오기에 실패했습니다');
+  //         skip.current -= 3;
+  //       });
+  //   }
+  // }, [accountname]);
 
-  const [observe, unobserve] = useObserve(() => {
-    skip.current += 3;
-    addpostlist();
-  });
+  // const [observe, unobserve] = useObserve(() => {
+  //   skip.current += 3;
+  //   addpostlist();
+  // });
 
   useEffect(() => {
-    if (skip.current === 0) observe(target.current);
+    // if (skip.current === 0) observe(target.current);
     updatepostlist();
   }, [accountname]);
 
@@ -75,7 +75,7 @@ export default function Feed({ accountname }) {
           <Loader />
         </LoaderBox>
       )}
-      <Target ref={target} />
+      {/* <Target ref={target} /> */}
     </Container>
   );
 }
