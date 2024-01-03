@@ -35,8 +35,11 @@ export default function PostEditPage() {
         const content = JSON.parse(postData.content);
         setText(content.text);
         setCurKategorie(content.kate);
-        const imageUrls = postData.image.split(',');
-        setPreviewImages(imageUrls);
+        if (postData.image.length) {
+          const imageUrls = postData.image.split(',');
+          setImages(imageUrls);
+          setPreviewImages(imageUrls);
+        }
       } catch (error) {
         alert.error('상품 정보를 가져오는 데 실패했습니다.', error);
       }
@@ -55,16 +58,9 @@ export default function PostEditPage() {
     const selectedImages = Array.from(e.target.files); // 선택된 이미지들을 배열로 변환
     console.log('Selected Images:', selectedImages);
     setImages((prevImages) => [...prevImages, ...selectedImages]); // 기존 이미지 배열에 추가
-    const previewImageUrls = selectedImages.map((image) =>
-      URL.createObjectURL(image)
-    );
-    console.log('Preview Image URLs:', previewImageUrls);
-    setPreviewImages((prevPreviewImages) => [
-      ...prevPreviewImages,
-      ...previewImageUrls,
-    ]); // 미리보기 이미지 URL들을 상태에 추가
+    const previewImageUrls = selectedImages.map((image) => URL.createObjectURL(image));
+    setPreviewImages((prevPreviewImages) => [...prevPreviewImages, ...previewImageUrls]); // 미리보기 이미지 URL들을 상태에 추가
   };
-  
 
   // 사진 삭제
 
@@ -85,18 +81,18 @@ export default function PostEditPage() {
 
   // 게시글 업로드
   const handlePostEdit = () => {
-    const uploadImgs = images.map((image) => imgUploadAPI(image));
+    const filterImg = images.filter((img) => typeof img === 'string');
+    const uploadImgs = images.length ? images.filter((img) => typeof img === 'object').map((image) => imgUploadAPI(image)) : [];
     Promise.all(uploadImgs)
       .then((responses) => {
-        const imgPaths = responses.map((res) =>
-          res === 'https://api.mandarin.weniv.co.kr/undefined' ? '' : res
-        );
-        const combinedImagePaths = [...previewImages, ...imgPaths];
+        console.log(responses);
+        const imgPaths = responses.map((res) => (res === 'https://api.mandarin.weniv.co.kr/undefined' ? '' : res));
+        const combinedImagePaths = [...filterImg, ...imgPaths];
         const content = { text: text, kate: curKategorie };
-  
+
         // 여러 이미지 업로드의 경우 imgPaths를 배열로 전달
         const promise = PostEditAPI(JSON.stringify(content), combinedImagePaths.join(','), postid);
-  
+
         promise
           .then((data) => {
             navigate(`/post/${data.id}`, { replace: true });
@@ -112,20 +108,10 @@ export default function PostEditPage() {
 
   return (
     <UploadPageBg>
-      <Header
-        type="btn"
-        btnText="업로드"
-        btndisabled={submitDisabled}
-        rightOnClick={handlePostEdit}
-      />
+      <Header type="btn" btnText="업로드" btndisabled={submitDisabled} rightOnClick={handlePostEdit} />
       <AddPictureContainer>
         <AddPictureBtn onClick={() => fileInputRef.current.click()}>
-          <FileInput
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={handleFileSelect}
-          />
+          <FileInput type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} />
           사진 추가
         </AddPictureBtn>
         <AddPictureList>
@@ -137,48 +123,14 @@ export default function PostEditPage() {
           ))}
         </AddPictureList>
       </AddPictureContainer>
-      <EnterText
-        value={text}
-        onChange={handleOnChangeText}
-        placeholder="게시글 입력하기"
-      />
+      <EnterText value={text} onChange={handleOnChangeText} placeholder="게시글 입력하기" />
       <SelectCategory>카테고리 선택</SelectCategory>
       <Categorybox>
-        <Button
-          size="md"
-          vari="shadow"
-          text="#내새꾸자랑"
-          selected={curKategorie === '#내새꾸자랑'}
-          onClick={handleSelectBtn}
-        />
-        <Button
-          size="md"
-          vari="shadow"
-          text="#고민있어요"
-          selected={curKategorie === '#고민있어요'}
-          onClick={handleSelectBtn}
-        />
-        <Button
-          size="md"
-          vari="shadow"
-          text="#질문있어요"
-          selected={curKategorie === '#질문있어요'}
-          onClick={handleSelectBtn}
-        />
-        <Button
-          size="md"
-          vari="shadow"
-          text="#내새꾸간식"
-          selected={curKategorie === '#내새꾸간식'}
-          onClick={handleSelectBtn}
-        />
-        <Button
-          size="md"
-          vari="shadow"
-          text="#내새꾸선물"
-          selected={curKategorie === '#내새꾸선물'}
-          onClick={handleSelectBtn}
-        />
+        <Button size="md" vari="shadow" text="#내새꾸자랑" selected={curKategorie === '#내새꾸자랑'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#고민있어요" selected={curKategorie === '#고민있어요'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#질문있어요" selected={curKategorie === '#질문있어요'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#내새꾸간식" selected={curKategorie === '#내새꾸간식'} onClick={handleSelectBtn} />
+        <Button size="md" vari="shadow" text="#내새꾸선물" selected={curKategorie === '#내새꾸선물'} onClick={handleSelectBtn} />
       </Categorybox>
     </UploadPageBg>
   );
