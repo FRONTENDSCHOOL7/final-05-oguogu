@@ -3,7 +3,7 @@ import Input from 'components/common/input/Input';
 import { Container, ImageFormContainer, InputImage, ProfileInputImgButton, StyledProfileImg } from 'components/join/ProfileForm.style';
 import Button from 'components/common/button/Button';
 import { StyledInputWrap, StyledButtonWrap } from 'components/login/LoginForm.style';
-import DefaultProfileInput from 'assets/images/icon_ogudog_gray.png';
+import DefaultProfileInput from 'assets/images/icon_basicprofile_square.png';
 import { accountValidAPI } from 'api/join.api';
 import { joinAPI } from 'api/join.api';
 import { imgUploadAPI } from 'api/image.api';
@@ -29,7 +29,7 @@ export default function ProfileForm() {
 
   const [error, setErrors] = useState({});
   const [hasError, setHasError] = useState(false);
-  const [profileImg, setProfileImg] = useState(DefaultProfileInput);
+  const [profileImg, setProfileImg] = useState(null);
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -124,7 +124,7 @@ export default function ProfileForm() {
               <InputImage id="profileImg" type="file" accept="image/jpg, image/jpeg, image/png" ref={inputRef} onChange={handleImageChange} />
             </label>
             <ProfileInputImgButton title="클릭하면 이미지를 불러올 수 있어요." type="button" onClick={() => inputRef.current.click()}>
-              <StyledProfileImg src={profileImg || DefaultProfileInput} alt="기본 프로필" $isDefault={profileImg === DefaultProfileInput} />
+              <StyledProfileImg src={profileImg || DefaultProfileInput} alt="기본 프로필" />
             </ProfileInputImgButton>
           </ImageFormContainer>
 

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import UploadButton from 'assets/images/icon_picture.png';
 
 export const Container = styled.section`
@@ -9,19 +9,10 @@ export const Container = styled.section`
 `;
 
 export const StyledProfileImg = styled.img`
-  width: 110px;
-  height: 110px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-
-  ${(props) =>
-    props.$isDefault &&
-    css`
-      width: 79.836px;
-      height: 52.941px;
-      border-radius: 0;
-      object-fit: contain;
-    `}
 `;
 
 export const ImageFormContainer = styled.div`
