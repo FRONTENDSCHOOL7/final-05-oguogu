@@ -110,7 +110,7 @@ export const PostImgWrapper = styled.div`
   height : 100%;
   display : flex;
   transition: all 0.3s ease-in-out;
-  transform: translateX(${({ slideIndex }) => slideIndex * -100 + "%"});
+  transform: translateX(${({ slideIndex }) => slideIndex * -100}%);
 `
 
 export const PostImgInner = styled.div`
