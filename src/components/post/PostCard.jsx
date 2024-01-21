@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart } from './PostCard.style';
+import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart, NextBtn, PostImgContainer, PostImgInner, PostImgWrapper, PrevBtn } from './PostCard.style';
 import { useLocation, useNavigate } from 'react-router';
 import useModal from 'hook/useModal';
 import useConfirm from 'hook/useConfirm';
@@ -14,6 +14,16 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   const { openModal, closeModal } = useModal();
   const { openConfirm } = useConfirm();
   const [isheart, setIsHeart] = useState(hearted);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const moveToPrevSlide = () => {
+    setSlideIndex((prev) => (prev === 0 ? postImg.length - 1 : prev - 1));
+  };
+  const moveToNextSlide = () => {
+    setSlideIndex((prev) => (prev === postImg.length - 1 ? 0 : prev + 1));
+  };
+  const isPrevBtnVisible = slideIndex !== 0; // 현재 이미지가 첫 번째 이미지면 이전 버튼을 감춘다.
+  const isNextBtnVisible = postImg.length > 1 && slideIndex !== postImg.length - 1; // 이미지가 1개 이상이고, 현재 이미지가 마지막 이미지면 다음 버튼을 감춘다.
+
 
   //게시글 상세페이지로 이동
   const handletoPost = () => {
@@ -23,6 +33,8 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   const handletoProfile = () => {
     navigate(`/profile/${authaccount}`);
   };
+
+
   //이미지 새창에서 보기
   const handleClickImg = () => {
     window.open(postImg, '_blank');
@@ -115,8 +127,28 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
         <PostText $ell={ellipsis} onClick={handletoPost}>
           {text}
         </PostText>
+
         <div style={{ marginTop: '-7px' }}>
-          {postImg.length ? postImg.split(',').map((imgUrl, index) => <PostImg key={index} src={imgUrl} onClick={() => handleClickImg(imgUrl)} />) : ''}
+        <PostImgContainer>
+  {isPrevBtnVisible ? <PrevBtn direction="prev" onClick={moveToPrevSlide}></PrevBtn> : null}
+  <PostImgWrapper slideIndex={slideIndex}>
+    {Array.isArray(postImg)
+      ? postImg.length > 0 &&
+        postImg.map((imgUrl, index) => (
+          <PostImgInner key={index}>
+            <PostImg src={imgUrl} onClick={() => handleClickImg(imgUrl)} />
+          </PostImgInner>
+        ))
+      : postImg.length > 0 &&
+        postImg.split(',').filter((imgUrl) => imgUrl.trim() !== '').map((imgUrl, index) => (
+          <PostImgInner key={index}>
+            <PostImg src={imgUrl} onClick={() => handleClickImg(imgUrl)} />
+          </PostImgInner>
+        ))}
+  </PostImgWrapper>
+  {isNextBtnVisible ? <NextBtn direction="next" onClick={moveToNextSlide}></NextBtn> : null}
+</PostImgContainer>
+
           <PostHeart $hearted={isheart} onClick={handleToggleHeart}>
             {heartCount}
           </PostHeart>

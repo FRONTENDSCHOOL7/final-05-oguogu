@@ -8,10 +8,12 @@ export default function PostList({ type, posts, update }) {
       //이미지가 있는 게시글 필터링
       const postsImg = posts.filter((post) => post.image !== '');
       return postsImg.map((post) => {
+        const images = post.image.split(',');
+        const firstImageUrl = images.length > 0 ? images[0] : null;
         const postLink = `/post/${post.id}`;
         return (
           <li key={post.id}>
-            <PostImgCard $img={post.image} to={postLink} />
+            <PostImgCard $img={firstImageUrl} to={postLink} />
           </li>
         );
       });

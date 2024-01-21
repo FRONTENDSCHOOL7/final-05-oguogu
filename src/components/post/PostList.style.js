@@ -11,7 +11,6 @@ export const Container = styled.ul`
 `;
 
 export const PostImgContainer = styled.ul`
-  min-height: 300px;
   display: grid;
   grid-gap: 8px;
   grid-template-columns: 1fr 1fr 1fr;
