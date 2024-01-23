@@ -120,7 +120,6 @@ export const PostImgInner = styled.div`
 `
 
 export const PostImg = styled.img`
-  /* position : relative; */
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -140,10 +139,6 @@ export const NextBtn = styled.span`
   margin: auto 0;
   left: ${({ direction }) => direction === "prev" && "0px"};
   right: ${({ direction }) => direction === "next" && "0px"};
-  /* width: 36px; */
-  /* height: 36px; */
-  /* border-radius: 50%; */
-  /* background-color: pink; */
   display: flex;
   justify-content: center;
   align-items: center;

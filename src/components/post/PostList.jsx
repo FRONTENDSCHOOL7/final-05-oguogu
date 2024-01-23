@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, PostImgCard, PostImgContainer } from 'components/post/PostList.style';
+import { Container, ImgIcon, PostImgCard, PostImgContainer } from 'components/post/PostList.style';
 import PostCard from 'components/post/PostCard';
 
 export default function PostList({ type, posts, update }) {
@@ -13,7 +13,7 @@ export default function PostList({ type, posts, update }) {
         const postLink = `/post/${post.id}`;
         return (
           <li key={post.id}>
-            <PostImgCard $img={firstImageUrl} to={postLink} />
+            <PostImgCard $img={firstImageUrl} to={postLink} >{images.length > 1 && <ImgIcon />}</PostImgCard>
           </li>
         );
       });

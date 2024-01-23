@@ -38,8 +38,8 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
 
 
   //이미지 새창에서 보기
-  const handleClickImg = () => {
-    window.open(postImg, '_blank');
+  const handleClickImg = (index) => {
+    window.open(filteredImages[index], '_blank');
   };
   //heart토글
   const handleToggleHeart = () => {
@@ -129,24 +129,20 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
         <PostText $ell={ellipsis} onClick={handletoPost}>
           {text}
         </PostText>
-
         <div style={{ marginTop: '-7px' }}>
         {filteredImages.length > 0 && (
   <PostImgContainer>
     {isPrevBtnVisible ? <PrevBtn direction="prev" onClick={moveToPrevSlide}></PrevBtn> : null}
-    
     <PostImgWrapper slideIndex={slideIndex}>
       {filteredImages.map((imgUrl, index) => (
         <PostImgInner key={index}>
-          <PostImg src={imgUrl} onClick={() => handleClickImg(imgUrl)} />
+          <PostImg src={imgUrl} onClick={() => handleClickImg(index)} />
         </PostImgInner>
       ))}
     </PostImgWrapper>
-
     {isNextBtnVisible ? <NextBtn direction="next" onClick={moveToNextSlide}></NextBtn> : null}
   </PostImgContainer>
 )}
-
           <PostHeart $hearted={isheart} onClick={handleToggleHeart}>
             {heartCount}
           </PostHeart>
