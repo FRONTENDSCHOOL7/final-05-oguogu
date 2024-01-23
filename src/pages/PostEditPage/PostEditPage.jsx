@@ -15,12 +15,12 @@ import Header from 'components/common/header/Header';
 import Button from 'components/common/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { imgUploadAPI } from 'api/image.api';
-import { PostEditAPI, postDetailAPI, postUploadAPI } from 'api/post.api';
+import { PostEditAPI, postDetailAPI } from 'api/post.api';
 
 export default function PostEditPage() {
   const fileInputRef = useRef(null);
-  const images = useRef([]);
-  const [previewImages, setPreviewImages] = useState();
+  const [images, setImages] = useState([]);
+  const [previewImages, setPreviewImages] = useState([]);
   const [curKategorie, setCurKategorie] = useState('#내새꾸자랑');
   const [text, setText] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -35,7 +35,11 @@ export default function PostEditPage() {
         const content = JSON.parse(postData.content);
         setText(content.text);
         setCurKategorie(content.kate);
-        setPreviewImages(postData.image);
+        if (postData.image.length) {
+          const imageUrls = postData.image.split(',');
+          setImages(imageUrls);
+          setPreviewImages(imageUrls);
+        }
       } catch (error) {
         alert.error('상품 정보를 가져오는 데 실패했습니다.', error);
       }
@@ -51,19 +55,20 @@ export default function PostEditPage() {
 
   // 사진 추가
   const handleFileSelect = (e) => {
-    const selectedImage = e.target.files[0];
-    images.current = [selectedImage];
-    if (selectedImage) {
-      const imageUrl = URL.createObjectURL(selectedImage);
-      setPreviewImages(imageUrl);
-    }
+    const selectedImages = Array.from(e.target.files); // 선택된 이미지들을 배열로 변환
+    console.log('Selected Images:', selectedImages);
+    setImages((prevImages) => [...prevImages, ...selectedImages]); // 기존 이미지 배열에 추가
+    const previewImageUrls = selectedImages.map((image) => URL.createObjectURL(image));
+    setPreviewImages((prevPreviewImages) => [...prevPreviewImages, ...previewImageUrls]); // 미리보기 이미지 URL들을 상태에 추가
   };
 
   // 사진 삭제
-  const handleRemoveImage = () => {
-    images.current = [];
-    setPreviewImages('');
+
+  const handleRemoveImage = (index) => {
+    setImages(images.filter((_, i) => i !== index)); // 선택한 이미지 제거
+    setPreviewImages(previewImages.filter((_, i) => i !== index)); // 선택한 이미지 미리보기 URL 제거
   };
+
   // 게시글 내용 입력 받기
   const handleOnChangeText = (e) => {
     setText(e.target.value);
@@ -74,16 +79,20 @@ export default function PostEditPage() {
     text === '' ? setSubmitDisabled(true) : setSubmitDisabled(false);
   }, [text]);
 
-  // 게시글 수정
+  // 게시글 업로드
   const handlePostEdit = () => {
-    // 이미지업로드 api
-    const uploadImg = imgUploadAPI(images.current[0]);
-    uploadImg
-      .then((res) => {
-        const imgPath = res === 'https://api.mandarin.weniv.co.kr/undefined' ? previewImages : res;
+    const filterImg = images.filter((img) => typeof img === 'string');
+    const uploadImgs = images.length ? images.filter((img) => typeof img === 'object').map((image) => imgUploadAPI(image)) : [];
+    Promise.all(uploadImgs)
+      .then((responses) => {
+        console.log(responses);
+        const imgPaths = responses.map((res) => (res === 'https://api.mandarin.weniv.co.kr/undefined' ? '' : res));
+        const combinedImagePaths = [...filterImg, ...imgPaths];
         const content = { text: text, kate: curKategorie };
-        // 게시글수정 api
-        const promise = PostEditAPI(JSON.stringify(content), imgPath, postid);
+
+        // 여러 이미지 업로드의 경우 imgPaths를 배열로 전달
+        const promise = PostEditAPI(JSON.stringify(content), combinedImagePaths.join(','), postid);
+
         promise
           .then((data) => {
             navigate(`/post/${data.id}`, { replace: true });
@@ -93,7 +102,7 @@ export default function PostEditPage() {
           });
       })
       .catch((error) => {
-        alert('이미지업로드 실패');
+        alert('이미지 업로드 실패');
       });
   };
 
@@ -106,12 +115,12 @@ export default function PostEditPage() {
           사진 추가
         </AddPictureBtn>
         <AddPictureList>
-          {previewImages && (
-            <AddPictureListEle key={1}>
-              <img src={previewImages} alt={`Image`} />
-              <CanclePictureBtn onClick={() => handleRemoveImage()} />
+          {previewImages.map((src, index) => (
+            <AddPictureListEle key={index}>
+              <img src={src} alt={`Image ${index + 1}`} />
+              <CanclePictureBtn onClick={() => handleRemoveImage(index)} />
             </AddPictureListEle>
-          )}
+          ))}
         </AddPictureList>
       </AddPictureContainer>
       <EnterText value={text} onChange={handleOnChangeText} placeholder="게시글 입력하기" />
