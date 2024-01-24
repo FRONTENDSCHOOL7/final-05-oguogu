@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import iconGalleryMore from 'assets/images/icon_img_layers.png';
 import { Link } from 'react-router-dom';
+import imgIcon from 'assets/images/icon_img_layers.png';
 
 export const Container = styled.ul`
   min-height: 550px;
@@ -11,13 +12,13 @@ export const Container = styled.ul`
 `;
 
 export const PostImgContainer = styled.ul`
-  min-height: 300px;
   display: grid;
   grid-gap: 8px;
   grid-template-columns: 1fr 1fr 1fr;
 `;
 
 export const PostImgCard = styled(Link)`
+  position: relative;
   width: 114px;
   height: 114px;
   display: block;
@@ -26,6 +27,17 @@ export const PostImgCard = styled(Link)`
   background-position: center;
   cursor: pointer;
 `;
+
+export const ImgIcon = styled.div`
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  background: url(${imgIcon}) no-repeat;
+  background-size: 20px;
+  cursor: pointer;
+`
 
 export const IconMore = styled.div`
   width: 20px;

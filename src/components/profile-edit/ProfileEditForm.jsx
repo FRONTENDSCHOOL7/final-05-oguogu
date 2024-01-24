@@ -1,109 +1,106 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Input from 'components/common/input/Input';
-import { Container, ImageFormContainer, InputImage, ProfileInputImgButton, StyledProfileImg } from 'components/join/ProfileForm.style';
-import Button from 'components/common/button/Button';
-import { StyledInputWrap, StyledButtonWrap } from 'components/login/LoginForm.style';
-import DefaultProfileInput from 'assets/images/icon_basicprofile_square.png';
-import { accountValidAPI } from 'api/join.api';
-import { joinAPI } from 'api/join.api';
-import { imgUploadAPI } from 'api/image.api';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { EditMyInfoAPI } from 'api/profile.api';
+import { accountValidAPI } from 'api/join.api';
+import { imgUploadAPI } from 'api/image.api';
+import Header from 'components/common/header/Header';
+import DefaultProfileInput from 'assets/images/icon_ogudog_gray.png';
+import Input from 'components/common/input/Input';
+import {
+  Container,
+  StyledInputWrap,
+  ImageFormContainer,
+  InputImage,
+  StyledProfileImg,
+  ProfileInputImgButton,
+} from 'components/profile-edit/ProfileEditForm.style';
 
-export default function ProfileForm() {
+export default function ProfileEditForm({ userInfo }) {
   const {
     register,
     handleSubmit,
-    setError,
     clearErrors,
     setValue,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValue: {
-      username: null,
-      accountname: null,
-      intro: null,
-    },
   });
-
-  const [error, setErrors] = useState({});
+  const [error, setErrors] = useState([]);
   const [hasError, setHasError] = useState(false);
+  const token = localStorage.getItem('oguToken');
   const [profileImg, setProfileImg] = useState(null);
+
   const inputRef = useRef(null);
   const navigate = useNavigate();
-  const location = useLocation();
-  const data = location.state;
+  const [isImageChanged, setImageChanged] = useState(false);
 
+  // useForm 훅에서 제공하는 setValue함수를 사용하여 폼 필드의 초기값 설정
   useEffect(() => {
-    if (data) {
-      setValue('email', data.email);
-      setValue('password', data.password);
-    }
-    setValue('image', DefaultProfileInput);
-    setValue('username', null);
-    setValue('accountname', null);
-    setValue('intro', null);
+    setValue('image', userInfo?.image || DefaultProfileInput);
+    setValue('username', userInfo?.username || null);
+    setValue('accountname', userInfo?.accountname || null);
+    setValue('intro', userInfo?.intro || null);
+    // 의존성 배열 경고를 무시하기 위한 코드조각
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+  }, [userInfo]);
 
-  const checkUserIdValid = (accountname) => {
-    const promise = accountValidAPI(accountname);
-    return promise
-      .then((res) => {
-        if (res.message === '이미 가입된 계정ID 입니다.') {
-          setError('accountname', {
-            message: '*이미 사용 중인 ID입니다.',
-          });
-          setHasError(true);
+  // accountname 변경
+  const checkUserIdValid = (newAccount, oldAccount) => {
+    if (newAccount === oldAccount) {
+      return true;
+    } else {
+      const promise = accountValidAPI(newAccount);
+      clearErrors('accountname');
+      return promise
+        .then((res) => {
+          if (res.message === '이미 가입된 계정ID 입니다.') {
+            setHasError(true);
+            return '*이미 사용 중인 ID입니다.';
+          } else {
+            setHasError(false);
+            clearErrors('accountname');
+            return true;
+          }
+        })
+        .catch((error) => {
+          alert('에러 발생: ' + error.message);
           return false;
-        } else {
-          setHasError(false);
-          clearErrors('accountname');
-          return true;
-        }
-      })
-      .catch((error) => {
-        alert('에러 발생: ' + error.message);
-        return false;
-      });
+        });
+    }
   };
 
+  // 프로필 이미지 변경
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
     try {
       const imgUrl = await imgUploadAPI(file);
       if (imgUrl && !imgUrl.endsWith('undefined')) {
         setProfileImg(imgUrl);
-        setValue('image', imgUrl);
-      } else {
+        setImageChanged(true);
+      } else if (imgUrl.endsWith('undefined')) {
         setProfileImg(DefaultProfileInput);
-        setValue('image', DefaultProfileInput);
       }
     } catch (error) {
-      console.error('Image upload failed:', error);
+      console.error('Image upload failed:', error.message);
     }
   };
 
+  // 프로필 수정저장
   const handleSubmitData = async (formData) => {
-    try {
-      const isValidUserId = await checkUserIdValid(formData.accountname);
-      let defaultImg = profileImg;
-      if (defaultImg === null) {
-        defaultImg = DefaultProfileInput;
-      }
-      if (isValidUserId) {
-        await joinAPI(formData, data, defaultImg);
-        navigate('/login', {
-          state: {
-            email: formData.email,
-            password: formData.password,
-          },
-        });
-      }
-    } catch (errors) {
-      console.error(errors);
-    }
+    formData.image = profileImg || userInfo?.image;
+    const promise = EditMyInfoAPI(formData, token);
+    promise
+      .then((res) => {
+        const userInfo = JSON.parse(localStorage.getItem('oguUserInfo'));
+        const newUserInfo = { ...userInfo, accountname: res.user.accountname, username: res.user.username, image: res.user.image };
+        localStorage.setItem('oguUserInfo', JSON.stringify(newUserInfo));
+
+        navigate(`/profile/${res.user.accountname}`, { replace: true });
+      })
+      .catch((error) => {
+        console.log('프로필 수정에 실패했습니다.', error);
+      });
   };
 
   const handleFieldChange = () => {
@@ -112,6 +109,7 @@ export default function ProfileForm() {
 
   return (
     <>
+      <Header type="btn" btnText="저장" btndisabled={!isValid && !isImageChanged} rightOnClick={handleSubmit(handleSubmitData)} />
       <Container>
         <form
           onSubmit={handleSubmit((formData) => {
@@ -124,7 +122,7 @@ export default function ProfileForm() {
               <InputImage id="profileImg" type="file" accept="image/jpg, image/jpeg, image/png" ref={inputRef} onChange={handleImageChange} />
             </label>
             <ProfileInputImgButton title="클릭하면 이미지를 불러올 수 있어요." type="button" onClick={() => inputRef.current.click()}>
-              <StyledProfileImg src={profileImg || DefaultProfileInput} alt="기본 프로필" />
+              <StyledProfileImg src={profileImg || userInfo?.image || DefaultProfileInput} alt="기본 프로필" />
             </ProfileInputImgButton>
           </ImageFormContainer>
 
@@ -133,7 +131,7 @@ export default function ProfileForm() {
               label="사용자이름"
               id="username"
               type="text"
-              placeholder="2~10자 이내여야 합니다."
+              placeholder="2~10자 이내로 작성 부탁드릴게요."
               onChange={handleFieldChange}
               hasError={hasError}
               registerOptions={{
@@ -170,7 +168,7 @@ export default function ProfileForm() {
                   },
                   validate: {
                     uniqueAccount: async (value) => {
-                      const result = await checkUserIdValid(value);
+                      const result = await checkUserIdValid(value, userInfo?.accountname);
                       return result === true || result;
                     },
                   },
@@ -194,10 +192,6 @@ export default function ProfileForm() {
               errors: errors.intro ? { intro: errors.intro } : error,
             }}
           />
-
-          <StyledButtonWrap>
-            <Button size="lg" vari="basic" text="오구오구 시작하기" onClick={handleSubmit} type="submit" disabled={!isValid} />
-          </StyledButtonWrap>
         </form>
       </Container>
     </>
