@@ -16,9 +16,6 @@ import {
 } from 'pages/PostUpload/PostUploadPage.style';
 import Header from 'components/common/header/Header';
 import Button from 'components/common/button/Button';
-import { useNavigate } from 'react-router-dom';
-import { postUploadAPI } from 'api/post.api';
-import { imgUploadAPI } from 'api/image.api';
 
 export default function PostUploadPage() {
   const fileInputRef = useRef(null);

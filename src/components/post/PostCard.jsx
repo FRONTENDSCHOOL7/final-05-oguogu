@@ -46,6 +46,7 @@ export default function PostCard({
   const { openModal, closeModal } = useModal();
   const { openConfirm } = useConfirm();
   const [isheart, setIsHeart] = useState(hearted);
+  const [heartNum, setHeartNum] = useState(heartCount);
   const [slideIndex, setSlideIndex] = useState(0);
   const filteredImages = postImg.split(',').filter((imgUrl) => imgUrl.trim() !== '');
   const moveToPrevSlide = () => {
@@ -162,7 +163,7 @@ export default function PostCard({
           {filteredImages.length > 0 && (
             <PostImgContainer>
               {isPrevBtnVisible ? <PrevBtn direction="prev" onClick={moveToPrevSlide}></PrevBtn> : null}
-              <PostImgWrapper slideIndex={slideIndex}>
+              <PostImgWrapper $slideIndex={slideIndex}>
                 {filteredImages.map((imgUrl, index) => (
                   <PostImgInner key={index}>
                     <PostImg src={imgUrl} onClick={() => handleClickImg(index)} />
