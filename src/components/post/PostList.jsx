@@ -12,7 +12,6 @@ export default function PostList({ type, posts, update }) {
   const [observe, unobserve] = useObserve(() => {
     skip.current += 10;
     setShowPost(posts.slice(0, skip.current + 1));
-    console.log('무한스크롤 호출!');
   });
 
   useEffect(() => {
@@ -29,7 +28,6 @@ export default function PostList({ type, posts, update }) {
     }
   }, [showPost, unobserve]);
 
-  console.log(skip.current);
   const postlist = () => {
     if (type === 'gallery') {
       //이미지가 있는 게시글 필터링
