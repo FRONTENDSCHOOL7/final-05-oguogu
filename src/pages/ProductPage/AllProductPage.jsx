@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Header from 'components/common/header/Header';
-import NavBar from 'components/common/navbar/NavBar';
+import { follwingListAPI } from 'api/follow.api';
 import { ScrollContainer } from 'components/common/container/Container.style';
 import ProductSection from 'components/product-page/ProductSection';
-import { follwingListAPI } from 'api/follow.api';
+import Header from 'components/common/header/Header';
+import NavBar from 'components/common/navbar/NavBar';
 import BottomModal from 'components/common/modal/BottomModal';
 import ConfirmModal from 'components/common/modal/ConfirmModal';
 

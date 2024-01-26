@@ -13,6 +13,7 @@ export default function ProductSection({ type, accountname, username }) {
     productListAPI(accountname)
       .then((res) => {
         setProducts(res);
+        setCurSort('최신순');
       })
       .catch((err) => {
         alert('판매상품목록 불러오기에 실패했습니다.');
@@ -20,6 +21,7 @@ export default function ProductSection({ type, accountname, username }) {
   }, [accountname]);
 
   const followingProductList = useCallback(() => {
+    let count = 0;
     accountname.forEach((user) => {
       productListAPI(user)
         .then((res) => {
@@ -30,6 +32,10 @@ export default function ProductSection({ type, accountname, username }) {
               return res;
             }
           });
+          count++;
+          if (count === accountname.length) {
+            setCurSort('최신순');
+          }
         })
         .catch((err) => {
           alert('판매상품 목록 불러오기에 실패했습니다');
@@ -63,9 +69,9 @@ export default function ProductSection({ type, accountname, username }) {
             const date2 = new Date(product2.createdAt);
 
             // Date 객체를 비교하여 정렬 순서를 결정
-            if (date1 < date2) {
+            if (date1 > date2) {
               return -1;
-            } else if (date1 > date2) {
+            } else if (date1 < date2) {
               return 1;
             } else {
               return 0;
@@ -75,7 +81,7 @@ export default function ProductSection({ type, accountname, username }) {
           break;
         case '인기순':
           const popularSort = products.toSorted((product1, product2) => {
-            return product2.author.followerConunt - product1.author.followerConunt;
+            return product2.author.followerCount - product1.author.followerCount;
           });
           setProducts(popularSort);
           break;
@@ -109,7 +115,6 @@ export default function ProductSection({ type, accountname, username }) {
     } else if (type === 'all') {
       followingProductList();
     }
-    setCurSort('최신순');
   }, [userPorductList, type]);
 
   return (

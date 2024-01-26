@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from 'assets/images/logo_oguogu_white.png';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   EmailLogin,
   FacebookLogin,
@@ -14,7 +14,7 @@ import {
 } from 'pages/LoginPage/MainLoginPage.style';
 import { SplashPageBg } from 'pages/SplashPage/SplashPage.style';
 import SplashPage from '../SplashPage/SplashPage';
-import { Link, useNavigate } from 'react-router-dom';
+import Logo from 'assets/images/logo_oguogu_white.png';
 
 export default function MainLoginPage() {
   const navigator = useNavigate();

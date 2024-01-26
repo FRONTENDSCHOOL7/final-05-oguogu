@@ -3,7 +3,7 @@ import iconMore from 'assets/images/icon_more_vertical_small.png';
 import iconHeart from 'assets/images/icon_heart.png';
 import iconHeartFill from 'assets/images/icon_heart_fill.png';
 import iconComment from 'assets/images/icon_message_small.png';
-import iconArrow from 'assets/images/icon_arrow_right_small_white.png'
+import iconArrow from 'assets/images/icon_arrow_right_small_white.png';
 
 const PostReact = css`
   font-size: 12px;
@@ -27,12 +27,10 @@ const PostReact = css`
 
 const textEllipsis = css`
   overflow: hidden;
-  white-space: normal;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  word-break: keep-all;
 `;
 
 export const Container = styled.article`
@@ -96,28 +94,29 @@ export const PostText = styled.p`
   color: var(--black);
   font-size: 14px;
   line-height: 17px;
+  white-space: pre-wrap;
   ${(props) => props.$ell && textEllipsis}
   cursor: pointer;
 `;
 
 export const PostImgContainer = styled.div`
-  width : 100%;
-  height : 228px;
-  overflow : hidden;
-  position : relative;
-`
+  width: 100%;
+  height: 228px;
+  overflow: hidden;
+  position: relative;
+`;
 export const PostImgWrapper = styled.div`
-  height : 100%;
-  display : flex;
+  height: 100%;
+  display: flex;
   transition: all 0.3s ease-in-out;
-  transform: translateX(${({ slideIndex }) => slideIndex * -100}%);
-`
+  transform: translateX(${({ $slideIndex }) => $slideIndex * -100}%);
+`;
 
 export const PostImgInner = styled.div`
   width: 100%;
-  height : 100%;
+  height: 100%;
   flex-shrink: 0;
-`
+`;
 
 export const PostImg = styled.img`
   width: 100%;
@@ -128,29 +127,28 @@ export const PostImg = styled.img`
 `;
 
 export const NextBtn = styled.span`
-  width : 30px;
-  height : 30px;
-  background-image : url(${iconArrow});
+  width: 30px;
+  height: 30px;
+  background-image: url(${iconArrow});
 
   position: absolute;
-  right : 0;
+  right: 0;
   top: 0;
   bottom: 0;
   margin: auto 0;
-  left: ${({ direction }) => direction === "prev" && "0px"};
-  right: ${({ direction }) => direction === "next" && "0px"};
+  left: ${({ direction }) => direction === 'prev' && '0px'};
+  right: ${({ direction }) => direction === 'next' && '0px'};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1;
-`
+`;
 
 export const PrevBtn = styled(NextBtn)`
-  transform : rotate(180deg);
-  left : 0;
-  
-`
+  transform: rotate(180deg);
+  left: 0;
+`;
 
 export const PostComment = styled.span`
   &::before {
@@ -169,4 +167,10 @@ export const PostHeart = styled.span`
 export const PostDate = styled.span`
   font-size: 10px;
   color: var(--gray-01);
+
+  &::after {
+    content: '(수정됨)';
+    display: ${(props) => (props.$isUpdate ? 'inline-block' : 'none')};
+    margin-left: 3px;
+  }
 `;

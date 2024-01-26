@@ -1,12 +1,44 @@
 import React, { useState } from 'react';
-import { Container, MoreBtn, UserId, PostImg, PostBox, PostText, ProfileImg, UserName, PostDate, PostComment, PostHeart, NextBtn, PostImgContainer, PostImgInner, PostImgWrapper, PrevBtn } from './PostCard.style';
+import {
+  Container,
+  MoreBtn,
+  UserId,
+  PostImg,
+  PostBox,
+  PostText,
+  ProfileImg,
+  UserName,
+  PostDate,
+  PostComment,
+  PostHeart,
+  NextBtn,
+  PostImgContainer,
+  PostImgInner,
+  PostImgWrapper,
+  PrevBtn,
+} from './PostCard.style';
 import { useLocation, useNavigate } from 'react-router';
 import useModal from 'hook/useModal';
 import useConfirm from 'hook/useConfirm';
 import { PostDeleteAPI } from 'api/post.api';
 import { heartAPI, unheartAPI } from 'api/heart.api';
 
-export default function PostCard({ id, text, kate, postImg, profileImg, authname, authaccount, commentCount, heartCount, createdDate, hearted, update, type }) {
+export default function PostCard({
+  id,
+  text,
+  kate,
+  postImg,
+  profileImg,
+  authname,
+  authaccount,
+  commentCount,
+  heartCount,
+  createdDate,
+  isUpdate,
+  hearted,
+  update,
+  type,
+}) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const ellipsis = location !== `/post/${id}`;
@@ -14,6 +46,7 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
   const { openModal, closeModal } = useModal();
   const { openConfirm } = useConfirm();
   const [isheart, setIsHeart] = useState(hearted);
+  const [heartNum, setHeartNum] = useState(heartCount);
   const [slideIndex, setSlideIndex] = useState(0);
   const filteredImages = postImg.split(',').filter((imgUrl) => imgUrl.trim() !== '');
   const moveToPrevSlide = () => {
@@ -23,9 +56,7 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
     setSlideIndex((prev) => (prev === postImg.length - 1 ? 0 : prev + 1));
   };
   const isPrevBtnVisible = slideIndex !== 0; // 현재 이미지가 첫 번째 이미지면 이전 버튼을 감춘다.
-  const isNextBtnVisible =
-  filteredImages.length > 1 && slideIndex !== filteredImages.length - 1;
-
+  const isNextBtnVisible = filteredImages.length > 1 && slideIndex !== filteredImages.length - 1;
 
   //게시글 상세페이지로 이동
   const handletoPost = () => {
@@ -36,7 +67,6 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
     navigate(`/profile/${authaccount}`);
   };
 
-
   //이미지 새창에서 보기
   const handleClickImg = (index) => {
     window.open(filteredImages[index], '_blank');
@@ -46,8 +76,8 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
     if (isheart) {
       unheartAPI(id)
         .then(() => {
-          update();
           setIsHeart(false);
+          setHeartNum(heartNum - 1);
         })
         .catch((err) => {
           alert('좋아요취소를 실패했습니다');
@@ -55,8 +85,8 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
     } else {
       heartAPI(id)
         .then(() => {
-          update();
           setIsHeart(true);
+          setHeartNum(heartNum + 1);
         })
         .catch((err) => {
           alert('좋아요를 실패했습니다');
@@ -130,25 +160,25 @@ export default function PostCard({ id, text, kate, postImg, profileImg, authname
           {text}
         </PostText>
         <div style={{ marginTop: '-7px' }}>
-        {filteredImages.length > 0 && (
-  <PostImgContainer>
-    {isPrevBtnVisible ? <PrevBtn direction="prev" onClick={moveToPrevSlide}></PrevBtn> : null}
-    <PostImgWrapper slideIndex={slideIndex}>
-      {filteredImages.map((imgUrl, index) => (
-        <PostImgInner key={index}>
-          <PostImg src={imgUrl} onClick={() => handleClickImg(index)} />
-        </PostImgInner>
-      ))}
-    </PostImgWrapper>
-    {isNextBtnVisible ? <NextBtn direction="next" onClick={moveToNextSlide}></NextBtn> : null}
-  </PostImgContainer>
-)}
+          {filteredImages.length > 0 && (
+            <PostImgContainer>
+              {isPrevBtnVisible ? <PrevBtn direction="prev" onClick={moveToPrevSlide}></PrevBtn> : null}
+              <PostImgWrapper $slideIndex={slideIndex}>
+                {filteredImages.map((imgUrl, index) => (
+                  <PostImgInner key={index}>
+                    <PostImg src={imgUrl} onClick={() => handleClickImg(index)} />
+                  </PostImgInner>
+                ))}
+              </PostImgWrapper>
+              {isNextBtnVisible ? <NextBtn direction="next" onClick={moveToNextSlide}></NextBtn> : null}
+            </PostImgContainer>
+          )}
           <PostHeart $hearted={isheart} onClick={handleToggleHeart}>
-            {heartCount}
+            {heartNum}
           </PostHeart>
           <PostComment onClick={handletoPost}>{commentCount}</PostComment>
         </div>
-        <PostDate>
+        <PostDate $isUpdate={isUpdate}>
           {createdDate[0]}년 {createdDate[1]}월 {createdDate[2]}일
         </PostDate>
         <MoreBtn onClick={handleMoreBtn} />
