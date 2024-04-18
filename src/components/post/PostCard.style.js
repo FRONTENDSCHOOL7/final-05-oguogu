@@ -3,6 +3,7 @@ import iconMore from 'assets/images/icon_more_vertical_small.png';
 import iconHeart from 'assets/images/icon_heart.png';
 import iconHeartFill from 'assets/images/icon_heart_fill.png';
 import iconComment from 'assets/images/icon_message_small.png';
+import iconArrow from 'assets/images/icon_arrow_right_small_white.png';
 
 const PostReact = css`
   font-size: 12px;
@@ -98,12 +99,55 @@ export const PostText = styled.p`
   cursor: pointer;
 `;
 
-export const PostImg = styled.img`
+export const PostImgContainer = styled.div`
   width: 100%;
   height: 228px;
+  overflow: hidden;
+  position: relative;
+`;
+export const PostImgWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(${({ $slideIndex }) => $slideIndex * -100}%);
+`;
+
+export const PostImgInner = styled.div`
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+`;
+
+export const PostImg = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
+`;
+
+export const NextBtn = styled.span`
+  width: 30px;
+  height: 30px;
+  background-image: url(${iconArrow});
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: ${({ direction }) => direction === 'prev' && '0px'};
+  right: ${({ direction }) => direction === 'next' && '0px'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+`;
+
+export const PrevBtn = styled(NextBtn)`
+  transform: rotate(180deg);
+  left: 0;
 `;
 
 export const PostComment = styled.span`
